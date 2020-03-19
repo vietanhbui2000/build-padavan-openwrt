@@ -1,6 +1,6 @@
 # Build-Padavan-OpenWrt
 
-Build Padavan or OpenWrt firmware using GitHub Actions.
+Build Padavan or/and OpenWrt firmware using GitHub Actions.
 
 ## How to use
 
