@@ -21,6 +21,8 @@ env:
   REPO_BRANCH: master
   CONFIG_FILE: configs/openwrt/build.config
   CUSTOMIZE_FILE: scripts/openwrt/customize.sh
+  UPLOAD_BIN_DIR: false
+  UPLOAD_FIRMWARE_DIR: true
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -78,6 +80,13 @@ jobs:
         make -j$(nproc) || make -j1 V=s
         echo "::set-output name=status::success"
 
+    - name: Upload bin directory
+      uses: actions/upload-artifact@master
+      if: env.UPLOAD_BIN_DIR == 'true'
+      with:
+        name: OpenWrt_bin
+        path: openwrt/bin
+
     - name: Organize files
       run: |
         cd openwrt/bin/targets/*/*
@@ -87,6 +96,7 @@ jobs:
 
     - name: Upload firmware directory
       uses: actions/upload-artifact@master
+      if: env.UPLOAD_FIRMWARE_DIR == 'true'
       with:
         name: OpenWrt_firmware
         path: ${{ env.FIRMWARE }}
