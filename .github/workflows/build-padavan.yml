@@ -27,7 +27,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
@@ -59,7 +59,7 @@ jobs:
         wget https://github.com/hanwckf/padavan-toolchain/releases/download/v1.1/mipsel-linux-uclibc.tar.xz
         tar -xvf mipsel-linux-uclibc.tar.xz -C toolchain-3.4.x
 
-    - name: Compile toolchain
+    - name: Compile new toolchain and use it
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'false'
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
@@ -70,8 +70,7 @@ jobs:
       if: env.USE_CUSTOM_CONFIG_FILE == 'true'
       run: |
         rm /opt/rt-n56u/trunk/configs/templates/$DEVICE.config
-        wget https://raw.githubusercontent.com/vietanhbui2000/Build-OpenWrt/master/configs/padavan/$DEVICE.config
-        cp $DEVICE.config /opt/rt-n56u/trunk/configs/templates/$DEVICE.config
+        cp $CONFIG_FILE /opt/rt-n56u/trunk/configs/templates/$DEVICE.config
 
     - name: Clean up files
       run: |
