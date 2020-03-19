@@ -11,8 +11,6 @@ on:
   push:
     branches:
       - master
-  paths:
-      - 'configs/padavan'
 #  schedule:
 #    - cron: 0 0 * * 1
 #  watch:
@@ -72,7 +70,7 @@ jobs:
       if: env.USE_CUSTOM_CONFIG_FILE == 'true'
       run: |
         rm /opt/rt-n56u/trunk/configs/templates/$DEVICE.config
-        cp $CONFIG_FILE /opt/rt-n56u/trunk/configs/templates/$DEVICE.config
+        cp configs/padavan/$DEVICE.config /opt/rt-n56u/trunk/configs/templates/$DEVICE.config
 
     - name: Clean up files
       run: |
