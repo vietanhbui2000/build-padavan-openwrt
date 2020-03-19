@@ -1,3 +1,1 @@
-#############################
-# Github Actions trigger: - #
-#############################
+Github Actions trigger: -
