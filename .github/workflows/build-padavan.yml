@@ -1,0 +1,90 @@
+###########################################################################
+# Modifications made by: Việt Anh Bùi | https://github.com/vietanhbui2000 #
+# Original author: chongshengB | https://github.com/chongshengB           #
+###########################################################################
+
+name: Build Padavan
+
+on:
+  release:
+    types: published
+  push:
+    branches:
+      - master
+#  schedule:
+#    - cron: 0 0 * * 1
+#  watch:
+#    - types: started
+
+env:
+  REPO_URL: https://github.com/hanwckf/rt-n56u
+  REPO_BRANCH: master
+  DEVICE: "MI-MINI"
+  CONFIG_FILE: configs/padavan/$DEVICE.config
+  USE_CUSTOM_CONFIG_FILE: true
+  USE_PRECOMPILED_TOOLCHAIN: true
+  TZ: Asia/Ho_Chi_Minh
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Initialize environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
+        cpio git python-docutils gettext automake autopoint texinfo build-essential help2man \
+        pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev
+
+    - name: Clone source code
+      run: |
+        git clone --depth 1 $REPO_URL -b $REPO_BRANCH /opt/rt-n56u
+
+    - name: Prepare toolchain
+      run: |
+        echo ""
+
+    - name: Use pre-compiled toolchain
+      if: env.USE_PRECOMPILED_TOOLCHAIN == 'true'
+      run: |
+        cd /opt/rt-n56u/toolchain-mipsel
+        mkdir -p toolchain-3.4.x
+        wget https://github.com/hanwckf/padavan-toolchain/releases/download/v1.1/mipsel-linux-uclibc.tar.xz
+        tar -xvf mipsel-linux-uclibc.tar.xz -C toolchain-3.4.x
+
+    - name: Compile toolchain
+      if: env.USE_PRECOMPILED_TOOLCHAIN == 'false'
+      run: |
+        cd /opt/rt-n56u/toolchain-mipsel
+        sudo ./clean_toolchain
+        sudo ./build_toolchain
+
+    - name: Load device configuration
+      if: env.USE_CUSTOM_CONFIG_FILE == 'true'
+      run: |
+        rm /opt/rt-n56u/trunk/configs/templates/$DEVICE.config
+        wget https://raw.githubusercontent.com/vietanhbui2000/Build-OpenWrt/master/configs/padavan/$DEVICE.config
+        cp $DEVICE.config /opt/rt-n56u/trunk/configs/templates/$DEVICE.config
+
+    - name: Clean up files
+      run: |
+        cd /opt/rt-n56u/trunk
+        sudo ./clear_tree_simple
+
+    - name: Compile firmware
+      run: |
+        cd /opt/rt-n56u/trunk
+        sudo ./build_firmware_modify $DEVICE
+    
+    - name: Upload firmware directory
+      uses: actions/upload-artifact@master
+      with:
+        name: Padavan_firmware
+        path: /opt/rt-n56u/trunk/images/
