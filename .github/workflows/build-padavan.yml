@@ -11,6 +11,8 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'triggers/padavan.md'
 #  schedule:
 #    - cron: 0 0 * * 1
 #  watch:
