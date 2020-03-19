@@ -12,7 +12,7 @@ on:
     branches:
       - master
     paths:
-      - 'configs/build.config'
+      - 'configs/openwrt/build.config'
 #  schedule:
 #    - cron: 0 0 * * 1
 #  watch:
@@ -21,8 +21,8 @@ on:
 env:
   REPO_URL: https://github.com/vietanhbui2000/lede
   REPO_BRANCH: master-02/29/20
-  CONFIG_FILE: configs/build.config
-  CUSTOMIZE_SH_FILE: scripts/customize.sh
+  CONFIG_FILE: configs/openwrt/build.config
+  CUSTOMIZE_SH_FILE: scripts/openwrt/customize.sh
   CONNECT_SSH: false
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
