@@ -11,6 +11,8 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'triggers/openwrt.md'
 #  schedule:
 #    - cron: 0 0 * * 1
 #  watch:
@@ -88,6 +90,7 @@ jobs:
         path: openwrt/bin
 
     - name: Organize files
+      if: env.UPLOAD_FIRMWARE_DIR == 'true'
       run: |
         cd openwrt/bin/targets/*/*
         rm -rf packages
