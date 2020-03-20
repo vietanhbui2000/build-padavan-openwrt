@@ -19,8 +19,8 @@ on:
 #    - types: started
 
 env:
-  REPO_URL: https://github.com/vietanhbui2000/lede
-  REPO_BRANCH: 13bc38d
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
   CONFIG_FILE: configs/openwrt/build.config
   CUSTOMIZE_FILE: scripts/openwrt/customize.sh
   UPLOAD_BIN_DIR: false
