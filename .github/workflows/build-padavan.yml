@@ -53,7 +53,7 @@ jobs:
       run: |
         echo ""
 
-    - name: Use pre-compiled toolchain
+    - name: Download pre-compiled toolchain
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'true'
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
@@ -61,7 +61,7 @@ jobs:
         wget https://github.com/hanwckf/padavan-toolchain/releases/download/v1.1/mipsel-linux-uclibc.tar.xz
         tar -xvf mipsel-linux-uclibc.tar.xz -C toolchain-3.4.x
 
-    - name: Compile new toolchain and use it
+    - name: Compile new toolchain
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'false'
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
