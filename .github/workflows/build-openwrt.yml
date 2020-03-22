@@ -68,7 +68,7 @@ jobs:
         cd openwrt
         ../$CUSTOMIZE_FILE
 
-    - name: Download packages
+    - name: Download & compile packages
       run: |
         cd openwrt
         make defconfig
