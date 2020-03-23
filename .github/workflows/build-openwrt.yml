@@ -85,7 +85,7 @@ jobs:
       uses: actions/upload-artifact@master
       if: env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: OpenWrt_bin
+        name: openwrt_bin
         path: openwrt/bin
 
     - name: Organize files
@@ -100,5 +100,5 @@ jobs:
       uses: actions/upload-artifact@master
       if: env.UPLOAD_FIRMWARE_DIR == 'true'
       with:
-        name: OpenWrt_firmware
+        name: openwrt_firmware
         path: ${{ env.FIRMWARE }}
