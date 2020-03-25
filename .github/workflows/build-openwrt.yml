@@ -80,26 +80,32 @@ jobs:
         find dl -size -1024c -exec rm -f {} \;
 
     - name: Compile firmware
+      id: compile
       run: |
         cd openwrt
+        echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 V=s
+        echo "::set-output name=status::success"
 
     - name: Upload bin directory
       uses: actions/upload-artifact@master
-      if: env.UPLOAD_BIN_DIR == 'true'
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
         name: openwrt_bin
         path: openwrt/bin
 
     - name: Clean up files
-      if: env.UPLOAD_FIRMWARE_DIR == 'true'
+      id: cleanup
+      if: env.UPLOAD_FIRMWARE_DIR == 'true' && !cancelled()
       run: |
         cd openwrt/bin/targets/*/*
         rm -rf packages
+        echo "::set-env name=FIRMWARE::$PWD"
+        echo "::set-output name=status::success"
 
     - name: Upload firmware directory
       uses: actions/upload-artifact@master
-      if: env.UPLOAD_FIRMWARE_DIR == 'true'
+      if: steps.cleanup.outputs.status == 'success' && !cancelled()
       with:
         name: openwrt_firmware
-        path: openwrt/bin/targets/
+        path: ${{ env.FIRMWARE }}
