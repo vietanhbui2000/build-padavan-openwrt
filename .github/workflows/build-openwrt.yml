@@ -48,14 +48,10 @@ jobs:
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
-    - name: Update feeds
+    - name: Update & install feeds
       run: |
         cd openwrt
         ./scripts/feeds update -a
-
-    - name: Install feeds
-      run: |
-        cd openwrt
         ./scripts/feeds install -a
 
     - name: Load device configuration
@@ -66,20 +62,21 @@ jobs:
         cd openwrt
         ../$CUSTOMIZE_FILE
 
-    - name: Download & compile packages
+    - name: Generate configuration file
       run: |
         cd openwrt
         make defconfig
+
+    - name: Download & compile packages
+      run: |
+        cd openwrt
         make download -j8
-        find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
     - name: Compile firmware
       run: |
         cd openwrt
-        echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 V=s
-        echo "::set-output name=status::success"
 
     - name: Upload bin directory
       uses: actions/upload-artifact@master
@@ -93,12 +90,10 @@ jobs:
       run: |
         cd openwrt/bin/targets/*/*
         rm -rf packages
-        echo "::set-env name=FIRMWARE::$PWD"
-        echo "::set-output name=status::success"
 
     - name: Upload firmware directory
       uses: actions/upload-artifact@master
       if: env.UPLOAD_FIRMWARE_DIR == 'true'
       with:
         name: openwrt_firmware
-        path: ${{ env.FIRMWARE }}
+        path: openwrt/bin/targets/
