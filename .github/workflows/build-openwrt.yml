@@ -1,6 +1,7 @@
 ###########################################################################
 # Modifications made by: Việt Anh Bùi | https://github.com/vietanhbui2000 #
 # Original author: P3TERX | https://github.com/P3TERX                     #
+#                  coolsnowwolf | https://github.com/coolsnowwolf         #
 ###########################################################################
 
 name: Build OpenWrt
@@ -41,8 +42,10 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo apt-get update
-        sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3.5 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib
+        sudo -E apt-get update
+        sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3.5 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib
+        sudo -E apt-get -y autoremove --purge
+        sudo -E apt-get clean
 
     - name: Clone source code
       run: |
@@ -85,7 +88,7 @@ jobs:
         name: openwrt_bin
         path: openwrt/bin
 
-    - name: Organize files
+    - name: Clean up files
       if: env.UPLOAD_FIRMWARE_DIR == 'true'
       run: |
         cd openwrt/bin/targets/*/*
