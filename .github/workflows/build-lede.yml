@@ -4,7 +4,7 @@
 #                  coolsnowwolf | https://github.com/coolsnowwolf         #
 ###########################################################################
 
-name: Build OpenWrt
+name: Build Lede
 
 on:
   release:
@@ -13,7 +13,7 @@ on:
     branches:
       - master
     paths:
-      - 'triggers/openwrt.md'
+      - 'triggers/lede.md'
 #  schedule:
 #    - cron: 0 0 * * 1
 #  watch:
