@@ -23,7 +23,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   DEVICE: "MI-MINI"
-  CONFIG_FILE: configs/openwrt/MI-MINI.config
+  CONFIG_FILE: configs/lede/MI-MINI.config
   CUSTOMIZE_FILE: scripts/openwrt/customize.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
@@ -51,30 +51,30 @@ jobs:
 
     - name: Clone source code
       run: |
-        git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+        git clone --depth 1 $REPO_URL -b $REPO_BRANCH lede
 
     - name: Update & install feeds
       run: |
-        cd openwrt
+        cd lede
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
     - name: Load device configuration
       run: |
-        [ -e files ] && mv files openwrt/files
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        [ -e files ] && mv files lede/files
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE lede/.config
         chmod +x $CUSTOMIZE_FILE
-        cd openwrt
+        cd lede
         ../$CUSTOMIZE_FILE
 
     - name: Generate configuration file
       run: |
-        cd openwrt
+        cd lede
         make defconfig
 
     - name: Download & compile packages
       run: |
-        cd openwrt
+        cd lede
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
@@ -82,7 +82,7 @@ jobs:
     - name: Compile firmware
       id: compile
       run: |
-        cd openwrt
+        cd lede
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 V=s
         echo "::set-output name=status::success"
@@ -92,13 +92,13 @@ jobs:
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
         name: openwrt_bin
-        path: openwrt/bin
+        path: lede/bin
 
     - name: Clean up files
       id: cleanup
       if: env.UPLOAD_FIRMWARE_DIR == 'true' && !cancelled()
       run: |
-        cd openwrt/bin/targets/*/*
+        cd lede/bin/targets/*/*
         rm -rf packages
         echo "::set-env name=FIRMWARE::$PWD"
         echo "::set-output name=status::success"
