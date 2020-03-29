@@ -73,6 +73,9 @@ jobs:
       if: env.USE_CUSTOM_CONFIG_FILE == 'true'
       run: |
         mv configs/padavan/$DEVICE.config /opt/rt-n56u/trunk/configs/templates/$DEVICE.config
+        chmod +x $CUSTOMIZE_FILE
+        cd openwrt
+        ../$CUSTOMIZE_FILE
 
     - name: Clean up files
       run: |
