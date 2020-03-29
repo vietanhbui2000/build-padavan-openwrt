@@ -23,7 +23,7 @@ env:
   REPO_BRANCH: master
   DEVICE: "MI-MINI"
   CONFIG_FILE: configs/padavan/$DEVICE.config
-  CUSTOMIZE_FILE: scripts/padavan/customize.sh
+  CUSTOMIZE_FILE: https://raw.githubusercontent.com/vietanhbui2000/Build-Padavan-OpenWrt/master/scripts/padavan/customize.sh
   USE_CUSTOM_CONFIG_FILE: true
   USE_PRECOMPILED_TOOLCHAIN: true
   TZ: Asia/Ho_Chi_Minh
