@@ -73,6 +73,7 @@ jobs:
       if: env.USE_CUSTOM_CONFIG_FILE == 'true'
       run: |
         mv configs/padavan/$DEVICE.config /opt/rt-n56u/trunk/configs/templates/$DEVICE.config
+        cp scripts/padavan/www/n56u_ribbon_fixed /opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed
 
     - name: Clean up files
       run: |
