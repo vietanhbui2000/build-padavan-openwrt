@@ -54,13 +54,6 @@ jobs:
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
 
-    - name: Compile new toolchain
-      if: env.USE_PRECOMPILED_TOOLCHAIN == 'false'
-      run: |
-        cd /opt/rt-n56u/toolchain-mipsel
-        sudo ./clean_toolchain
-        sudo ./build_toolchain
-
     - name: Download pre-compiled toolchain
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'true'
       run: |
@@ -68,6 +61,13 @@ jobs:
         mkdir -p toolchain-3.4.x
         wget https://github.com/hanwckf/padavan-toolchain/releases/download/v1.1/mipsel-linux-uclibc.tar.xz
         tar -xvf mipsel-linux-uclibc.tar.xz -C toolchain-3.4.x
+
+    - name: Compile new toolchain
+      if: env.USE_PRECOMPILED_TOOLCHAIN == 'false'
+      run: |
+        cd /opt/rt-n56u/toolchain-mipsel
+        sudo ./clean_toolchain
+        sudo ./build_toolchain
 
     - name: Load device configuration
       if: env.USE_CUSTOM_CONFIG_FILE == 'true'
