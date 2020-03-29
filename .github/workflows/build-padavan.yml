@@ -52,7 +52,7 @@ jobs:
 
     - name: Prepare toolchain
       run: |
-        echo ""
+        cd /opt/rt-n56u/toolchain-mipsel
 
     - name: Compile new toolchain
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'false'
