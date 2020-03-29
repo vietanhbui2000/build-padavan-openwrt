@@ -76,7 +76,7 @@ jobs:
         cd /opt/rt-n56u
         wget https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/master/scripts/padavan/customize.sh
         chmod +x customize.sh
-        ../customize.sh
+        ./customize.sh
 
     - name: Clean up files
       run: |
