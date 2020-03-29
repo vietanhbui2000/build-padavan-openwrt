@@ -9,11 +9,11 @@
 
 # Download file(s)
 # wget https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/master/scripts/padavan/PadavanThemePack_v2.4.14.zip
-wget https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/blob/master/scripts/padavan/PadavanThemePack_v2.4.14_lite.zip
+wget https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/blob/master/scripts/padavan/PadavanThemePack_v2.4.14_Lite.zip
 
 # Unzip file(s)
 # unzip -o PadavanThemePack_v2.4.14.zip -d /opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed
-unzip -o PadavanThemePack_v2.4.14_lite.zip -d /opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed
+unzip -o PadavanThemePack_v2.4.14_Lite.zip -d /opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed
 
 # Delete file(s)
 rm -r /opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed/blue-theme
