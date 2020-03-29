@@ -72,9 +72,7 @@ jobs:
     - name: Load device configuration
       if: env.USE_CUSTOM_CONFIG_FILE == 'true'
       run: |
-        mv configs/padavan/$DEVICE.config /opt/rt-n56u/trunk/configs/templates/$DEVICE.config
-        cp -r scripts/padavan /opt/rt-n56u
-        mv -f /opt/rt-n56u/scripts/padavan/www/n56u_ribbon_fixed /opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed
+        cp configs/padavan/$DEVICE.config /opt/rt-n56u/trunk/configs/templates/$DEVICE.config
 
     - name: Clean up files
       run: |
