@@ -74,7 +74,7 @@ jobs:
       run: |
         mv configs/padavan/$DEVICE.config /opt/rt-n56u/trunk/configs/templates/$DEVICE.config
         chmod +x $CUSTOMIZE_FILE
-        cd openwrt
+        cd /opt/rt-n56u
         ../$CUSTOMIZE_FILE
 
     - name: Clean up files
