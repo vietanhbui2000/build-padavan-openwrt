@@ -3,5 +3,7 @@
 # Modifications made by: Việt Anh Bùi | https://github.com/vietanhbui2000 #
 ###########################################################################
 
-# Add themes and theme changer to Padavan firmware
-mv -f scripts/padavan/www/n56u_ribbon_fixed /opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed
+sudo apt-get install unzip
+wget https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/master/scripts/padavan/PadavanThemePack_v2.4.14.zip
+unzip PadavanThemePack_v2.4.14.zip -d /opt/rt-n56u/PadavanThemePack_v2.4.14
+mv  -v ~/opt/rt-n56u/PadavanThemePack_v2.4.14/* ~/opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed/
