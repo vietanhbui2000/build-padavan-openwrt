@@ -19,6 +19,6 @@ unzip -o PadavanThemePack_v2.4.14_Lite.zip -d /opt/rt-n56u/trunk/user/www/n56u_r
 rm -r /opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed/blue-theme
 # rm -r /opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed/blue2-theme
 rm -r /opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed/grey-theme
-# rm -r /opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed/grey2-theme
-# rm -r /opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed/white-theme
+rm -r /opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed/grey2-theme
+rm -r /opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed/white-theme
 rm -r /opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed/yellow-theme
