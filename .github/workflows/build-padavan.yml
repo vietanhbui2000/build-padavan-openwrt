@@ -73,8 +73,9 @@ jobs:
       if: env.USE_CUSTOM_CONFIG_FILE == 'true'
       run: |
         mv configs/padavan/$DEVICE.config /opt/rt-n56u/trunk/configs/templates/$DEVICE.config
+        [ -e files ] && mv files /opt/rt-n56u/files
         chmod +x $CUSTOMIZE_FILE
-        cd /opt/rt-n56u/trunk
+        cd /opt/rt-n56u/
         ../$CUSTOMIZE_FILE
 
     - name: Clean up files
