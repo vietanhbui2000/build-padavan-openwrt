@@ -4,7 +4,7 @@
 ###########################################################################
 
 # Install necessary package(s)
-sudo apt-get install unzip
+# sudo apt-get install unzip
 
 # Download file(s)
 wget https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/master/scripts/padavan/PadavanThemePack_v2.4.14.zip
