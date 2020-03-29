@@ -75,7 +75,7 @@ jobs:
         cp configs/padavan/$DEVICE.config /opt/rt-n56u/trunk/configs/templates/$DEVICE.config
         chmod +x $CUSTOMIZE_FILE
         cd /opt/rt-n56u/trunk
-        ../$CUSTOMIZE_FILE
+        ./$CUSTOMIZE_FILE
 
     - name: Clean up files
       run: |
