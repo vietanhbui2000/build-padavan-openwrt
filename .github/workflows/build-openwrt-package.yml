@@ -59,17 +59,17 @@ jobs:
     - name: Upload app package
       uses: actions/upload-artifact@v1
       with:
-        name: $PACKAGE_NAME
+        name: openwrt_app-package
         path: ${{ env.app_path }}
 
     - name: Upload i18n package
       uses: actions/upload-artifact@v1
       with:
-        name: $PACKAGE_NAME-i18n
+        name: openwrt_i18n-package
         path: ${{ env.i18n_path }}
 
     - name: Upload log file
       uses: actions/upload-artifact@v1
       with:
-        name: buildlog
+        name: build-log
         path: ./build.log.tar.xz
