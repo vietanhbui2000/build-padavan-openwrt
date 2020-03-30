@@ -19,9 +19,9 @@ on:
 #    - types: started
 
 env:
-  PACKAGE_NAME: wrtbwmon
+  PACKAGE_NAME: luci-app-wrtbwmon
   PACKAGE_NAME_SHORT: wrtbwmon
-  PACKAGE_URL: https://github.com/brvphoenix/wrtbwmon/trunk/wrtbwmon
+  PACKAGE_URL: https://github.com/brvphoenix/luci-app-wrtbwmon/trunk/luci-app-wrtbwmon
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
