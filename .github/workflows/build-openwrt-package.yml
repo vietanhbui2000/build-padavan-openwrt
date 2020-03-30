@@ -30,7 +30,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
-    - name: Docker Build
+    - name: Build package with Docker
       run: |
         mkdir bin
         svn export https://github.com/brvphoenix/luci-app-wrtbwmon/trunk/luci-app-wrtbwmon
@@ -45,11 +45,11 @@ jobs:
         docker exec -i test make package/luci-app-wrtbwmon/compile V=s -j$(nproc) | tee >./bin/build.log
         docker stop test
 
-    - name: Pack Files
+    - name: Prepare files
       run: |
         cd bin && tar -cJf ../build.log.tar.xz build.log && cd ..
         mkdir release
-        cp -f ./bin/packages/ramips/base/*wrtbwmon* ./release/
+        cp -f ./bin/packages/mipsel_24kc/base/*wrtbwmon* ./release/
         echo "::set-env name=app_path::$(ls ./release/*app-wrtbwmon*)"
         echo "::set-env name=i18n_path::$(ls ./release/*i18n-wrtbwmon*)"
 
