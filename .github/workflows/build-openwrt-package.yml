@@ -33,9 +33,10 @@ jobs:
     - name: Docker Build
       run: |
         mkdir bin
+        svn export https://github.com/brvphoenix/luci-app-wrtbwmon/trunk/luci-app-wrtbwmon
         cp -rf ./luci-app-wrtbwmon ./bin/
-        docker pull openwrtorg/sdk:x86-64-19.07-SNAPSHOT
-        docker run --rm --name=test -u root -v "$(pwd)"/bin/:/home/build/openwrt/bin --privileged=true -d openwrtorg/sdk:x86-64-19.07-SNAPSHOT sleep 1d
+        docker pull openwrtorg/sdk:ramips-mt7620-19.07-SNAPSHOT
+        docker run --rm --name=test -u root -v "$(pwd)"/bin/:/home/build/openwrt/bin --privileged=true -d openwrtorg/sdk:ramips-mt7620-19.07-SNAPSHOT sleep 1d
         docker exec -i test sed -i 's/git\.openwrt\.org\/project\/luci/github\.com\/openwrt\/luci/g' ./feeds.conf.default
         docker exec -i test ./scripts/feeds update luci
         docker exec -i test ./scripts/feeds install luci
@@ -48,7 +49,7 @@ jobs:
       run: |
         cd bin && tar -cJf ../build.log.tar.xz build.log && cd ..
         mkdir release
-        cp -f ./bin/packages/x86_64/base/*wrtbwmon* ./release/
+        cp -f ./bin/packages/ramips/base/*wrtbwmon* ./release/
         echo "::set-env name=app_path::$(ls ./release/*app-wrtbwmon*)"
         echo "::set-env name=i18n_path::$(ls ./release/*i18n-wrtbwmon*)"
 
@@ -58,13 +59,13 @@ jobs:
         name: luci-app-wrtbwmon
         path: ${{ env.app_path }}
 
-    - name: Upload i18n
+    - name: Upload i18n package
       uses: actions/upload-artifact@v1
       with:
         name: luci-i18n-wrtbwmon
         path: ${{ env.i18n_path }}
 
-    - name: Upload Log
+    - name: Upload log file
       uses: actions/upload-artifact@v1
       with:
         name: buildlog
