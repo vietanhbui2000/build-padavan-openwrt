@@ -19,6 +19,7 @@ on:
 #    - types: started
 
 env:
+  BUILD_OPTION: 1
   PACKAGE_NAME: luci-app-wrtbwmon
   PACKAGE_NAME_SHORT: wrtbwmon
   PACKAGE_URL: https://github.com/brvphoenix/luci-app-wrtbwmon/trunk/luci-app-wrtbwmon
@@ -33,7 +34,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
+    - name: Build option 1
+      run: |
+        echo "Build option 1"
+
     - name: Build package with Docker
+      if: env.BUILD_OPTION == '1'
       run: |
         mkdir bin
         svn export $PACKAGE_URL
@@ -49,12 +55,38 @@ jobs:
         docker stop test
 
     - name: Prepare files
+      if: env.BUILD_OPTION == '1'
       run: |
         cd bin && tar -cJf ../build.log.tar.xz build.log && cd ..
         mkdir release
         cp -f ./bin/packages/mipsel_24kc/base/*$PACKAGE_NAME_SHORT* ./release/
         echo "::set-env name=app_path::$(ls ./release/*app-$PACKAGE_NAME_SHORT*)"
         echo "::set-env name=i18n_path::$(ls ./release/*i18n-$PACKAGE_NAME_SHORT*)"
+
+    - name: Build option 2
+      run: |
+        echo "Build option 2"
+
+    - name: Build package with Docker
+      if: env.BUILD_OPTION == '2'
+      run: |
+        mkdir bin
+        svn export $PACKAGE_URL
+        cp -rf ./$PACKAGE_NAME ./bin/
+        docker pull openwrtorg/sdk:ramips-mt7620-19.07-SNAPSHOT
+        docker run --rm --name=test -u root -v "$(pwd)"/bin/:/home/build/openwrt/bin --privileged=true -d openwrtorg/sdk:ramips-mt7620-19.07-SNAPSHOT sleep 1d
+        docker exec -i test mv ./bin/$PACKAGE_NAME ./package/
+        docker exec -i test make defconfig
+        docker exec -i test make package/$PACKAGE_NAME/compile V=s -j$(nproc) | tee >./bin/build.log
+        docker stop test
+
+    - name: Prepare files
+      if: env.BUILD_OPTION == '2'
+      run: |
+        cd bin && tar -cJf ../build.log.tar.xz build.log && cd ..
+        mkdir release
+        cp -f ./bin/packages/mipsel_24kc/base/$PACKAGE_NAME* ./release/
+        echo "::set-env name=app_path::$(ls ./release/$PACKAGE_NAME*)"
 
     - name: Upload app package
       uses: actions/upload-artifact@v1
@@ -63,6 +95,7 @@ jobs:
         path: ${{ env.app_path }}
 
     - name: Upload i18n package
+      if: env.BUILD_OPTION == '1'
       uses: actions/upload-artifact@v1
       with:
         name: openwrt_i18n-package
