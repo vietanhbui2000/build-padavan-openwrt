@@ -55,7 +55,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: openwrt_package
-          path: ${{ env.app_path }}
+        path: ${{ env.app_path }}
 
     - name: Upload log file
       uses: actions/upload-artifact@v1
