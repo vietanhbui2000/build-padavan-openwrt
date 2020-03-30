@@ -19,6 +19,9 @@ on:
 #    - types: started
 
 env:
+  PACKAGE_NAME: luci-app-wrtbwmon
+  PACKAGE_NAME_SHORT: wrtbwmon
+  PACKAGE_URL: https://github.com/brvphoenix/luci-app-wrtbwmon/trunk/luci-app-wrtbwmon
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -33,36 +36,36 @@ jobs:
     - name: Build package with Docker
       run: |
         mkdir bin
-        svn export https://github.com/brvphoenix/luci-app-wrtbwmon/trunk/luci-app-wrtbwmon
-        cp -rf ./luci-app-wrtbwmon ./bin/
+        svn export $PACKAGE_URL
+        cp -rf ./$PACKAGE_NAME ./bin/
         docker pull openwrtorg/sdk:ramips-mt7620-19.07-SNAPSHOT
         docker run --rm --name=test -u root -v "$(pwd)"/bin/:/home/build/openwrt/bin --privileged=true -d openwrtorg/sdk:ramips-mt7620-19.07-SNAPSHOT sleep 1d
         docker exec -i test sed -i 's/git\.openwrt\.org\/project\/luci/github\.com\/openwrt\/luci/g' ./feeds.conf.default
         docker exec -i test ./scripts/feeds update luci
         docker exec -i test ./scripts/feeds install luci
-        docker exec -i test mv ./bin/luci-app-wrtbwmon ./package/
+        docker exec -i test mv ./bin/$PACKAGE_NAME ./package/
         docker exec -i test make defconfig
-        docker exec -i test make package/luci-app-wrtbwmon/compile V=s -j$(nproc) | tee >./bin/build.log
+        docker exec -i test make package/$PACKAGE_NAME/compile V=s -j$(nproc) | tee >./bin/build.log
         docker stop test
 
     - name: Prepare files
       run: |
         cd bin && tar -cJf ../build.log.tar.xz build.log && cd ..
         mkdir release
-        cp -f ./bin/packages/mipsel_24kc/base/*wrtbwmon* ./release/
-        echo "::set-env name=app_path::$(ls ./release/*app-wrtbwmon*)"
-        echo "::set-env name=i18n_path::$(ls ./release/*i18n-wrtbwmon*)"
+        cp -f ./bin/packages/mipsel_24kc/base/*$PACKAGE_NAME_SHORT* ./release/
+        echo "::set-env name=app_path::$(ls ./release/*app-$PACKAGE_NAME_SHORT*)"
+        echo "::set-env name=i18n_path::$(ls ./release/*i18n-$PACKAGE_NAME_SHORT*)"
 
-    - name: Upload package
+    - name: Upload app package
       uses: actions/upload-artifact@v1
       with:
-        name: luci-app-wrtbwmon
+        name: $PACKAGE_NAME
         path: ${{ env.app_path }}
 
     - name: Upload i18n package
       uses: actions/upload-artifact@v1
       with:
-        name: luci-i18n-wrtbwmon
+        name: $PACKAGE_NAME-i18n
         path: ${{ env.i18n_path }}
 
     - name: Upload log file
