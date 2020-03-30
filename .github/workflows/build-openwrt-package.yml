@@ -19,10 +19,10 @@ on:
 #    - types: started
 
 env:
-  BUILD_OPTION: 1
-  PACKAGE_NAME: luci-app-wrtbwmon
+  BUILD_OPTION: 2
+  PACKAGE_NAME: wrtbwmon
   PACKAGE_NAME_SHORT: wrtbwmon
-  PACKAGE_URL: https://github.com/brvphoenix/luci-app-wrtbwmon/trunk/luci-app-wrtbwmon
+  PACKAGE_URL: https://github.com/brvphoenix/wrtbwmon/trunk/wrtbwmon
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -35,8 +35,9 @@ jobs:
       uses: actions/checkout@master
 
     - name: Build option 1
+      if: env.BUILD_OPTION == '1'
       run: |
-        echo "Build option 1"
+        echo "Build option is 1"
 
     - name: Build package with Docker
       if: env.BUILD_OPTION == '1'
@@ -64,8 +65,9 @@ jobs:
         echo "::set-env name=i18n_path::$(ls ./release/*i18n-$PACKAGE_NAME_SHORT*)"
 
     - name: Build option 2
+      if: env.BUILD_OPTION == '2'
       run: |
-        echo "Build option 2"
+        echo "Build option is 2"
 
     - name: Build package with Docker
       if: env.BUILD_OPTION == '2'
