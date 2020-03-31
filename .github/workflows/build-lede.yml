@@ -52,10 +52,10 @@ jobs:
 
     - name: Clone source code
       run: |
-        git clone https://github.com/coolsnowwolf/lede.git
+        git clone https://github.com/coolsnowwolf/lede.git lede
         cd lede
         git checkout $REPO_TREE
-        cd lede
+        git pull
 
     - name: Update & install feeds
       run: |
