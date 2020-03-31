@@ -14,7 +14,7 @@ on:
 
 env:
   FILE_DOWNLOAD_LINK: https://github.com/vietanhbui2000/lede/archive/master-jan2120.zip
-  FILE_NAME: master-jan2120
+  FILE_NAME: master-jan2120.zip
   EXPIRE_IN: 1d
   TZ: Asia/Ho_Chi_Minh
 
@@ -33,5 +33,5 @@ jobs:
 
     - name: Upload files
       run: |
-        curl -F "file=@FILE_NAME.zip" https://file.io/?expires=$EXPIRE_IN
+        curl -F "file=@FILE_NAME" https://file.io/?expires=$EXPIRE_IN
         echo
