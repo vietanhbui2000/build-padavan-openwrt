@@ -55,7 +55,7 @@ jobs:
         git clone https://github.com/coolsnowwolf/lede.git lede
         cd lede
         git checkout $REPO_TREE
-        git pull
+        git switch -c $REPO_TREE
 
     - name: Update & install feeds
       run: |
