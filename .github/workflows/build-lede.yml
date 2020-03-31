@@ -22,6 +22,7 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
+  REPO_TREE: 4f32be505bc07b3292804a2a0094d8602aa5e457
   DEVICE: "MI-MINI"
   CONFIG_FILE: configs/lede/MI-MINI.config
   CUSTOMIZE_FILE: scripts/openwrt/customize.sh
@@ -52,6 +53,9 @@ jobs:
     - name: Clone source code
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH lede
+        cd lede
+        git checkout $REPO_TREE
+        cd lede
 
     - name: Update & install feeds
       run: |
