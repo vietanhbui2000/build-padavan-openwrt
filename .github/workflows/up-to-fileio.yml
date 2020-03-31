@@ -13,9 +13,6 @@ on:
 #    - types: started
 
 env:
-  FILE_DOWNLOAD_LINK: https://github.com/vietanhbui2000/lede/archive/master-jan2120.zip
-  FILE_NAME: master-jan2120.zip
-  EXPIRE_IN: 1d
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -29,9 +26,9 @@ jobs:
 
     - name: Download files
       run: |
-        wget $FILE_DOWNLOAD_LINK
+        wget https://github.com/vietanhbui2000/lede/archive/master-jan2120.zip
 
     - name: Upload files
       run: |
-        curl -F "file=@FILE_NAME" https://file.io/?expires=$EXPIRE_IN
+        curl -F "file=@master-jan2120.zip" https://file.io/?expires=1d
         echo
