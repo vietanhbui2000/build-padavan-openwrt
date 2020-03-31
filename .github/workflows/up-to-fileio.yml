@@ -33,5 +33,5 @@ jobs:
 
     - name: Upload files
       run: |
-        $ curl -F "file=@FILE_NAME.zip" https://file.io/?expires=$EXPIRE_IN
+        curl -F "file=@FILE_NAME.zip" https://file.io/?expires=$EXPIRE_IN
         echo
