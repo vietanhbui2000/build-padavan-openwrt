@@ -1,4 +1,4 @@
-name: Reupload to File.io
+name: Upload to transfer.sh
 on:
   release:
     types: published
@@ -6,13 +6,15 @@ on:
     branches:
       - master
     paths:
-      - '.github/workflows/reup-to-fileio.yml'
+      - '.github/workflows/up-to-transfersh.yml'
 #  schedule:
 #    - cron: 0 0 * * 1
 #  watch:
 #    - types: started
 
 env:
+  FILE_DOWNLOAD_LINK: https://github.com/vietanhbui2000/lede/archive/master-jan2120.zip
+  FILE_NAME: master-jan2120
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -26,9 +28,9 @@ jobs:
 
     - name: Download files
       run: |
-        wget https://github.com/vietanhbui2000/lede/archive/master-jan2120.zip
+        wget $FILE_DOWNLOAD_LINK
 
-    - name: Reupload files to File.io
+    - name: Upload files
       run: |
-        curl -m 180 -F file=@master-jan2120.zip https://file.io/?expires=1d
+        curl --upload-file ./$FILE_NAME.zip https://transfer.sh/$FILE_NAME.zip -H "Max-Days: 1" "Max-Downloads: 1"
         echo
