@@ -53,7 +53,7 @@ jobs:
         make package/luci-theme-argon-light-mod/compile V=s -j$(nproc)
         make package/luci-theme-argon-dark-mod/compile V=s -j$(nproc)
         
- - name: Compile package
+    - name: Compile package
       run: |
         cd sdk
         cp -f ./bin/packages/mipsel_24kc/luci/luci-theme-argon-light-mod ./release/
