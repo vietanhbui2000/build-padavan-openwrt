@@ -1,0 +1,67 @@
+###########################################################################
+# Modifications made by: Việt Anh Bùi | https://github.com/vietanhbui2000 #
+###########################################################################
+
+name: Build OpenWrt Package
+
+on:
+  release:
+    types: published
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/build-test.yml'
+#  schedule:
+#    - cron: 0 0 * * 1
+#  watch:
+#    - types: started
+
+env:
+  TZ: Asia/Ho_Chi_Minh
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Download SDK
+      run: |
+        mkdir -p sdk
+        wget http://downloads.openwrt.org/releases/19.07.2/targets/ramips/mt7620/openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz
+        tar -xvf openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz -C sdk
+        
+    - name: Load package lists
+      run: |
+        cd sdk
+        echo "src-git lienol https://github.com/Lienol/openwrt-package" >> feeds.conf.default
+        
+    - name: Update & install feeds
+      run: |
+        cd sdk
+        ./scripts/feeds clean
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        
+    - name: Compile package
+      run: |
+        cd sdk
+        make package/luci-theme-argon-light-mod/compile V=s -j$(nproc)
+        make package/luci-theme-argon-dark-mod/compile V=s -j$(nproc)
+        
+ - name: Compile package
+      run: |
+        cd sdk
+        cp -f ./bin/packages/mipsel_24kc/luci/luci-theme-argon-light-mod ./release/
+        cp -f ./bin/packages/mipsel_24kc/luci/luci-theme-argon-dark-mod ./release/
+        echo "::set-env name=pack_path::$(ls ./release/luci-theme-argon-light-mod)"
+
+    - name: Upload package
+      uses: actions/upload-artifact@v1
+      with:
+        name: openwrt_package
+        path: ${{ env.pack_path }}
