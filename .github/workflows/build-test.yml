@@ -29,44 +29,34 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
-    - name: Initialize environment
-      env:
-        DEBIAN_FRONTEND: noninteractive
-      run: |
-        sudo swapoff /swapfile
-        sudo rm -rf /swapfile /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
-        sudo -E apt-get update
-        sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3.5 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib
-        sudo -E apt-get -y autoremove --purge
-        sudo -E apt-get clean
-
     - name: Download SDK
       run: |
-        mkdir sdk
+        mkdir -p working
         wget http://downloads.openwrt.org/releases/19.07.2/targets/ramips/mt7620/openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz
-        tar -xf openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz -C sdk
+        tar -xf openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz -C working
+        mv openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64 sdk
         
     - name: Load package lists
       run: |
-        cd sdk
+        cd working/sdk
         echo "src-git lienol https://github.com/Lienol/openwrt-package" >> feeds.conf.default
         
     - name: Update & install feeds
       run: |
-        cd sdk
+        cd working/sdk
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         
     - name: Compile package
       run: |
-        cd sdk
+        cd working/sdk
         make defconfig
         make package/luci-theme-argon-light-mod/compile V=s -j$(nproc)
         # make package/luci-theme-argon-dark-mod/compile V=s -j$(nproc)
         
     - name: Prepare files
       run: |
-        cd sdk
+        cd working/sdk
         cp -f ./bin/packages/mipsel_24kc/lienol/luci-theme-argon-light-mod ./release/
         # cp -f ./bin/packages/mipsel_24kc/lienol/luci-theme-argon-dark-mod ./release/
         echo "::set-env name=pack_path::$(ls ./release/luci-theme-argon-light-mod)"
