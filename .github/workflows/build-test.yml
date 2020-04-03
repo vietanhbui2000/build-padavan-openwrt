@@ -43,7 +43,6 @@ jobs:
     - name: Update & install feeds
       run: |
         cd sdk
-        ./scripts/feeds clean
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         
@@ -53,7 +52,7 @@ jobs:
         make package/luci-theme-argon-light-mod/compile V=s -j$(nproc)
         make package/luci-theme-argon-dark-mod/compile V=s -j$(nproc)
         
-    - name: Compile package
+    - name: Prepare files
       run: |
         cd sdk
         cp -f ./bin/packages/mipsel_24kc/luci/luci-theme-argon-light-mod ./release/
