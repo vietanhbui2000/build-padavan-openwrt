@@ -34,7 +34,7 @@ jobs:
         mkdir -p working
         wget http://downloads.openwrt.org/releases/19.07.2/targets/ramips/mt7620/openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz
         tar -xf openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz -C working
-        mv openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64 sdk
+        mv working/openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64 working/sdk
         
     - name: Load package lists
       run: |
