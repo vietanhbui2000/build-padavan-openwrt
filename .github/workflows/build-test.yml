@@ -69,9 +69,10 @@ jobs:
     - name: Prepare files
       run: |
         cd working/sdk
+        mkdir release
         cp -f ./bin/packages/mipsel_24kc/lienol/luci-theme-argon-light-mod* ./release/
         # cp -f ./bin/packages/mipsel_24kc/lienol/luci-theme-argon-dark-mod* ./release/
-        echo "::set-env name=pack_path::$(ls ./release/luci-theme-argon-light-mod)"
+        echo "::set-env name=pack_path::$(ls ./release)"
 
     - name: Upload package
       uses: actions/upload-artifact@v1
