@@ -59,9 +59,9 @@ jobs:
         cd working/sdk
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        cd working/sdk/feeds/luci/themes
+        cd working/sdk/package/feeds/luci/themes
         mkdir luci-theme-atmaterial
-        mv  -v ~/luci-theme-atmaterial/* ~/feeds/luci/themes/luci-theme-atmaterial/
+        mv  -v ~/luci-theme-atmaterial/* ~/package/feeds/luci/themes/luci-theme-atmaterial/
         
     - name: Compile package
       run: |
