@@ -49,7 +49,7 @@ jobs:
     - name: Load package lists
       run: |
         cd working/sdk
-        # echo "src-git others https://github.com/solidus1983/luci-theme-atmaterial" >> feeds.conf.default
+        # echo "src-git others https://github.com/openwrt-develop/luci-theme-atmaterial" >> feeds.conf.default
         
     - name: Update & install feeds
       run: |
