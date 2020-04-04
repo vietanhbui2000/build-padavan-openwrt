@@ -49,7 +49,7 @@ jobs:
     - name: Load package lists
       run: |
         cd working/sdk
-        echo "src-git lienol https://github.com/Lienol/openwrt-package" >> feeds.conf.default
+        echo "src-git others https://github.com/Lienol/openwrt-package" >> feeds.conf.default
         
     - name: Update & install feeds
       run: |
@@ -61,6 +61,9 @@ jobs:
       run: |
         cd working/sdk
         make defconfig
+        make package/luci/compile V=s -j$(nproc)
+        make package/luci-compat/compile V=s -j$(nproc)
+        make package/luci-lib-ipkg/compile V=s -j$(nproc)
         make package/luci-theme-argon-light-mod/compile V=s -j$(nproc)
         make package/luci-theme-argon-dark-mod/compile V=s -j$(nproc)
 
