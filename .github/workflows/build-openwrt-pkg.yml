@@ -49,27 +49,19 @@ jobs:
     - name: Load package lists
       run: |
         cd working/sdk
-        wget https://github.com/monokoo/luci-theme-atmaterial/archive/master.zip
-        unzip -o master.zip
-        mv luci-theme-atmaterial-master luci-theme-atmaterial
-        # echo "src-git others https://github.com/Lienol/openwrt-package" >> feeds.conf.default
+        # echo "src-git others https://github.com/monokoo/luci-theme-atmaterial" >> feeds.conf.default
         
     - name: Update & install feeds
       run: |
         cd working/sdk
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        cd working/sdk/package/feeds/luci/themes
-        mkdir luci-theme-atmaterial
-        mv  -v ~/luci-theme-atmaterial/* ~/package/feeds/luci/themes/luci-theme-atmaterial/
         
     - name: Compile package
       run: |
         cd working/sdk
         make defconfig
         make package/luci-theme-atmaterial/compile V=s -j$(nproc)
-        # make package/luci-theme-argon-light-mod/compile V=s -j$(nproc)
-        # make package/luci-theme-argon-dark-mod/compile V=s -j$(nproc)
 
     - name: Upload package
       uses: actions/upload-artifact@v1
