@@ -79,8 +79,8 @@ jobs:
         make toolchain/install -j$(nproc) || make toolchain/install -j1 V=s
         echo "::set-output name=status::success"
 
-    - name: Upload bin directory
+    - name: Upload source directory
       uses: actions/upload-artifact@master
       with:
-        name: openwrt_bin
-        path: lede/bin
+        name: openwrt
+        path: lede
