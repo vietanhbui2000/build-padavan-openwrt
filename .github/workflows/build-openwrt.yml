@@ -72,7 +72,7 @@ jobs:
         cd openwrt
         make defconfig
 
-    - name: Download & compile packages
+    - name: Download packages
       run: |
         cd openwrt
         make download -j8
