@@ -46,8 +46,11 @@ jobs:
         cd working
         mv openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64 sdk
         
-    - name: Load package lists
+    - name: Load package sources
       run: |
+        cd working
+        wget https://github.com/coolsnowwolf/lede/raw/master/feeds.conf.default
+        cp feeds.conf.default working/sdk/feeds.conf.default
         cd working/sdk
         echo "src-git kenzok8 https://github.com/kenzok8/openwrt-packages" >> feeds.conf.default
         
