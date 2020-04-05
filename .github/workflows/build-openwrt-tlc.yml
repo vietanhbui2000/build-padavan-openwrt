@@ -82,7 +82,8 @@ jobs:
     - name: Prepare files
       if: steps.compile.outputs.status == 'success' && !cancelled()
       run: |
-        tar -czf lede.tar.gz lede
+        mkdir upload
+        tar -czf upload/lede.tar.gz lede
         echo "::set-output name=status::success"
 
     - name: Upload source directory
@@ -90,4 +91,4 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: openwrt_toolchain
-        path: lede.tar.gz
+        path: upload/
