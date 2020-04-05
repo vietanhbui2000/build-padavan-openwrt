@@ -69,15 +69,15 @@ jobs:
     - name: Add additional packages
       run: |
         cd lede/package/lean
-        git clone https://github.com/openwrt-develop/luci-theme-atmaterial luci-theme-atmaterial
+        git clone https://github.com/kenzok8/openwrt-packages
 
-    - name: Compile firmware
+    - name: Compile packages
       id: compile
       run: |
         cd lede
-        make package/luci-theme-atmaterial/compile V=s -j$(nproc)
+        make package/lean/luci-theme-atmaterial/compile V=s -j$(nproc)
 
-    - name: Upload package
+    - name: Upload packages
       uses: actions/upload-artifact@v1
       with:
         name: openwrt_package
