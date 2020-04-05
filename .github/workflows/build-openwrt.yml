@@ -51,6 +51,9 @@ jobs:
     - name: Clone source code
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+        cd openwrt/package
+        git clone https://github.com/kenzok8/openwrt-packages
+        mv openwrt-packages kenzok8
 
     - name: Update & install feeds
       run: |
