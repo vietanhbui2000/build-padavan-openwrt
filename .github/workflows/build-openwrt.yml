@@ -20,12 +20,12 @@ on:
 #    - types: started
 
 env:
-  REPO_URL: https://git.openwrt.org/openwrt/openwrt.git
+  REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   CONFIG_FILE: configs/openwrt/MI-MINI.config
   CUSTOMIZE_FILE: scripts/openwrt/customize.sh
-  UPLOAD_BIN_DIR: false
-  UPLOAD_FIRMWARE_DIR: true
+  UPLOAD_BIN_DIR: true
+  UPLOAD_FIRMWARE_DIR: false
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
