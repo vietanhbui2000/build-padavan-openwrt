@@ -82,7 +82,6 @@ jobs:
     - name: Prepare files
       if: steps.compile.outputs.status == 'success' && !cancelled()
       run: |
-        cd lede
         tar -czf lede.tar.gz lede
         echo "::set-output name=status::success"
 
