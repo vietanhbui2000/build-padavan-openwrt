@@ -90,5 +90,5 @@ jobs:
       if: steps.prepare.outputs.status == 'success' && !cancelled()
       uses: actions/upload-artifact@master
       with:
-        name: openwrt
+        name: openwrt_toolchain
         path: lede.tar.gz
