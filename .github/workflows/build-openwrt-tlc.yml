@@ -79,8 +79,16 @@ jobs:
         make toolchain/install -j$(nproc) || make toolchain/install -j1 V=s
         echo "::set-output name=status::success"
 
+    - name: Prepare files
+      if: steps.compile.outputs.status == 'success' && !cancelled()
+      run: |
+        cd lede
+        tar -czf lede.tar.gz lede
+        echo "::set-output name=status::success"
+
     - name: Upload source directory
+      if: steps.prepare.outputs.status == 'success' && !cancelled()
       uses: actions/upload-artifact@master
       with:
         name: openwrt
-        path: lede
+        path: lede.tar.gz
