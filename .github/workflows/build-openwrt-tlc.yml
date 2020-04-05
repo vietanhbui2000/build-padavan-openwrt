@@ -58,9 +58,6 @@ jobs:
       run: |
         [ -e files ] && mv files lede/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE lede/.config
-        chmod +x $CUSTOMIZE_FILE
-        cd lede
-        ../$CUSTOMIZE_FILE
 
     - name: Generate configuration file
       run: |
