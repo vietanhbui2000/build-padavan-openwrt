@@ -80,14 +80,12 @@ jobs:
         echo "::set-output name=status::success"
 
     - name: Prepare files
-      if: steps.compile.outputs.status == 'success' && !cancelled()
       run: |
         mkdir upload
         tar -czf upload/lede.tar.gz lede
         echo "::set-output name=status::success"
 
     - name: Upload source directory
-      if: steps.prepare.outputs.status == 'success' && !cancelled()
       uses: actions/upload-artifact@master
       with:
         name: openwrt_toolchain
