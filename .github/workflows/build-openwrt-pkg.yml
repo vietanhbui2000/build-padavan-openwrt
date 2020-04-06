@@ -40,29 +40,31 @@ jobs:
 
     - name: Download SDK
       run: |
-        mkdir -p working
+        mkdir -p openwrt
         wget http://downloads.openwrt.org/releases/19.07.2/targets/ramips/mt7620/openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz
-        tar -xf openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz -C working
-        cd working
+        tar -xf openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz -C openwrt
+        cd openwrt
         mv openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64 sdk
         
     - name: Load package sources
       run: |
-        cd working/sdk
+        cd openwrt/sdk
         rm feeds.conf.default
         wget https://github.com/coolsnowwolf/lede/raw/master/feeds.conf.default
-        cd working/sdk/package/luci
+        cd openwrt/sdk/package
+        mkdir -p luci
+        cd openwrt/sdk/package/luci
         git clone https://github.com/vietanhbui2000/luci-theme-atmaterial luci-theme-atmaterial
         
     - name: Update & install feeds
       run: |
-        cd working/sdk
+        cd openwrt/sdk
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         
     - name: Compile package
       run: |
-        cd working/sdk
+        cd openwrt/sdk
         make defconfig
         make package/luci-theme-atmaterial/compile V=s -j$(nproc)
 
@@ -70,4 +72,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: openwrt_package
-        path: working/sdk/bin/packages/
+        path: openwrt/sdk/bin/packages/
