@@ -2,7 +2,7 @@
 # Modifications made by: Việt Anh Bùi | https://github.com/vietanhbui2000 #
 ###########################################################################
 
-name: Build OpenWrt Packages
+name: Build OpenWrt Package
 
 on:
   release:
@@ -49,8 +49,8 @@ jobs:
     - name: Load package sources
       run: |
         cd openwrt/sdk
-        rm feeds.conf.default
-        wget https://github.com/coolsnowwolf/lede/raw/master/feeds.conf.default
+        # rm feeds.conf.default
+        # wget https://github.com/coolsnowwolf/lede/raw/master/feeds.conf.default
         # echo "src-git Lienol https://github.com/Lienol/openwrt-package" >> feeds.conf.default
         # echo "src-git kenzok8 https://github.com/kenzok8/openwrt-packages" >> feeds.conf.default
         echo "src-git vietanhbui2000 https://github.com/vietanhbui2000/openwrt-packages" >> feeds.conf.default
@@ -61,14 +61,14 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         
-    - name: Compile package(s)
+    - name: Compile package
       run: |
         cd openwrt/sdk
         make defconfig
-        make package/luci-theme-atmaterial/compile V=s -j$(nproc)
+        make package/luci-theme-material/compile V=s -j$(nproc)
 
-    - name: Upload package(s)
+    - name: Upload package
       uses: actions/upload-artifact@v1
       with:
-        name: openwrt_packages
+        name: openwrt_package
         path: openwrt/sdk/bin/packages/mipsel_24kc
