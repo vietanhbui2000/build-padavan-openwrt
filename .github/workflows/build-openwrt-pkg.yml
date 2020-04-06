@@ -51,20 +51,19 @@ jobs:
         cd openwrt/sdk
         rm feeds.conf.default
         wget https://github.com/coolsnowwolf/lede/raw/master/feeds.conf.default
+        git clone https://github.com/kenzok8/openwrt-packages kenzok8
 
     - name: Update & install feeds
       run: |
         cd openwrt/sdk
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        cd openwrt/sdk/package/luci
-        git clone https://github.com/vietanhbui2000/luci-theme-atmaterial luci-theme-atmaterial
         
     - name: Compile package
       run: |
         cd openwrt/sdk
         make defconfig
-        make package/luci-theme-atmaterial/compile V=s -j$(nproc)
+        make package/luci-theme-opentomcat/compile V=s -j$(nproc)
 
     - name: Upload package
       uses: actions/upload-artifact@v1
