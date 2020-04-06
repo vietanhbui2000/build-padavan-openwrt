@@ -51,15 +51,14 @@ jobs:
         cd openwrt/sdk
         rm feeds.conf.default
         wget https://github.com/coolsnowwolf/lede/raw/master/feeds.conf.default
-        mkdir -p package/luci
-        cd openwrt/sdk/package/luci
-        git clone https://github.com/vietanhbui2000/luci-theme-atmaterial luci-theme-atmaterial
-        
+
     - name: Update & install feeds
       run: |
         cd openwrt/sdk
         ./scripts/feeds update -a
         ./scripts/feeds install -a
+        cd openwrt/sdk/package/luci
+        git clone https://github.com/vietanhbui2000/luci-theme-atmaterial luci-theme-atmaterial
         
     - name: Compile package
       run: |
