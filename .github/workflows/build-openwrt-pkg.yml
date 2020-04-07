@@ -65,6 +65,7 @@ jobs:
       run: |
         cd openwrt/sdk
         make defconfig
+        make package/luci-lib-fs/compile V=s -j$(nproc)
         make package/luci-app-filetransfer/compile V=s -j$(nproc)
         make package/luci-app-ttyd/compile V=s -j$(nproc)
 
