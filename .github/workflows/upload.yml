@@ -1,0 +1,47 @@
+###########################################################################
+# Modifications made by: Việt Anh Bùi | https://github.com/vietanhbui2000 #
+###########################################################################
+
+name: Upload
+
+on:
+  release:
+    types: published
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/upload.yml'
+#  schedule:
+#    - cron: 0 0 * * 1
+#  watch:
+#    - types: started
+
+env:
+  DL_LINK: https://github.com/coolsnowwolf/lede/archive/master.zip
+  TZ: Asia/Ho_Chi_Minh
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Initialize environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        mkdir -p upload
+
+    - name: Download
+      run: |
+        cd upload
+        wget $DL_LINK
+
+    - name: Upload
+      run: |
+        curl -m 180 -F file=@upload.7z https://file.io/?expires=1h
+        echo
