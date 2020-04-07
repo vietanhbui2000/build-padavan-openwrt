@@ -45,6 +45,8 @@ jobs:
         tar -xf openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz -C openwrt
         cd openwrt
         mv openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64 sdk
+        git clone https://github.com/coolsnowwolf/lede lede
+        mv openwrt/lede/package openwrt/sdk/package
         
     - name: Load package sources
       run: |
