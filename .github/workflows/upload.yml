@@ -19,6 +19,7 @@ on:
 
 env:
   DL_LINK: https://github.com/coolsnowwolf/lede/archive/master.zip
+  FILENAME: master.zip
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -43,5 +44,5 @@ jobs:
 
     - name: Upload
       run: |
-        curl -m 180 -F file=@upload.7z https://file.io/?expires=1h
+        curl -m 180 -F file=@$FILENAME https://file.io/?expires=1h
         echo
