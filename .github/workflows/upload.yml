@@ -44,5 +44,6 @@ jobs:
 
     - name: Upload
       run: |
-        curl -m 180 -F file=@$FILENAME https://file.io/?expires=1h
+        cd upload
+        curl -F "file=@$FILENAME" https://file.io/?expires=1h
         echo
