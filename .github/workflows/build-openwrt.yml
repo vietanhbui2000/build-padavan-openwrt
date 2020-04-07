@@ -20,12 +20,12 @@ on:
 #    - types: started
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
+  REPO_URL: https://git.openwrt.org/openwrt/openwrt.git
+  REPO_BRANCH: openwrt-19.02
   CONFIG_FILE: configs/openwrt/MI-MINI.config
   CUSTOMIZE_FILE: scripts/openwrt/customize.sh
-  UPLOAD_BIN_DIR: true
-  UPLOAD_FIRMWARE_DIR: false
+  UPLOAD_BIN_DIR: false
+  UPLOAD_FIRMWARE_DIR: true
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -51,8 +51,6 @@ jobs:
     - name: Clone source code
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-        cd openwrt/package
-        git clone --depth 1 https://github.com/vietanhbui2000/luci-theme-atmaterial -b master vietanhbui2000/luci-theme-atmaterial
 
     - name: Update & install feeds
       run: |
