@@ -60,16 +60,12 @@ jobs:
         cd openwrt/sdk
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        git clone https://github.com/coolsnowwolf/lede lede
-        mv openwrt/lede/package openwrt/sdk/package
         
     - name: Compile package
       run: |
         cd openwrt/sdk
         make defconfig
-        make package/luci-lib-fs/compile V=s -j$(nproc)
-        make package/luci-app-filetransfer/compile V=s -j$(nproc)
-        make package/luci-app-ttyd/compile V=s -j$(nproc)
+        make package/luci-theme-atmaterial/compile V=s -j$(nproc)
 
     - name: Upload package
       uses: actions/upload-artifact@v1
