@@ -33,10 +33,13 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo -E apt-get update
-        sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3.5 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib
-        sudo -E apt-get -y autoremove --purge
-        sudo -E apt-get clean
+        sudo timedatectl set-timezone "$TZ"
+        sudo swapoff /swapfile
+        sudo rm -rf /swapfile /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
+        sudo -E apt-get -qq update
+        sudo -E apt-get -qq install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3.5 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf
+        sudo -E apt-get -qq autoremove --purge
+        sudo -E apt-get -qq clean
 
     - name: Download SDK
       run: |
@@ -49,11 +52,11 @@ jobs:
     - name: Load package sources
       run: |
         cd openwrt/sdk
-        # rm feeds.conf.default
-        # wget https://github.com/coolsnowwolf/lede/raw/master/feeds.conf.default
-        # echo "src-git Lienol https://github.com/Lienol/openwrt-package" >> feeds.conf.default
+        rm feeds.conf.default
+        wget https://github.com/coolsnowwolf/lede/raw/master/feeds.conf.default
+        echo "src-git Lienol https://github.com/Lienol/openwrt-package" >> feeds.conf.default
         # echo "src-git kenzok8 https://github.com/kenzok8/openwrt-packages" >> feeds.conf.default
-        echo "src-git vietanhbui2000 https://github.com/vietanhbui2000/openwrt-packages" >> feeds.conf.default
+        # echo "src-git vietanhbui2000 https://github.com/vietanhbui2000/openwrt-packages" >> feeds.conf.default
 
     - name: Update & install feeds
       run: |
@@ -65,7 +68,8 @@ jobs:
       run: |
         cd openwrt/sdk
         make defconfig
-        make package/luci-theme-openwrt-2020/compile V=s -j$(nproc)
+        make package/luci-theme-argon-light-mod/compile V=s -j$(nproc)
+        make package/luci-theme-argon-dark-mod/compile V=s -j$(nproc)
 
     - name: Upload package
       uses: actions/upload-artifact@v1
