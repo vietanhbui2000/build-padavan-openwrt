@@ -7,6 +7,7 @@
 name: Build Lede
 
 on:
+  repository_dispatch:
   release:
     types: published
   push:
@@ -23,7 +24,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   CONFIG_FILE: configs/lede/MI-MINI.config
-  CUSTOMIZE_FILE: scripts/openwrt/customize.sh
+  CUSTOMIZE_SH_FILE: scripts/openwrt/customize.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
   TZ: Asia/Ho_Chi_Minh
@@ -41,12 +42,13 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+        sudo timedatectl set-timezone "$TZ"
         sudo swapoff /swapfile
         sudo rm -rf /swapfile /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
-        sudo -E apt-get update
-        sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3.5 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf
-        sudo -E apt-get -y autoremove --purge
-        sudo -E apt-get clean
+        sudo -E apt-get -qq update
+        sudo -E apt-get -qq install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3.5 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf
+        sudo -E apt-get -qq autoremove --purge
+        sudo -E apt-get -qq clean
 
     - name: Clone source code
       run: |
@@ -62,9 +64,9 @@ jobs:
       run: |
         [ -e files ] && mv files lede/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE lede/.config
-        chmod +x $CUSTOMIZE_FILE
+        chmod +x $CUSTOMIZE_SH_FILE
         cd lede
-        ../$CUSTOMIZE_FILE
+        ../$CUSTOMIZE_SH_FILE
 
     - name: Generate configuration file
       run: |
@@ -90,7 +92,7 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: openwrt_bin
+        name: lede_bin
         path: lede/bin
 
     - name: Clean up files
@@ -106,5 +108,5 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.cleanup.outputs.status == 'success' && !cancelled()
       with:
-        name: openwrt_firmware
+        name: lede_firmware
         path: ${{ env.FIRMWARE }}
