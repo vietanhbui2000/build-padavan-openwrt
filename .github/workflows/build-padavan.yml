@@ -21,7 +21,7 @@ on:
 env:
   REPO_URL: https://github.com/hanwckf/rt-n56u
   REPO_BRANCH: master
-  DEVICE: "MI-MINI"
+  DEVICE: MI-MINI
   CONFIG_FILE: configs/padavan/$DEVICE.config
   CUSTOMIZE_FILE: scripts/padavan/customize.sh
   USE_CUSTOM_CONFIG_FILE: true
