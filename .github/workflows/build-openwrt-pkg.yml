@@ -68,7 +68,11 @@ jobs:
       run: |
         cd openwrt/sdk
         make defconfig
-        make package/luci-app-vsftpd/compile V=s -j$(nproc)
+        make package/htop/compile V=s -j$(nproc)
+        make package/nano/compile V=s -j$(nproc)
+        make package/stubby/compile V=s -j$(nproc)
+        make package/luci-app-ttyd/compile V=s -j$(nproc)
+        make package/luci-app-aria2/compile V=s -j$(nproc)
         # make package/luci-theme-argon-light-mod/compile V=s -j$(nproc)
         # make package/luci-theme-argon-dark-mod/compile V=s -j$(nproc)
 
