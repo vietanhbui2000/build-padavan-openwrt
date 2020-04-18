@@ -48,7 +48,13 @@ jobs:
         tar -xf openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz -C openwrt
         cd openwrt
         mv openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64 sdk
-        
+
+    - name: Prepare important package
+      run: |
+        cd openwrt
+        git clone https://github.com/coolsnowwolf/lede
+        mv  -v ~/openwrt/lede/package/* ~/openwrt/sdk/package/
+
     - name: Load package sources
       run: |
         cd openwrt/sdk
@@ -68,7 +74,7 @@ jobs:
       run: |
         cd openwrt/sdk
         make defconfig
-        make package/luci-app-wifischedule/compile V=s -j$(nproc)
+        make package/luci-app-wrtbwmon/compile V=s -j$(nproc)
         # make package/luci-theme-argon-light-mod/compile V=s -j$(nproc)
         # make package/luci-theme-argon-dark-mod/compile V=s -j$(nproc)
 
