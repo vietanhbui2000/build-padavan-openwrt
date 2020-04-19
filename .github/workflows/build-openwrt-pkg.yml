@@ -69,6 +69,7 @@ jobs:
         cd openwrt/sdk
         make defconfig
         make package/luci-app-filebrowser/compile V=s -j$(nproc)
+        # make package/luci-app-filebrowser/compile V=s -j$(nproc)
 
     - name: Upload package
       uses: actions/upload-artifact@v1
