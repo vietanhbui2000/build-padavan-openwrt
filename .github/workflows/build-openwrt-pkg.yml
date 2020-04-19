@@ -68,7 +68,6 @@ jobs:
       run: |
         cd openwrt/sdk
         make defconfig
-        make package/luci-app-clearlucicache/compile V=s -j$(nproc)
         make package/luci-app-vsftpd/compile V=s -j$(nproc)
 
     - name: Upload package
