@@ -44,12 +44,10 @@ jobs:
     - name: Download SDK
       run: |
         mkdir -p openwrt
-
         # wget http://downloads.openwrt.org/releases/19.07.2/targets/ramips/mt7620/openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz
         # tar -xf openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz -C openwrt
         # cd openwrt
         # mv openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64 sdk
-
         wget https://downloads.openwrt.org/snapshots/targets/ramips/mt7620/openwrt-sdk-ramips-mt7620_gcc-8.4.0_musl.Linux-x86_64.tar.xz
         tar -xf openwrt-sdk-ramips-mt7620_gcc-8.4.0_musl.Linux-x86_64.tar.xz -C openwrt
         cd openwrt
@@ -58,11 +56,9 @@ jobs:
     - name: Load package sources
       run: |
         cd openwrt/sdk
-
         rm feeds.conf.default
         wget https://github.com/coolsnowwolf/lede/raw/master/feeds.conf.default
         echo "src-git vietanhbui2000 https://github.com/vietanhbui2000/openwrt-packages" >> feeds.conf.default
-
         # echo "src-git Lienol https://github.com/Lienol/openwrt-package" >> feeds.conf.default
         # echo "src-git kenzok8 https://github.com/kenzok8/openwrt-packages" >> feeds.conf.default
 
