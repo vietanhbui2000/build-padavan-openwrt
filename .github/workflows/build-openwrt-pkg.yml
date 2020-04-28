@@ -72,7 +72,7 @@ jobs:
       run: |
         cd openwrt/sdk
         make defconfig
-        make package/luci-theme-advancedtomatomaterial/compile V=s -j$(nproc)
+        make package/luci-app-ipkinstaller/compile V=s -j$(nproc)
         #
 
     - name: Upload package
