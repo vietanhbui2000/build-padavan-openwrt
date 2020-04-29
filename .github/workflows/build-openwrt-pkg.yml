@@ -73,9 +73,6 @@ jobs:
         cd openwrt/sdk
         make defconfig
         make package/luci-theme-atmaterial/compile V=s -j$(nproc)
-        make package/htop/compile V=s -j$(nproc)
-        make package/nano/compile V=s -j$(nproc)
-        make package/stubby/compile V=s -j$(nproc)
 
     - name: Upload package
       uses: actions/upload-artifact@v1
