@@ -23,7 +23,7 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  CONFIG_FILE: configs/openwrt/MI-MINI.config
+  CONFIG_FILE: configs/openwrt/MI-MINI_some-packages.config
   CUSTOMIZE_SH_FILE: scripts/openwrt/customize.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE_DIR: false
