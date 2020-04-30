@@ -6,6 +6,7 @@
 name: Build Padavan
 
 on:
+  repository_dispatch:
   release:
     types: published
   push:
