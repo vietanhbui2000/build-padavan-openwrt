@@ -52,7 +52,9 @@ jobs:
 
     - name: Clone source code
       run: |
-        git clone $REPO_URL -b $REPO_BRANCH openwrt
+        git clone $REPO_URL openwrt
+        cd openwrt
+        git checkout $REPO_BRANCH
 
     - name: Update & install feeds
       run: |
