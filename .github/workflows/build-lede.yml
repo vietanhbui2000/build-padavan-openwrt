@@ -52,7 +52,7 @@ jobs:
 
     - name: Clone source code
       run: |
-        git clone --depth 1 $REPO_URL -b $REPO_BRANCH lede
+        git clone $REPO_URL -b $REPO_BRANCH lede
         cd lede
         rm feeds.conf.default
         wget https://raw.githubusercontent.com/vietanhbui2000/Build-Padavan-OpenWrt/master/configs/lede/feeds.conf.default
