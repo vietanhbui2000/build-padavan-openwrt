@@ -55,7 +55,6 @@ jobs:
         git clone $REPO_URL openwrt
         cd openwrt
         git checkout $REPO_BRANCH
-        cd openwrt
         rm feeds.conf.default
         wget https://raw.githubusercontent.com/vietanhbui2000/Build-Padavan-OpenWrt/master/configs/openwrt/feeds.conf.default
 
