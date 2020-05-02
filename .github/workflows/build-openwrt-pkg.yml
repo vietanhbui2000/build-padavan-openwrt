@@ -57,11 +57,12 @@ jobs:
     - name: Load package sources
       run: |
         cd openwrt/sdk
-        rm feeds.conf.default
-        wget https://raw.githubusercontent.com/vietanhbui2000/Build-Padavan-OpenWrt/master/configs/lede/feeds.conf.default
-        echo "src-git vietanhbui2000 https://github.com/vietanhbui2000/private-packages" >> feeds.conf.default
+        # rm feeds.conf.default
+        # wget https://raw.githubusercontent.com/vietanhbui2000/Build-Padavan-OpenWrt/master/configs/lede/feeds.conf.default
+        # echo "src-git vietanhbui2000 https://github.com/vietanhbui2000/private-packages" >> feeds.conf.default
         # echo "src-git Lienol https://github.com/Lienol/openwrt-package" >> feeds.conf.default
         # echo "src-git kenzok8 https://github.com/kenzok8/openwrt-packages" >> feeds.conf.default
+        echo "src-git oui https://github.com/zhaojh329/oui.git" >> feeds.conf.default
 
     - name: Update & install feeds
       run: |
@@ -73,7 +74,7 @@ jobs:
       run: |
         cd openwrt/sdk
         make defconfig
-        make package/luci-theme-atmaterial/compile V=s -j$(nproc)
+        make package/feeds/oui/oui-ui-core/compile V=s -j$(nproc)
 
     - name: Upload package
       uses: actions/upload-artifact@v1
