@@ -1,4 +1,4 @@
-#-
+#+
 ###########################################################################
 # Modifications made by: Việt Anh Bùi | https://github.com/vietanhbui2000 #
 # Original author: P3TERX | https://github.com/P3TERX                     #
@@ -56,8 +56,6 @@ jobs:
         git clone $REPO_URL openwrt
         cd openwrt
         git checkout $REPO_BRANCH
-        # rm feeds.conf.default
-        # wget https://raw.githubusercontent.com/vietanhbui2000/Build-Padavan-OpenWrt/master/configs/openwrt/feeds.conf.default
 
     - name: Update & install feeds
       run: |
