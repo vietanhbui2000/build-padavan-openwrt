@@ -45,10 +45,6 @@ jobs:
     - name: Download SDK
       run: |
         mkdir -p openwrt
-        # wget http://downloads.openwrt.org/releases/19.07.2/targets/ramips/mt7620/openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz
-        # tar -xf openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64.tar.xz -C openwrt
-        # cd openwrt
-        # mv openwrt-sdk-19.07.2-ramips-mt7620_gcc-7.5.0_musl.Linux-x86_64 sdk
         wget https://downloads.openwrt.org/snapshots/targets/ramips/mt7620/openwrt-sdk-ramips-mt7620_gcc-8.4.0_musl.Linux-x86_64.tar.xz
         tar -xf openwrt-sdk-ramips-mt7620_gcc-8.4.0_musl.Linux-x86_64.tar.xz -C openwrt
         cd openwrt
@@ -57,15 +53,7 @@ jobs:
     - name: Load package sources
       run: |
         cd openwrt/sdk
-        # rm feeds.conf.default
-        # wget https://raw.githubusercontent.com/vietanhbui2000/Build-Padavan-OpenWrt/master/configs/lede/feeds.conf.default
-        # echo "src-git vietanhbui2000 https://github.com/vietanhbui2000/private-packages" >> feeds.conf.default
-        # echo "src-git Lienol https://github.com/Lienol/openwrt-package" >> feeds.conf.default
-        # echo "src-git kenzok8 https://github.com/kenzok8/openwrt-packages" >> feeds.conf.default
-        echo "src-git solidus1983 https://github.com/solidus1983/luci-theme-opentomato" >> feeds.conf.default
-        # echo "src-git jerrykuku https://github.com/jerrykuku/luci-theme-argon" >> feeds.conf.default
-        # cd openwrt/sdk/package
-        # git clone https://github.com/jerrykuku/luci-theme-argon.git  
+        echo "src-git lienol https://github.com/Lienol/openwrt-package" >> feeds.conf.default
 
     - name: Update & install feeds
       run: |
@@ -77,9 +65,8 @@ jobs:
       run: |
         cd openwrt/sdk
         make defconfig
-        make package/luci-theme-opentomato/compile V=s -j$(nproc)
-        # make package/luci-app-clearram/compile V=s -j$(nproc)
-        # make package/luci-app-filebrowser/compile V=s -j$(nproc)
+        make package/luci-theme-argon-light-mod/compile V=s -j$(nproc)
+        make package/luci-theme-argon-dark-mod/compile V=s -j$(nproc)
 
     - name: Upload package
       uses: actions/upload-artifact@v1
