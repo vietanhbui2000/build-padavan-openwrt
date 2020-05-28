@@ -24,7 +24,6 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   CONFIG_FILE: configs/lede/MI-MINI.config
-  USE_CUSTOM_CONFIG: false
   CUSTOMIZE_SH_FILE: scripts/openwrt/customize.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
@@ -64,7 +63,6 @@ jobs:
         ./scripts/feeds install -a
 
     - name: Load custom configuration
-      if: env.USE_CUSTOM_CONFIG == 'true' && !cancelled()
       run: |
         [ -e files ] && mv files lede/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE lede/.config
