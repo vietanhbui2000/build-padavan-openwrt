@@ -55,7 +55,7 @@ jobs:
       id: compile
       run: |
         cd gargoyle
-        make FULL_BUILD=true ramips.mt7620_usb
+        make FULL_BUILD=true ramips.miwifi-mini-
         echo "::set-output name=status::success"
 
     - name: Upload firmware directory
