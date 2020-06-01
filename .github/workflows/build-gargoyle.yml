@@ -21,7 +21,7 @@ on:
 
 env:
   REPO_URL: https://github.com/ericpaulbishop/gargoyle.git
-  REPO_BRANCH: master
+  REPO_BRANCH: 1.12
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -51,11 +51,16 @@ jobs:
         cd gargoyle
         git checkout $REPO_BRANCH
 
+    - name: Generate configuration file
+      run: |
+        cd gargoyle
+        echo "miwifi-mini-" > targets/ramips/profiles/mt7620_usb/profile_images
+
     - name: Compile firmware
       id: compile
       run: |
         cd gargoyle
-        make FULL_BUILD=true ramips.miwifi-mini-
+        make FULL_BUILD=true ramips.mt7620_usb
         echo "::set-output name=status::success"
 
     - name: Upload firmware directory
