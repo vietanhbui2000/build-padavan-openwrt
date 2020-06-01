@@ -54,7 +54,7 @@ jobs:
     - name: Generate configuration file
       run: |
         cd gargoyle
-        echo "miwifi-mini-" > gargoyle/targets/ramips/profiles/mt7620_usb/profile_images
+        echo "miwifi-mini-" > targets/ramips/profiles/usb_mt7620/profile_images
 
     - name: Compile firmware
       id: compile
