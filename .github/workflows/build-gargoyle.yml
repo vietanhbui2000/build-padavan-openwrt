@@ -51,11 +51,6 @@ jobs:
         cd gargoyle
         git checkout $REPO_BRANCH
 
-    - name: Generate configuration file
-      run: |
-        cd gargoyle
-        echo "miwifi-mini-" > targets/ramips/profiles/usb_mt7620/profile_images
-
     - name: Compile firmware
       id: compile
       run: |
@@ -69,3 +64,10 @@ jobs:
       with:
         name: gargoyle_firmware
         path: gargoyle/images
+        
+    - name: Upload package directory
+      uses: actions/upload-artifact@master
+      if: steps.compile.outputs.status == 'success' && !cancelled()
+      with:
+        name: gargoyle_package
+        path: gargoyle/built
