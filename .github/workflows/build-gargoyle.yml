@@ -22,6 +22,8 @@ on:
 env:
   REPO_URL: https://github.com/ericpaulbishop/gargoyle.git
   REPO_BRANCH: 1.12
+  UPLOAD_PACKAGE_DIR: true
+  UPLOAD_FIRMWARE_DIR: true
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -58,16 +60,16 @@ jobs:
         make FULL_BUILD=true ramips.usb_mt7620
         echo "::set-output name=status::success"
 
-    - name: Upload firmware directory
-      uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success' && !cancelled()
-      with:
-        name: gargoyle_firmware
-        path: gargoyle/images
-        
     - name: Upload package directory
       uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success' && !cancelled()
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_PACKAGE_DIR == 'true'
       with:
         name: gargoyle_package
         path: gargoyle/built
+
+    - name: Upload firmware directory
+      uses: actions/upload-artifact@master
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE_DIR == 'true'
+      with:
+        name: gargoyle_firmware
+        path: gargoyle/images
