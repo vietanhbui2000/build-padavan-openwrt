@@ -22,7 +22,7 @@ on:
 
 env:
   REPO_URL: https://git.openwrt.org/openwrt/openwrt.git
-  REPO_BRANCH: master
+  REPO_BRANCH: openwrt-18.06
   CONFIG_FILE: configs/openwrt/MI-MINI_default.config
   CUSTOMIZE_SH_FILE: scripts/openwrt/customize.sh
   UPLOAD_BIN_DIR: false
