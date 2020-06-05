@@ -60,11 +60,15 @@ jobs:
         cd openwrt/sdk
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        
-    - name: Compile package
+
+    - name: Generate configuration file
       run: |
         cd openwrt/sdk
         make defconfig
+
+    - name: Compile package
+      run: |
+        cd openwrt/sdk
         make package/luci-app-clearlucicache/compile V=s -j$(nproc)
         make package/luci-app-clearram/compile V=s -j$(nproc)
         make package/luci-app-filebrowser/compile V=s -j$(nproc)
