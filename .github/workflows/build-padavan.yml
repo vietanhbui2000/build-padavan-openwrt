@@ -56,7 +56,7 @@ jobs:
         cd /opt/rt-n56u/toolchain-mipsel
 
     - name: Download pre-compiled toolchain
-      if: env.USE_PRECOMPILED_TOOLCHAIN == 'true'
+      if: env.USE_PRECOMPILED_TOOLCHAIN == 'true' && !cancelled()
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
         mkdir -p toolchain-3.4.x
@@ -64,19 +64,18 @@ jobs:
         tar -xvf mipsel-linux-uclibc.tar.xz -C toolchain-3.4.x
 
     - name: Compile new toolchain
-      if: env.USE_PRECOMPILED_TOOLCHAIN == 'false'
+      if: env.USE_PRECOMPILED_TOOLCHAIN == 'false' && !cancelled()
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
         sudo ./clean_toolchain
         sudo ./build_toolchain
 
     - name: Load device configuration
-      if: env.USE_CUSTOM_CONFIG_FILE == 'true'
       run: |
         cp configs/padavan/$DEVICE.config /opt/rt-n56u/trunk/configs/templates/$DEVICE.config
 
     - name: Load custom configuration
-      if: env.USE_CUSTOM_CONFIG_FILE == 'true'
+      if: env.USE_CUSTOM_CONFIG_FILE == 'true' && !cancelled()
       run: |
         cd /opt/rt-n56u
         wget https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/master/scripts/padavan/customize.sh
