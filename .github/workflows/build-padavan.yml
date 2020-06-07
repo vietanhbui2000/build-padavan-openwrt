@@ -20,7 +20,7 @@ on:
 #    - types: started
 
 env:
-  REPO_URL: https://github.com/hanwckf/rt-n56u
+  REPO_URL: https://github.com/chongshengB/rt-n56u
   REPO_BRANCH: master
   DEVICE: MI-MINI
   CONFIG_FILE: configs/padavan/$DEVICE.config
