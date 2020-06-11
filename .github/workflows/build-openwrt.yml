@@ -24,7 +24,7 @@ env:
   REPO_URL: https://git.openwrt.org/openwrt/openwrt.git
   REPO_BRANCH: master
   USE_DIFFERENT_FEEDS_CONFIG: true
-  CONFIG_FILE: configs/openwrt/MI-MINI.config
+  CONFIG_FILE: configs/openwrt/MI-MINI_luci-18.06.config
   CUSTOMIZE_SH_FILE: scripts/openwrt/customize.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
