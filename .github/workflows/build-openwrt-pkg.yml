@@ -69,7 +69,7 @@ jobs:
     - name: Compile package
       run: |
         cd openwrt/sdk
-        make package/luci-app-ttyd/compile V=s -j$(nproc)
+        make package/vietanhbui2000/luci-app-ttyd/compile V=s -j$(nproc)
         # make package/luci-app-clearlucicache/compile V=s -j$(nproc)
         # make package/luci-app-clearram/compile V=s -j$(nproc)
         # make package/luci-app-filebrowser/compile V=s -j$(nproc)
