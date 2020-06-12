@@ -22,8 +22,9 @@ on:
 env:
   REPO_URL: https://github.com/hanwckf/rt-n56u
   REPO_BRANCH: master
-  DEVICE: MI-MINI
-  USE_CUSTOM_CONFIG_FILE: true
+  DEVICE_NAME: MI-MINI
+  USE_DEVICE_CONFIG: true
+  USE_CUSTOM_CONFIG: false
   USE_PRECOMPILED_TOOLCHAIN: true
   TZ: Asia/Ho_Chi_Minh
 
@@ -51,6 +52,19 @@ jobs:
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH /opt/rt-n56u
 
+    - name: Load device configuration
+      if: env.USE_DEVICE_CONFIG == 'true' && !cancelled()
+      run: |
+        cp configs/padavan/$DEVICE_NAME.config /opt/rt-n56u/trunk/configs/templates/$DEVICE_NAME.config
+
+    - name: Load custom configuration
+      if: env.USE_CUSTOM_CONFIG == 'true' && !cancelled()
+      run: |
+        cd /opt/rt-n56u
+        wget https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/master/scripts/padavan/customize.sh
+        chmod +x customize.sh
+        ./customize.sh
+
     - name: Prepare toolchain
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
@@ -59,28 +73,17 @@ jobs:
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'true' && !cancelled()
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
-        mkdir -p toolchain-3.4.x
-        wget https://github.com/hanwckf/padavan-toolchain/releases/download/v1.1/mipsel-linux-uclibc.tar.xz
-        tar -xvf mipsel-linux-uclibc.tar.xz -C toolchain-3.4.x
+        sh dl_toolchain.sh
+        # mkdir -p toolchain-3.4.x
+        # wget https://github.com/hanwckf/padavan-toolchain/releases/download/v1.1/mipsel-linux-uclibc.tar.xz
+        # tar -xvf mipsel-linux-uclibc.tar.xz -C toolchain-3.4.x
 
     - name: Compile new toolchain
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'false' && !cancelled()
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
-        sudo ./clean_toolchain
-        sudo ./build_toolchain
-
-    - name: Load device configuration
-      run: |
-        cp configs/padavan/$DEVICE.config /opt/rt-n56u/trunk/configs/templates/$DEVICE.config
-
-    - name: Load custom configuration
-      if: env.USE_CUSTOM_CONFIG_FILE == 'true' && !cancelled()
-      run: |
-        cd /opt/rt-n56u
-        wget https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/master/scripts/padavan/customize.sh
-        chmod +x customize.sh
-        ./customize.sh
+        ./clean_toolchain
+        ./build_toolchain
 
     - name: Clean up files
       run: |
@@ -90,10 +93,10 @@ jobs:
     - name: Compile firmware
       run: |
         cd /opt/rt-n56u/trunk
-        fakeroot ./build_firmware_modify $DEVICE
+        fakeroot ./build_firmware_modify $DEVICE_NAME
     
     - name: Upload firmware directory
       uses: actions/upload-artifact@master
       with:
-        name: padavan_firmware
+        name: ${{ env.DEVICE_NAME }}_padavan_firmware
         path: /opt/rt-n56u/trunk/images/
