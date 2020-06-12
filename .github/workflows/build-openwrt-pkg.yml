@@ -45,10 +45,10 @@ jobs:
     - name: Download SDK
       run: |
         mkdir -p openwrt
-        wget https://downloads.openwrt.org/releases/18.06-SNAPSHOT/targets/ramips/mt7620/openwrt-sdk-18.06-SNAPSHOT-ramips-mt7620_gcc-7.3.0_musl.Linux-x86_64.tar.xz
-        tar -xf openwrt-sdk-18.06-SNAPSHOT-ramips-mt7620_gcc-7.3.0_musl.Linux-x86_64.tar.xz -C openwrt
+        wget https://downloads.openwrt.org/snapshots/targets/ramips/mt7620/openwrt-sdk-ramips-mt7620_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        tar -xf openwrt-sdk-ramips-mt7620_gcc-8.4.0_musl.Linux-x86_64.tar.xz -C openwrt
         cd openwrt
-        mv openwrt-sdk-18.06-SNAPSHOT-ramips-mt7620_gcc-7.3.0_musl.Linux-x86_64 sdk
+        mv openwrt-sdk-ramips-mt7620_gcc-8.4.0_musl.Linux-x86_64 sdk
 
     - name: Load package sources
       run: |
