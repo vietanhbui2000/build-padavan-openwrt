@@ -46,16 +46,16 @@ jobs:
 
     - name: Clone source code
       run: |
-        git clone --depth 1 $REPO_URL -b $REPO_BRANCH /opt/padavan-ng
+        git clone --depth 1 $REPO_URL -b $REPO_BRANCH opt/padavan-ng
 
     - name: Prepare toolchain
       run: |
-        cd /opt/padavan-ng/toolchain
+        cd opt/padavan-ng/toolchain
         ./clean_sources.sh
 
     - name: Compile toolchain
       run: |
-        cd /opt/padavan-ng/toolchain
+        cd opt/padavan-ng/toolchain
         ./build_toolchain.sh
         echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
@@ -63,4 +63,4 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: padavan_toolchain_${{ env.DATE }}
-        path: /opt/padavan-ng/toolchain/out
+        path: opt/padavan-ng/toolchain/out
