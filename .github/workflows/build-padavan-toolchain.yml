@@ -20,8 +20,8 @@ on:
 #    - types: started
 
 env:
-  REPO_URL: https://github.com/zanezam/padavan-ng
-  REPO_BRANCH: custom
+  REPO_URL: https://gitlab.com/dm38/padavan-ng
+  REPO_BRANCH: master
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
