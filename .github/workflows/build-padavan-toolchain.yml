@@ -59,16 +59,8 @@ jobs:
         ./build_toolchain.sh
         echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
-    - name: Prepare files
-      run: |
-        cd /opt/padavan-ng/toolchain
-        tar -czvf mipsel-linux-uclibc.tar.gz /opt/padavan-ng/toolchain/out
-        cd /opt/padavan-ng/toolchain
-        mkdir -p upload
-        mv mipsel-linux-uclibc.tar.gz /opt/padavan-ng/toolchain/upload
-
     - name: Upload toolchain directory
       uses: actions/upload-artifact@master
       with:
         name: padavan_toolchain_${{ env.DATE }}
-        path: /opt/padavan-ng/toolchain/upload
+        path: /opt/padavan-ng/toolchain/out
