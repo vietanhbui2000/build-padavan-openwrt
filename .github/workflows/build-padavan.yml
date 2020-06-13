@@ -94,9 +94,10 @@ jobs:
       run: |
         cd /opt/rt-n56u/trunk
         fakeroot ./build_firmware_modify $DEVICE_NAME
+        echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
     
     - name: Upload firmware directory
       uses: actions/upload-artifact@master
       with:
-        name: ${{ env.DEVICE_NAME }}_padavan_firmware
+        name: ${{ env.DEVICE_NAME }}_padavan_firmware_${{ env.DATE }}
         path: /opt/rt-n56u/trunk/images/
