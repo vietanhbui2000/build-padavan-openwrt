@@ -1,0 +1,65 @@
+###########################################################################
+# Modifications made by: Việt Anh Bùi | https://github.com/vietanhbui2000 #
+# Original author: chongshengB | https://github.com/chongshengB           #
+###########################################################################
+
+name: Build Padavan
+
+on:
+  repository_dispatch:
+  release:
+    types: published
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/build-padavan-toolchain.yml'
+#  schedule:
+#    - cron: 0 0 * * 1
+#  watch:
+#    - types: started
+
+env:
+  REPO_URL: https://github.com/zanezam/padavan-ng
+  REPO_BRANCH: custom
+  TZ: Asia/Ho_Chi_Minh
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Initialize environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd fakeroot \
+        cpio git python-docutils gettext automake autopoint texinfo build-essential help2man \
+        pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget \
+        module-init-tools
+        sudo timedatectl set-timezone "$TZ"
+
+    - name: Clone source code
+      run: |
+        git clone --depth 1 $REPO_URL -b $REPO_BRANCH /opt/padavan-ng
+
+    - name: Prepare toolchain
+      run: |
+        cd /opt/padavan-ng/toolchain
+
+    - name: Compile new toolchain
+      run: |
+        cd /opt/padavan-ng/toolchain
+        ./clean_toolchain
+        ./build_toolchain
+  
+    - name: Upload toolchain directory
+      uses: actions/upload-artifact@master
+      with:
+        name: padavan_toolchain
+        path: /opt/padavan-ng/toolchain
