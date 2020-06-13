@@ -98,14 +98,14 @@ jobs:
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "::set-output name=status::success"
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
-        [ -s DEVICE_NAME ] && echo "::set-env name=DEVICE_NAME::$(cat DEVICE_NAME)_"
-        echo "::set-env name=FILE_DATE::_$(date +"%Y%m%d%H%M")"
+        [ -s DEVICE_NAME ] && echo "::set-env name=DEVICE_NAME::$(cat DEVICE_NAME)"
+        echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
     - name: Upload bin directory
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: ${{ env.DEVICE_NAME }}openwrt_bin${{ env.FILE_DATE }}
+        name: ${{ env.DEVICE_NAME }}_openwrt_bin_${{ env.DATE }}
         path: openwrt/bin
 
     - name: Clean up files
@@ -121,5 +121,5 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.cleanup.outputs.status == 'success' && !cancelled()
       with:
-        name: ${{ env.DEVICE_NAME }}openwrt_firmware${{ env.FILE_DATE }}
+        name: ${{ env.DEVICE_NAME }}_openwrt_firmware_${{ env.DATE }}
         path: ${{ env.FIRMWARE }}
