@@ -46,7 +46,6 @@ jobs:
         cpio git python-docutils gettext automake autopoint texinfo build-essential help2man \
         pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget \
         module-init-tools
-        sudo timedatectl set-timezone "$TZ"
 
     - name: Clone source code
       run: |
@@ -68,21 +67,21 @@ jobs:
     - name: Prepare toolchain
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
+        ./clean_toolchain
 
     - name: Download pre-compiled toolchain
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'true' && !cancelled()
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
-        # mkdir -p toolchain-3.4.x
         # wget https://github.com/hanwckf/padavan-toolchain/releases/download/v1.1/mipsel-linux-uclibc.tar.xz
+        # mkdir -p toolchain-3.4.x
         # tar -xvf mipsel-linux-uclibc.tar.xz -C toolchain-3.4.x
 
     - name: Compile new toolchain
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'false' && !cancelled()
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
-        ./clean_toolchain
         ./build_toolchain
 
     - name: Clean up files
