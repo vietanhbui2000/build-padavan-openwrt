@@ -62,9 +62,10 @@ jobs:
     - name: Prepare files
       run: |
         cd /opt/padavan-ng/toolchain
-        tar -czvf mipsel-linux-uclibc.tar.gz /out
+        tar -czvf mipsel-linux-uclibc.tar.gz /opt/padavan-ng/toolchain/out
+        cd /opt/padavan-ng/toolchain
         mkdir -p upload
-        mv mipsel-linux-uclibc.tar.gz /upload
+        mv mipsel-linux-uclibc.tar.gz /opt/padavan-ng/toolchain/upload
 
     - name: Upload toolchain directory
       uses: actions/upload-artifact@master
