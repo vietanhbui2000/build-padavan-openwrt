@@ -60,7 +60,7 @@ jobs:
       if: env.USE_CUSTOM_CONFIG == 'true' && !cancelled()
       run: |
         cp scripts/padavan/customize.sh opt/padavan-ng/trunk/customize.sh
-        cd opt/padavan-ng/toolchain/trunk
+        cd opt/padavan-ng/trunk
         chmod +x customize.sh
         ./customize.sh
 
@@ -72,10 +72,10 @@ jobs:
     - name: Download pre-compiled toolchain
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'true' && !cancelled()
       run: |
+        cp scripts/padavan/dl_toolchain.sh opt/padavan-ng/toolchain/dl_toolchain.sh
         cd opt/padavan-ng/toolchain
-        # wget https://github.com/hanwckf/padavan-toolchain/releases/download/v1.1/mipsel-linux-uclibc.tar.xz
-        # mkdir -p toolchain-3.4.x
-        # tar -xvf mipsel-linux-uclibc.tar.xz -C toolchain-3.4.x
+        chmod +x dl_toolchain.sh
+        ./dl_toolchain.sh
 
     - name: Compile new toolchain
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'false' && !cancelled()
