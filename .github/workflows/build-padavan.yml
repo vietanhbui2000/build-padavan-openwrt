@@ -59,8 +59,8 @@ jobs:
     - name: Load custom configuration
       if: env.USE_CUSTOM_CONFIG == 'true' && !cancelled()
       run: |
-        cd opt/padavan-ng
-        wget https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/master/scripts/padavan/customize.sh
+        cp scripts/padavan/customize.sh opt/padavan-ng/trunk/customize.sh
+        cd opt/padavan-ng/toolchain/trunk
         chmod +x customize.sh
         ./customize.sh
 
