@@ -55,7 +55,7 @@ jobs:
     - name: Compile new toolchain
       run: |
         cd /opt/padavan-ng/toolchain
-        ./clean_toolchain
+        ./clean_sources
         ./build_toolchain
   
     - name: Upload toolchain directory
