@@ -3,7 +3,7 @@
 # Original author: chongshengB | https://github.com/chongshengB           #
 ###########################################################################
 
-name: Build Padavan
+name: Build Padavan Toolchain
 
 on:
   repository_dispatch:
@@ -51,15 +51,16 @@ jobs:
     - name: Prepare toolchain
       run: |
         cd /opt/padavan-ng/toolchain
+        ./clean_sources.sh
 
-    - name: Compile new toolchain
+    - name: Compile toolchain
       run: |
         cd /opt/padavan-ng/toolchain
-        ./clean_sources.sh
         ./build_toolchain.sh
-  
+        echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
+
     - name: Upload toolchain directory
       uses: actions/upload-artifact@master
       with:
-        name: padavan_toolchain
+        name: padavan_toolchain_${{ env.DATE }}
         path: /opt/padavan-ng/toolchain
