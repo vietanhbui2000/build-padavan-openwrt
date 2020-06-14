@@ -74,7 +74,7 @@ jobs:
         cp $DEVICE_CONFIG_FILE lede/.config
 
     - name: Customize firmware
-    if: env.CUSTOMIZE_FIRMWARE == 'true' && !cancelled()
+      if: env.CUSTOMIZE_FIRMWARE == 'true' && !cancelled()
       run: |
         cp $CUSTOMIZE_SH_FILE lede/customize.sh
         cd lede

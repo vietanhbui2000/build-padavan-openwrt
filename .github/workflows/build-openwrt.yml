@@ -74,7 +74,7 @@ jobs:
         cp $DEVICE_CONFIG_FILE openwrt/.config
 
     - name: Customize firmware
-    if: env.CUSTOMIZE_FIRMWARE == 'true' && !cancelled()
+      if: env.CUSTOMIZE_FIRMWARE == 'true' && !cancelled()
       run: |
         cp $CUSTOMIZE_SH_FILE openwrt/customize.sh
         cd openwrt
