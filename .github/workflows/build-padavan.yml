@@ -74,6 +74,7 @@ jobs:
       run: |
         cp scripts/padavan/dl_toolchain.sh opt/padavan-ng/toolchain/dl_toolchain.sh
         cd opt/padavan-ng/toolchain
+        chmod +x dl_toolchain.sh
         ./dl_toolchain.sh
 
     - name: Compile new toolchain
