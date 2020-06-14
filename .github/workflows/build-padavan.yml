@@ -23,8 +23,9 @@ env:
   REPO_URL: https://gitlab.com/dm38/padavan-ng
   REPO_BRANCH: master
   DEVICE_NAME: MI-MINI
-  USE_DEVICE_CONFIG: true
-  USE_CUSTOM_CONFIG: false
+  DEVICE_CONFIG_FILE: configs/padavan/mi-mini_alxdm.config
+  CUSTOMIZE_FIRMWARE: false
+  CUSTOMIZE_SH_FILE: scripts/padavan/customize.sh
   USE_PRECOMPILED_TOOLCHAIN: true
   TZ: Asia/Ho_Chi_Minh
 
@@ -52,14 +53,13 @@ jobs:
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH opt/padavan-ng
 
     - name: Load device configuration
-      if: env.USE_DEVICE_CONFIG == 'true' && !cancelled()
       run: |
-        cp configs/padavan/mi-mini_alxdm.config opt/padavan-ng/trunk/.config
+        cp $DEVICE_CONFIG_FILE opt/padavan-ng/trunk/.config
 
-    - name: Load custom configuration
-      if: env.USE_CUSTOM_CONFIG == 'true' && !cancelled()
+    - name: Customize firmware
+      if: env.CUSTOMIZE_FIRMWARE == 'true' && !cancelled()
       run: |
-        cp scripts/padavan/customize.sh opt/padavan-ng/trunk/customize.sh
+        cp $CUSTOMIZE_SH_FILE opt/padavan-ng/trunk/customize.sh
         cd opt/padavan-ng/trunk
         chmod +x customize.sh
         ./customize.sh
@@ -74,7 +74,6 @@ jobs:
       run: |
         cp scripts/padavan/dl_toolchain.sh opt/padavan-ng/toolchain/dl_toolchain.sh
         cd opt/padavan-ng/toolchain
-        chmod +x dl_toolchain.sh
         ./dl_toolchain.sh
 
     - name: Compile new toolchain
