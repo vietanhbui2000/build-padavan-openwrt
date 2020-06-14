@@ -23,7 +23,9 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  CONFIG_FILE: configs/lede/MI-MINI.config
+  USE_DIFFERENT_FEEDS_CONFIG: false
+  DEVICE_CONFIG_FILE: configs/lede/MI-MINI.config
+  CUSTOMIZE_FIRMWARE: false
   CUSTOMIZE_SH_FILE: scripts/openwrt/customize.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
@@ -56,19 +58,28 @@ jobs:
         cd lede
         git checkout $REPO_BRANCH
 
+    - name: Use custom feeds config
+      if: env.USE_DIFFERENT_FEEDS_CONFIG == 'true' && !cancelled()
+      run: |
+        cp configs/lede/feeds.conf.default lede/feeds.conf.default
+
     - name: Update & install feeds
       run: |
         cd lede
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
-    - name: Load custom configuration
+    - name: Load device configuration
       run: |
-        [ -e files ] && mv files lede/files
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE lede/.config
-        chmod +x $CUSTOMIZE_SH_FILE
+        cp $DEVICE_CONFIG_FILE lede/.config
+
+    - name: Customize firmware
+    if: env.CUSTOMIZE_FIRMWARE == 'true' && !cancelled()
+      run: |
+        cp $CUSTOMIZE_SH_FILE lede/customize.sh
         cd lede
-        ../$CUSTOMIZE_SH_FILE
+        chmod +x customize.sh
+        ./customize.sh
 
     - name: Generate configuration file
       run: |
