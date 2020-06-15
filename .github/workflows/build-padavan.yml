@@ -22,8 +22,8 @@ on:
 env:
   REPO_URL: https://github.com/hanwckf/rt-n56u
   REPO_BRANCH: master
-  DEVICE_NAME: MI-MINI
-  DEVICE_CONFIG_FILE: configs/padavan/MI-MINI_hanwckf.config
+  DEVICE_NAME: MiWiFi-Mini
+  DEVICE_CONFIG_FILE: configs/padavan/MiWiFi-Mini.config
   CUSTOMIZE_FIRMWARE: false
   CUSTOMIZE_SH_FILE: scripts/padavan/customize.sh
   USE_PRECOMPILED_TOOLCHAIN: true
@@ -54,6 +54,7 @@ jobs:
 
     - name: Load device configuration
       run: |
+        cp -R configs/padavan/MiWiFi-Mini /opt/rt-n56u/trunk/configs/boards
         cp $DEVICE_CONFIG_FILE /opt/rt-n56u/trunk/.config
         cp $DEVICE_CONFIG_FILE /opt/rt-n56u/trunk/configs/templates/$DEVICE_NAME.config
 
