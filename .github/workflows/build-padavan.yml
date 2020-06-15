@@ -54,7 +54,7 @@ jobs:
 
     - name: Load device configuration
       run: |
-        cp -R configs/padavan/MiWiFi-Mini /opt/rt-n56u/trunk/configs/boards
+        cp -R configs/padavan/$DEVICE_NAME /opt/rt-n56u/trunk/configs/boards
         cp $DEVICE_CONFIG_FILE /opt/rt-n56u/trunk/.config
         cp $DEVICE_CONFIG_FILE /opt/rt-n56u/trunk/configs/templates/$DEVICE_NAME.config
 
