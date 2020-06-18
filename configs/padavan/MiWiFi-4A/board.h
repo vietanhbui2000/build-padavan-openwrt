@@ -8,12 +8,12 @@
 #define BOARD_MODEL_URL		"http://www.mi.com/miwifi4a"
 #define BOARD_BOOT_TIME		25
 #define BOARD_FLASH_TIME	120
-#define BOARD_GPIO_BTN_RESET	18
+#define BOARD_GPIO_BTN_RESET	38
 #undef  BOARD_GPIO_BTN_WPS
 #undef  BOARD_GPIO_LED_ALL
-#undef  BOARD_GPIO_LED_WIFI
-#define BOARD_GPIO_LED_POWER	8	/* 6: red, 10: yellow, 8: blue */
-#define BOARD_GPIO_LED_LAN	10
+#define BOARD_GPIO_LED_WIFI	11
+#define BOARD_GPIO_LED_POWER	44	/* 11: blue, 37: red, 44: yellow */
+#undef  BOARD_GPIO_LED_LAN
 #undef  BOARD_GPIO_LED_WAN
 #define BOARD_HAS_5G_11AC	1
 #define BOARD_NUM_ANT_5G_TX	2
