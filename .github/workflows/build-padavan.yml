@@ -91,7 +91,7 @@ jobs:
     - name: Compile firmware
       run: |
         cd /opt/rt-n56u/trunk
-        ./build_firmware_modify $DEVICE_NAME
+        fakeroot ./build_firmware_modify $DEVICE_NAME
         echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
     - name: Upload firmware directory
