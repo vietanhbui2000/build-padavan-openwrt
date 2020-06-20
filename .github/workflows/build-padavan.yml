@@ -22,7 +22,7 @@ on:
 env:
   REPO_URL: https://github.com/hanwckf/rt-n56u
   REPO_BRANCH: master
-  DEVICE_NAME: MiWiFi-Mini
+  DEVICE_NAME: MiWiFi-4A
   DEVICE_CONFIG_FILE: configs/padavan/MiWiFi-Mini.config
   CUSTOMIZE_FIRMWARE: false
   CUSTOMIZE_SH_FILE: scripts/padavan/customize.sh
