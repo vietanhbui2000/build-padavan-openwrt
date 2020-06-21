@@ -3,7 +3,13 @@
 # Modifications made by: Việt Anh Bùi | https://github.com/vietanhbui2000 #
 ###########################################################################
 
-# Add themes and theme changer to Padavan firmware
+# Change default value
+# sed -i 's/US/CN/g' user/shared/defaults.h
+# sed -i 's/CST-8/GMT+7/g' user/shared/defaults.h
+# sed -i 's/ntp1.aliyun.com/pool.ntp.org/g' user/shared/defaults.h
+# sed -i 's/2001:470:0:50::2/time.nist.gov/g' user/shared/defaults.h
+
+# Include Padavan theme pack in firmware
 # Install necessary package(s)
 # sudo apt-get install unzip
 
