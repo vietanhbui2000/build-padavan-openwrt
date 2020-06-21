@@ -15,7 +15,7 @@ tar -xvf stubby-0.3.0.tar.gz
 mv stubby-0.3.0 user/stubby
 
 # Include stubby
-sed '/^dir_$(CONFIG_FIRMWARE_INCLUDE_STUBBY)		+= stubby.*/i dir_$(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS)	+= chnroute' user/Makefile
+sed -i 's/dir_$(CONFIG_FIRMWARE_INCLUDE_REDSOCKS)			+= redsocks/dir_$(CONFIG_FIRMWARE_INCLUDE_STUBBY)		+= stubby/g' user/Makefile
 echo "CONFIG_FIRMWARE_INCLUDE_STUBBY=y" >> .config
 echo "CONFIG_FIRMWARE_INCLUDE_STUBBY=y" >> configs/templates/MiWiFi-Mini.config
 
