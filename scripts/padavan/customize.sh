@@ -9,7 +9,17 @@
 # sed -i 's/ntp1.aliyun.com/pool.ntp.org/g' user/shared/defaults.h
 # sed -i 's/2001:470:0:50::2/time.nist.gov/g' user/shared/defaults.h
 
-# Include Padavan theme pack in firmware
+# Download and extract stubby package
+wget https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/master/scripts/padavan/stubby-0.3.0.tar.gz
+tar -xvf stubby-0.3.0.tar.gz
+mv stubby-0.3.0 user/stubby
+
+# Include stubby
+sed '/^dir_$(CONFIG_FIRMWARE_INCLUDE_STUBBY)		+= stubby.*/b dir_$(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS)	+= chnroute' test.txt
+echo "CONFIG_FIRMWARE_INCLUDE_STUBBY=y" >> .config
+echo "CONFIG_FIRMWARE_INCLUDE_STUBBY=y" >> configs/templates/MiWiFi-Mini.config
+
+# Include Padavan theme pack
 # Install necessary package(s)
 # sudo apt-get install unzip
 
@@ -17,7 +27,7 @@
 # wget https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/master/scripts/padavan/PadavanThemePack_v2.4.14.zip
 # wget https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/master/scripts/padavan/PadavanThemePack_v2.4.14_Lite.zip
 
-# Unzip file(s)
+# Extract file(s)
 # unzip -o PadavanThemePack_v2.4.14.zip -d /opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed
 # unzip -o PadavanThemePack_v2.4.14_Lite.zip -d /opt/rt-n56u/trunk/user/www/n56u_ribbon_fixed
 
