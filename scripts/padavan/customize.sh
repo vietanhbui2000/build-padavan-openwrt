@@ -3,7 +3,7 @@
 # Modifications made by: Việt Anh Bùi | https://github.com/vietanhbui2000 #
 ###########################################################################
 
-# Change default value
+# Change default settings
 # sed -i 's/US/CN/g' user/shared/defaults.h
 # sed -i 's/CST-8/GMT+7/g' user/shared/defaults.h
 # sed -i 's/ntp1.aliyun.com/pool.ntp.org/g' user/shared/defaults.h
