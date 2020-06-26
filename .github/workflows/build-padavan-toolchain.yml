@@ -58,7 +58,7 @@ jobs:
         ./build_toolchain.sh
         echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
-    - name: Prepare files
+    - name: Clean up files
       run: |
         cd opt/padavan-ng/toolchain
         tar -cJvf mipsel-linux-uclibc.tar.xz out
