@@ -9,16 +9,6 @@
 # sed -i 's/ntp1.aliyun.com/pool.ntp.org/g' user/shared/defaults.h
 # sed -i 's/2001:470:0:50::2/time.nist.gov/g' user/shared/defaults.h
 
-# Download and extract stubby package
-wget https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/master/scripts/padavan/stubby-0.3.0.tar.gz
-tar -xvf stubby-0.3.0.tar.gz
-mv stubby-0.3.0 user/stubby
-
-# Include stubby
-sed 's/dir_$(CONFIG_FIRMWARE_INCLUDE_REDSOCKS)			+= redsocks/&\ndir_$(CONFIG_FIRMWARE_INCLUDE_STUBBY)		+= stubby/g' user/Makefile
-echo "CONFIG_FIRMWARE_INCLUDE_STUBBY=y" >> .config
-echo "CONFIG_FIRMWARE_INCLUDE_STUBBY=y" >> configs/templates/MiWiFi-Mini.config
-
 # Include Padavan theme pack
 # Install necessary package(s)
 # sudo apt-get install unzip
