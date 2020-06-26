@@ -92,7 +92,7 @@ jobs:
     - name: Compile firmware
       run: |
         cd opt/padavan-ng/trunk
-        fakeroot ./bbuild_firmware.sh
+        fakeroot ./build_firmware.sh
         echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
     - name: Upload firmware directory
