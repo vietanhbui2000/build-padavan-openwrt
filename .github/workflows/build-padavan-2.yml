@@ -54,9 +54,9 @@ jobs:
 
     - name: Load device configuration
       run: |
-        cp -R configs/padavan/$DEVICE_NAME opt/padavan-ng/trunk/configs/boards
+        cp -R configs/padavan/$DEVICE_NAME opt/padavan-ng/trunk/configs/boards/XIAOMI
         cp configs/padavan/$DEVICE_NAME.config opt/padavan-ng/trunk/.config
-        cp configs/padavan/$DEVICE_NAME.config opt/padavan-ng/trunk/configs/templates/$DEVICE_NAME.config
+        cp configs/padavan/$DEVICE_NAME.config opt/padavan-ng/trunk/configs/templates/xiaomi/$DEVICE_NAME.config
 
     - name: Customize firmware
       if: env.CUSTOMIZE_FIRMWARE == 'true' && !cancelled()
