@@ -5,7 +5,7 @@
 
 # Change default settings
 # sed -i 's/US/CN/g' user/shared/defaults.h
-# sed -i 's/CST-8/GMT+7/g' user/shared/defaults.h
+# sed -i 's/CST-8/GMT0/g' user/shared/defaults.h
 # sed -i 's/ntp1.aliyun.com/pool.ntp.org/g' user/shared/defaults.h
 # sed -i 's/2001:470:0:50::2/time.nist.gov/g' user/shared/defaults.h
 
