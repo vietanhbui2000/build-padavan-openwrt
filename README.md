@@ -1,14 +1,15 @@
 # Build Padavan or/and OpenWRT
 
+Build Padavan or/and OpenWRT firmware using GitHub Actions.
+
+# Build status
 ![Build Padavan](https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/workflows/Build%20Padavan/badge.svg)
 ![Build OpenWrt](https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/workflows/Build%20OpenWrt/badge.svg)
 ![Build Lede](https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/workflows/Build%20Lede/badge.svg)
 
-Build Padavan or/and OpenWrt firmware using GitHub Actions.
-
 ## How to use
 
-- Click [Use this template](https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/generate) button to create a new repository or Fork [this repository](https://github.com/vietanhbui2000/Build-Padavan-OpenWrt).
+Click [Use this template](https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/generate) button to create a new repository or Fork [this repository](https://github.com/vietanhbui2000/Build-Padavan-OpenWrt).
 
 ## Credits
 
