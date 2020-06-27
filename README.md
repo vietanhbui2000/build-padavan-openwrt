@@ -12,7 +12,7 @@ Build Padavan or/and OpenWrt firmware using GitHub Actions.
 
 ## Credits
 
+- [Actions-OpenWrt](https://github.com/P3TERX/Actions-OpenWrt) by [P3TERX](https://github.com/P3TERX)
 - [rt-n56u](https://github.com/hanwckf/rt-n56u) by [hanwckf](https://github.com/hanwckf)
 - [rt-n56u](https://github.com/chongshengB/rt-n56u) by [chongshengB](https://github.com/chongshengB)
-- [Actions-OpenWrt](https://github.com/P3TERX/Actions-OpenWrt) by [P3TERX](https://github.com/P3TERX)
 - [lede](https://github.com/coolsnowwolf/lede) by [coolsnowwolf](https://github.com/coolsnowwolf)
