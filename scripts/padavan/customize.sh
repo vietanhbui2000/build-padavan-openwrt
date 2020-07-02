@@ -17,7 +17,7 @@ sudo apt-get -y install unzip
 wget https://github.com/vietanhbui2000/build-padavan-openwrt/raw/master/scripts/padavan/user-patched.zip
 
 # Extract file(s)
-unzip -o user-patched.zip -d /opt/padavan-ng/trunk
+unzip -o user-patched.zip
 
 # Include Padavan theme pack
 # Download file(s)
