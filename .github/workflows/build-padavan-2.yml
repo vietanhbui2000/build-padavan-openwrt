@@ -21,7 +21,7 @@ on:
 #    - types: started
 
 env:
-  REPO_URL: https://github.com/vietanhbui2000/padavan-ng
+  REPO_URL: https://gitlab.com/dm38/padavan-ng
   REPO_BRANCH: master
   DEVICE_NAME: MiWiFi-4A
   CUSTOMIZE_FIRMWARE: true
