@@ -1,0 +1,112 @@
+# Github Actions trigger: +
+###########################################################################
+# Modifications made by: Việt Anh Bùi | https://github.com/vietanhbui2000 #
+# Original author: chongshengB | https://github.com/chongshengB           #
+###########################################################################
+
+name: Build Test
+
+on:
+  repository_dispatch:
+  release:
+    types: published
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/build-test.yml'
+#  schedule:
+#    - cron: 0 0 * * 1
+#  watch:
+#    - types: started
+
+env:
+REPO_URL: https://github.com/hanwckf/rt-n56u
+  REPO_BRANCH: master
+  DEVICE_NAME: MiWiFi-Mini
+  PATCH_FIRMWARE: true
+  PATCH_SH_FILE: scripts/padavan/patch.sh
+  CUSTOMIZE_FIRMWARE: true
+  CUSTOMIZE_SH_FILE: scripts/padavan/customize.sh
+  USE_PRECOMPILED_TOOLCHAIN: true
+  TZ: Asia/Ho_Chi_Minh
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Initialize environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd fakeroot \
+        cpio git python-docutils gettext automake autopoint texinfo build-essential help2man \
+        pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget \
+        module-init-tools
+
+    - name: Clone source code
+      run: |
+        git clone --depth 1 $REPO_URL -b $REPO_BRANCH /opt/rt-n56u
+
+    - name: Load device configuration
+      run: |
+        cp -R configs/padavan/$DEVICE_NAME /opt/rt-n56u/trunk/configs/boards
+        cp configs/padavan/$DEVICE_NAME.config /opt/rt-n56u/trunk/.config
+        cp configs/padavan/$DEVICE_NAME.config /opt/rt-n56u/trunk/configs/templates/$DEVICE_NAME.config
+        echo "CONFIG_FIRMWARE_INCLUDE_STUBBY=y" >> /opt/rt-n56u/trunk/.config
+        echo "CONFIG_FIRMWARE_INCLUDE_STUBBY=y" >> /opt/rt-n56u/trunk/configs/templates/$DEVICE_NAME.config
+
+    - name: Patch firmware
+      if: env.PATCH_FIRMWARE == 'true' && !cancelled()
+      run: |
+        cp $PATCH_SH_FILE /opt/rt-n56u/trunk/patch.sh
+        cd /opt/rt-n56u/trunk
+        chmod +x patch.sh
+        ./patch.sh
+
+    - name: Customize firmware
+      if: env.CUSTOMIZE_FIRMWARE == 'true' && !cancelled()
+      run: |
+        cp $CUSTOMIZE_SH_FILE /opt/rt-n56u/trunk/customize.sh
+        cd /opt/rt-n56u/trunk
+        chmod +x customize.sh
+        ./customize.sh
+
+    - name: Prepare toolchain
+      run: |
+        cd /opt/rt-n56u/toolchain-mipsel
+        ./clean_toolchain
+
+    - name: Download pre-compiled toolchain
+      if: env.USE_PRECOMPILED_TOOLCHAIN == 'true' && !cancelled()
+      run: |
+        cd /opt/rt-n56u/toolchain-mipsel
+        sh dl_toolchain.sh
+
+    - name: Compile new toolchain
+      if: env.USE_PRECOMPILED_TOOLCHAIN == 'false' && !cancelled()
+      run: |
+        cd /opt/rt-n56u/toolchain-mipsel
+        ./build_toolchain
+
+    - name: Clean up files
+      run: |
+        cd /opt/rt-n56u/trunk
+        ./clear_tree
+
+    - name: Compile firmware
+      run: |
+        cd /opt/rt-n56u/trunk
+        fakeroot ./build_firmware_modify $DEVICE_NAME
+        echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
+
+    - name: Upload firmware directory
+      uses: actions/upload-artifact@master
+      with:
+        name: ${{ env.DEVICE_NAME }}_padavan_firmware_${{ env.DATE }}
+        path: /opt/rt-n56u/trunk/images/
