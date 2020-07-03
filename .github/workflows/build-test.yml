@@ -21,7 +21,7 @@ on:
 #    - types: started
 
 env:
-REPO_URL: https://github.com/hanwckf/rt-n56u
+  REPO_URL: https://github.com/hanwckf/rt-n56u
   REPO_BRANCH: master
   DEVICE_NAME: MiWiFi-Mini
   PATCH_FIRMWARE: true
@@ -30,6 +30,7 @@ REPO_URL: https://github.com/hanwckf/rt-n56u
   CUSTOMIZE_SH_FILE: scripts/padavan/customize.sh
   USE_PRECOMPILED_TOOLCHAIN: true
   TZ: Asia/Ho_Chi_Minh
+
 jobs:
   build:
     runs-on: ubuntu-18.04
