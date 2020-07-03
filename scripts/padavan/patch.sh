@@ -5,14 +5,14 @@
 
 # Patch hanwckf's Padavan repository
 # Download file
-wget https://github.com/vietanhbui2000/build-padavan-openwrt/raw/master/scripts/padavan/hanwckf-patches.zip
+# wget https://github.com/vietanhbui2000/build-padavan-openwrt/raw/master/scripts/padavan/hanwckf-patches.zip
 
 # Extract file
-unzip -o hanwckf-patches.zip
+# unzip -o hanwckf-patches.zip
 
 # Patch alxdm's Padavan repository
 # Download file
-# wget https://github.com/vietanhbui2000/build-padavan-openwrt/raw/master/scripts/padavan/alxdm-patches.zip
+wget https://github.com/vietanhbui2000/build-padavan-openwrt/raw/master/scripts/padavan/alxdm-patches.zip
 
 # Extract file
-# unzip -o alxdm-patches.zip
+unzip -o alxdm-patches.zip
