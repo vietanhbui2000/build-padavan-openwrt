@@ -1,4 +1,4 @@
-/* Xiaomi MiWiFi 4A*/
+/* Xiaomi MiWiFi 4A */
 
 #define BOARD_PID		"MiWiFi-4A"
 #define BOARD_NAME		"MiWiFi-4A"
