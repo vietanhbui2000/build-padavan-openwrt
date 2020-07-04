@@ -4,7 +4,7 @@
 #define BOARD_NAME		"MiWiFi 4A"
 #define BOARD_DESC		"Xiaomi MiWiFi 4A"
 #define BOARD_VENDOR_NAME	"XIAOMI Electronics,CO.,LTD."
-#define BOARD_VENDOR_URL	"http://www.mi.com/"
+#define BOARD_VENDOR_URL	"http://www.mi.com"
 #define BOARD_MODEL_URL		"http://www.mi.com/miwifi4a"
 #define BOARD_BOOT_TIME		25
 #define BOARD_FLASH_TIME	120
