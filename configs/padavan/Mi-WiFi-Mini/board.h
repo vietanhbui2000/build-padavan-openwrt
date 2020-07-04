@@ -1,7 +1,7 @@
 /* Xiaomi Mi WiFi Mini */
 
-#define BOARD_PID		"MiWiFi-Mini"
-#define BOARD_NAME		"MiWiFi-Mini"
+#define BOARD_PID		"Mi-WiFi-Mini"
+#define BOARD_NAME		"Mi WiFi Mini"
 #define BOARD_DESC		"Xiaomi Mi WiFi Mini"
 #define BOARD_VENDOR_NAME	"Beijing Xiaomi Technology Co., Ltd."
 #define BOARD_VENDOR_URL	"http://www.mi.com/"
