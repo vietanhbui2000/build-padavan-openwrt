@@ -4,11 +4,11 @@
 ###########################################################################
 
 # Change default settings
-# sed -i 's/#define DEF_LAN_DHCP_BEG	"192.168.2.100"/#define DEF_LAN_DHCP_BEG	"192.168.2.2"/g' user/shared/defaults.h
-# sed -i 's/#define DEF_WLAN_5G_CC		"US"/#define DEF_WLAN_5G_CC		"CN"/g' user/shared/defaults.h
-# sed -i 's/#define DEF_TIMEZONE		"CST-8"/#define DEF_TIMEZONE		"GMT0"/g' user/shared/defaults.h
-# sed -i 's/#define DEF_NTP_SERVER0		"ntp1.aliyun.com"/#define DEF_NTP_SERVER0		"pool.ntp.org"/g' user/shared/defaults.h
-# sed -i 's/#define DEF_NTP_SERVER1		"2001:470:0:50::2"/#define DEF_NTP_SERVER1		"time.nist.gov"/g' user/shared/defaults.h
+sed -i 's/#define DEF_LAN_DHCP_BEG	"192.168.2.100"/#define DEF_LAN_DHCP_BEG	"192.168.2.2"/g' user/shared/defaults.h
+sed -i 's/#define DEF_WLAN_5G_CC		"US"/#define DEF_WLAN_5G_CC		"CN"/g' user/shared/defaults.h
+sed -i 's/#define DEF_TIMEZONE		"CST-8"/#define DEF_TIMEZONE		"GMT0"/g' user/shared/defaults.h
+sed -i 's/#define DEF_NTP_SERVER0		"ntp1.aliyun.com"/#define DEF_NTP_SERVER0		"pool.ntp.org"/g' user/shared/defaults.h
+sed -i 's/#define DEF_NTP_SERVER1		"2001:470:0:50::2"/#define DEF_NTP_SERVER1		"time.nist.gov"/g' user/shared/defaults.h
 
 # Include Padavan theme pack
 # Download file(s)
