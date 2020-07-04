@@ -1,7 +1,7 @@
 /* Xiaomi MiWiFi 4A*/
 
 #define BOARD_PID		"MiWiFi-4A"
-#define BOARD_NAME		"MiWiFi 4A"
+#define BOARD_NAME		"MiWiFi-4A"
 #define BOARD_DESC		"Xiaomi MiWiFi 4A"
 #define BOARD_VENDOR_NAME	"XIAOMI Electronics, CO., LTD."
 #define BOARD_VENDOR_URL	"http://www.mi.com"
