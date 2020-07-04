@@ -7,6 +7,5 @@
 # Change default IP
 # sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 
-# Enable Wi-Fi by default
-# sed -i '/option disabled/d' /etc/config/wireless
-# sed -i '/set wireless.radio${devidx}.disabled/d' /lib/wifi/mac80211.sh
+# Enable WiFi by default
+# sed -i 's/set wireless.radio${devidx}.disabled=1/set wireless.radio${devidx}.disabled=0/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
