@@ -1,8 +1,8 @@
 ##################################################################
-# Board PID     # Board Name    # PRODUCT  # Note
+# Board PID      # Board Name     # PRODUCT  # Note
 ##################################################################
-# MiWiFi-Mini   # MiWiFi-Mini   # MT7620   #
+# Mi-WiFi-Mini   # Mi WiFi Mini   # MT7620   #
 ##################################################################
 
-CFLAGS += -DBOARD_MiWiFi-Mini
+CFLAGS += -DBOARD_Mi-WiFi-Mini
 BOARD_NUM_USB_PORTS=1
