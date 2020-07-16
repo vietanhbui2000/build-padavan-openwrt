@@ -59,7 +59,7 @@ jobs:
         cd openwrt/imagebuilder
         make image \
              PROFILE=$DEVICE_PROFILE \
-             PACKAGES="block-mount dnsmasq-full wpad-openssl luci wget -dnsmasq -wpad-basic"
+             PACKAGES="block-mount dnsmasq-full wpad-openssl luci wget luci-app-upnp luci-app-wol -dnsmasq -wpad-basic"
         echo "::set-output name=status::success"
         echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
