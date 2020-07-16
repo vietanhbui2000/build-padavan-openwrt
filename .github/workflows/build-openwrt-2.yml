@@ -21,8 +21,8 @@ on:
 
 env:
   DEVICE_PROFILE: xiaomi_miwifi-mini
-  IMAGE-BUILDER_LINK: https://downloads.openwrt.org/releases/19.07-SNAPSHOT/targets/ramips/mt7620/openwrt-imagebuilder-19.07-SNAPSHOT-ramips-mt7620.Linux-x86_64.tar.xz
-  IMAGE-BUILDER_FILENAME: openwrt-imagebuilder-19.07-SNAPSHOT-ramips-mt7620.Linux-x86_64
+  IMAGE_BUILDER_LINK: https://downloads.openwrt.org/releases/19.07-SNAPSHOT/targets/ramips/mt7620/openwrt-imagebuilder-19.07-SNAPSHOT-ramips-mt7620.Linux-x86_64.tar.xz
+  IMAGE_BUILDER_FILENAME: openwrt-imagebuilder-19.07-SNAPSHOT-ramips-mt7620.Linux-x86_64
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
   TZ: Asia/Ho_Chi_Minh
@@ -50,10 +50,10 @@ jobs:
     - name: Download Image Builder
       run: |
         mkdir -p openwrt
-        wget $IMAGE-BUILDER_LINK
-        tar -xf $IMAGE-BUILDER_FILENAME.tar.xz -C openwrt
+        wget $IMAGE_BUILDER_LINK
+        tar -xf $IMAGE_BUILDER_FILENAME.tar.xz -C openwrt
         cd openwrt
-        mv $IMAGE-BUILDER_FILENAME imagebuilder
+        mv $IMAGE_BUILDER_FILENAME imagebuilder
 
     - name: Compile firmware
       id: compile
