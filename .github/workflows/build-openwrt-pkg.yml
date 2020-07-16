@@ -1,6 +1,8 @@
-######################################################################
-# Original author:: Việt Anh Bùi | https://github.com/vietanhbui2000 #
-######################################################################
+###########################################################################
+# Modifications made by: Việt Anh Bùi | https://github.com/vietanhbui2000 #
+# Original author: P3TERX | https://github.com/P3TERX                     #
+#                  coolsnowwolf | https://github.com/coolsnowwolf         #
+###########################################################################
 
 name: Build OpenWrt Package
 
