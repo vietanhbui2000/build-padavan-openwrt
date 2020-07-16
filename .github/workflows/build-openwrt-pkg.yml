@@ -13,10 +13,10 @@ on:
       - master
     paths:
       - '.github/workflows/build-openwrt-pkg.yml'
-#  schedule:
-#    - cron: 0 0 * * 1
-#  watch:
-#    - types: started
+#   schedule:
+#     - cron: 0 0 * * 1
+#   watch:
+#     - types: started
 
 env:
   TZ: Asia/Ho_Chi_Minh
