@@ -1,7 +1,6 @@
 # Github Actions trigger: -
 ###########################################################################
 # Modifications made by: Việt Anh Bùi | https://github.com/vietanhbui2000 #
-# Original author: chongshengB | https://github.com/chongshengB           #
 ###########################################################################
 
 name: Build Test
@@ -60,7 +59,8 @@ jobs:
         cd openwrt/imagebuilder
         make image \
              PROFILE=$DEVICE_PROFILE \
-             PACKAGES="-dnsmasq -wpad-basic block-mount dnsmasq-full wpad-openssl wget luci"
+             PACKAGES="block-mount dnsmasq-full wpad-openssl luci wget -dnsmasq -wpad-basic"
+        echo "::set-output name=status::success"
         echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
     - name: Upload bin directory
