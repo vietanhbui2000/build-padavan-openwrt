@@ -21,6 +21,7 @@ on:
 #    - types: started
 
 env:
+  DEVICE_PROFILE: xiaomi_miwifi-mini
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
   TZ: Asia/Ho_Chi_Minh
@@ -57,13 +58,16 @@ jobs:
       id: compile
       run: |
         cd openwrt/imagebuilder
-        make image PROFILE=xiaomi_miwifi-mini PACKAGES="-dnsmasq -wpad-basic block-mount dnsmasq-full luci wget wpad-openssl"
+        make image \
+             PROFILE=$DEVICE_PROFILE \
+             PACKAGES="-dnsmasq -wpad-basic block-mount dnsmasq-full wpad-openssl wget luci"
+        echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
     - name: Upload bin directory
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: ${{ env.DEVICE_NAME }}_openwrt_bin_${{ env.DATE }}
+        name: ${{ env.DEVICE_PROFILE }}_openwrt_bin_${{ env.DATE }}
         path: openwrt/imagebuilder/bin
 
     - name: Clean up files
@@ -79,5 +83,5 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.cleanup.outputs.status == 'success' && !cancelled()
       with:
-        name: ${{ env.DEVICE_NAME }}_openwrt_firmware_${{ env.DATE }}
+        name: ${{ env.DEVICE_PROFILE }}_openwrt_firmware_${{ env.DATE }}
         path: ${{ env.FIRMWARE }}
