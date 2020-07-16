@@ -14,10 +14,10 @@ on:
       - master
     paths:
       - 'triggers/padavan.md'
-#  schedule:
-#    - cron: 0 0 * * 1
-#  watch:
-#    - types: started
+#   schedule:
+#     - cron: 0 0 * * 1
+#   watch:
+#     - types: started
 
 env:
   REPO_URL: https://github.com/hanwckf/rt-n56u
