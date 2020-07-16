@@ -19,7 +19,7 @@ on:
 #     - types: started
 
 env:
-  DEVICE_PROFILE: miwifi-mini
+  DEVICE_PROFILE: xiaomi_mir4a-100m
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
   TZ: Asia/Ho_Chi_Minh
