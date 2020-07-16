@@ -13,14 +13,16 @@ on:
     branches:
       - master
     paths:
-      - 'triggers/openwrt.md'
-#  schedule:
-#    - cron: 0 0 * * 1
-#  watch:
-#    - types: started
+      - '.github/workflows/build-openwrt-ib.yml'
+#   schedule:
+#     - cron: 0 0 * * 1
+#   watch:
+#     - types: started
 
 env:
   DEVICE_PROFILE: xiaomi_miwifi-mini
+  IMAGE-BUILDER_LINK: https://downloads.openwrt.org/releases/19.07-SNAPSHOT/targets/ramips/mt7620/openwrt-imagebuilder-19.07-SNAPSHOT-ramips-mt7620.Linux-x86_64.tar.xz
+  IMAGE-BUILDER_FILENAME: openwrt-imagebuilder-19.07-SNAPSHOT-ramips-mt7620.Linux-x86_64
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
   TZ: Asia/Ho_Chi_Minh
@@ -48,10 +50,10 @@ jobs:
     - name: Download Image Builder
       run: |
         mkdir -p openwrt
-        wget https://downloads.openwrt.org/snapshots/targets/ramips/mt7620/openwrt-imagebuilder-ramips-mt7620.Linux-x86_64.tar.xz
-        tar -xf openwrt-imagebuilder-ramips-mt7620.Linux-x86_64.tar.xz -C openwrt
+        wget $IMAGE-BUILDER_LINK
+        tar -xf $IMAGE-BUILDER_FILENAME.tar.xz -C openwrt
         cd openwrt
-        mv openwrt-imagebuilder-ramips-mt7620.Linux-x86_64 imagebuilder
+        mv $IMAGE-BUILDER_FILENAME imagebuilder
 
     - name: Compile firmware
       id: compile
