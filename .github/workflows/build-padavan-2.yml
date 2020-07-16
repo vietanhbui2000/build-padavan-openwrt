@@ -15,10 +15,10 @@ on:
       - master
     paths:
       - '.github/workflows/build-padavan-2.yml'
-#  schedule:
-#    - cron: 0 0 * * 1
-#  watch:
-#    - types: started
+#   schedule:
+#     - cron: 0 0 * * 1
+#   watch:
+#     - types: started
 
 env:
   REPO_URL: https://gitlab.com/dm38/padavan-ng
