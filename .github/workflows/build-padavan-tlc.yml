@@ -13,11 +13,11 @@ on:
     branches:
       - master
     paths:
-      - '.github/workflows/build-padavan-toolchain.yml'
-#  schedule:
-#    - cron: 0 0 * * 1
-#  watch:
-#    - types: started
+      - '.github/workflows/build-padavan-tlc.yml'
+#   schedule:
+#     - cron: 0 0 * * 1
+#   watch:
+#     - types: started
 
 env:
   REPO_URL: https://gitlab.com/dm38/padavan-ng
