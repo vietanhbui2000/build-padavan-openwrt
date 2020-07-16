@@ -21,11 +21,6 @@ on:
 #    - types: started
 
 env:
-  REPO_URL: https://git.openwrt.org/openwrt/openwrt.git
-  REPO_BRANCH: master
-  DEVICE_CONFIG_FILE: configs/openwrt/xiaomi_mir4a-100m.config
-  CUSTOMIZE_FIRMWARE: false
-  CUSTOMIZE_SH_FILE: scripts/openwrt/customize.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
   TZ: Asia/Ho_Chi_Minh
@@ -69,13 +64,13 @@ jobs:
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
         name: ${{ env.DEVICE_NAME }}_openwrt_bin_${{ env.DATE }}
-        path: openwrt/bin
+        path: openwrt/imagebuilder/bin
 
     - name: Clean up files
       id: cleanup
       if: env.UPLOAD_FIRMWARE_DIR == 'true' && !cancelled()
       run: |
-        cd openwrt/bin/targets/*/*
+        cd openwrt/imagebuilder/bin/targets/*/*
         rm -rf packages
         echo "::set-env name=FIRMWARE::$PWD"
         echo "::set-output name=status::success"
