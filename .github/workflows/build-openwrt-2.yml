@@ -58,7 +58,7 @@ jobs:
         cd openwrt/imagebuilder
         make image \
              PROFILE=$DEVICE_PROFILE \
-             $(curl -fsSL https://raw.githubusercontent.com/vietanhbui2000/build-padavan-openwrt/master/configs/openwrt/config)
+             $(curl -fsSL https://raw.githubusercontent.com/vietanhbui2000/build-padavan-openwrt/master/configs/openwrt/imagebuilder.config)
         echo "::set-output name=status::success"
         echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
