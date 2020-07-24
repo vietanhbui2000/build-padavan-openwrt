@@ -56,7 +56,7 @@ jobs:
       id: compile
       run: |
         cd openwrt/imagebuilder
-        make $(curl -fsSL https://raw.githubusercontent.com/vietanhbui2000/build-padavan-openwrt/master/configs/openwrt/miwifi-mini)
+        $(curl -fsSL https://raw.githubusercontent.com/vietanhbui2000/build-padavan-openwrt/master/configs/openwrt/miwifi-mini)
         echo "::set-output name=status::success"
         echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
