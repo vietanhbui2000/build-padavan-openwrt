@@ -54,13 +54,14 @@ jobs:
 
     - name: Load device script
       run: |
-        cp scripts/openwrt/imagebuilder/$DEVICE_PROFILE.sh openwrt/imagebuilder/$DEVICE_PROFILE.sh
+        cp scripts/openwrt/imagebuilder/$DEVICE_PROFILE.sh openwrt/imagebuilder/make.sh
 
     - name: Compile firmware
       id: compile
       run: |
         cd openwrt/imagebuilder
-        ./$DEVICE_PROFILE.sh
+        chmod +x make.sh
+        ./make.sh
         echo "::set-output name=status::success"
         echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
