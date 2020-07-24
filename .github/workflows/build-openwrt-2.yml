@@ -19,7 +19,7 @@ on:
 #     - types: started
 
 env:
-  DEVICE_PROFILE: xiaomi_mir4a-100m
+  DEVICE_PROFILE: miwifi-mini
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
   TZ: Asia/Ho_Chi_Minh
@@ -47,10 +47,9 @@ jobs:
     - name: Download Image Builder
       run: |
         mkdir -p openwrt
-        wget https://downloads.openwrt.org/releases/19.07-SNAPSHOT/targets/ramips/mt7620/openwrt-imagebuilder-19.07-SNAPSHOT-ramips-mt7620.Linux-x86_64.tar.xz
-        tar -xf openwrt-imagebuilder-19.07-SNAPSHOT-ramips-mt7620.Linux-x86_64.tar.xz -C openwrt
+        cp scripts/openwrt/dl_imagebuilder.sh openwrt/dl_imagebuilder.sh
         cd openwrt
-        mv openwrt-imagebuilder-19.07-SNAPSHOT-ramips-mt7620.Linux-x86_64 imagebuilder
+        sh dl_imagebuilder.sh
 
     - name: Load device script
       run: |
