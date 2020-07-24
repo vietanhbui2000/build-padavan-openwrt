@@ -31,7 +31,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@master
+      uses: actions/checkout@main
 
     - name: Initialize environment
       env:
@@ -63,7 +63,7 @@ jobs:
         echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
     - name: Upload bin directory
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
         name: ${{ env.DEVICE_PROFILE }}_openwrt_bin_${{ env.DATE }}
@@ -79,7 +79,7 @@ jobs:
         echo "::set-output name=status::success"
 
     - name: Upload firmware directory
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@main
       if: steps.cleanup.outputs.status == 'success' && !cancelled()
       with:
         name: ${{ env.DEVICE_PROFILE }}_openwrt_firmware_${{ env.DATE }}
