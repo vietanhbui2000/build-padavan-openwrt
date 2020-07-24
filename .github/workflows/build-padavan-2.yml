@@ -37,7 +37,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@master
+      uses: actions/checkout@main
 
     - name: Initialize environment
       env:
@@ -105,7 +105,7 @@ jobs:
         echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
     - name: Upload firmware directory
-      uses: actions/upload-artifact@master
+      uses: actions/upload-artifact@main
       with:
         name: ${{ env.DEVICE_NAME }}_padavan_firmware_${{ env.DATE }}
         path: opt/padavan-ng/trunk/images/
