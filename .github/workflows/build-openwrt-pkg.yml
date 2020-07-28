@@ -46,7 +46,8 @@ jobs:
         mkdir -p openwrt
         cp scripts/openwrt/dl_sdk.sh openwrt/dl_sdk.sh
         cd openwrt
-        sh dl_sdk.sh
+        chmod +x dl_sdk.sh
+        ./dl_sdk.sh
 
     - name: Load package sources
       run: |
