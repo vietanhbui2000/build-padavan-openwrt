@@ -22,12 +22,12 @@ on:
 
 env:
   REPO_URL: https://git.openwrt.org/openwrt/openwrt.git
-  REPO_BRANCH: master
-  DEVICE_CONFIG_FILE: configs/openwrt/xiaomi_mir4a-100m.config
+  REPO_BRANCH: openwrt-19.07
+  DEVICE_CONFIG_FILE: configs/openwrt/test.config
   CUSTOMIZE_FIRMWARE: false
   CUSTOMIZE_SH_FILE: scripts/openwrt/customize.sh
-  UPLOAD_BIN_DIR: false
-  UPLOAD_FIRMWARE_DIR: true
+  UPLOAD_BIN_DIR: true
+  UPLOAD_FIRMWARE_DIR: false
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -59,6 +59,7 @@ jobs:
     - name: Update & install feeds
       run: |
         cd openwrt
+        echo "src-git vietanhbui2000 https://github.com/vietanhbui2000/openwrt-packages.git" >> feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
