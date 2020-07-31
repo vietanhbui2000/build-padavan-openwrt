@@ -79,4 +79,4 @@ jobs:
       if: steps.compile.outputs.status == 'success' && !cancelled()
       with:
         name: openwrt_package_${{ env.DATE }}
-        path: openwrt/sdk/bin/packages/mipsel_24kc
+        path: openwrt/sdk/bin/packages
