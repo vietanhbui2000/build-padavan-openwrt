@@ -22,7 +22,7 @@ on:
 env:
   REPO_URL: https://github.com/hanwckf/rt-n56u
   REPO_BRANCH: master
-  DEVICE_NAME: miwifi-mini
+  DEVICE_NAME: MiWiFi-Mini
   PATCH_FIRMWARE: true
   PATCH_SH_FILE: scripts/padavan/patch.sh
   CUSTOMIZE_FIRMWARE: false
