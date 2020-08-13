@@ -4,9 +4,9 @@
 ###########################################################################
 
 # File info
-FILE_NAME="mipsel-linux-uclibc.tar.xz"
-FILE_URL="https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/master/scripts/padavan/$FILE_NAME"
+FILE_NAME="mipsel-linux-uclibc"
+FILE_URL="https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/master/scripts/padavan/$FILE_NAME.tar.xz"
 
 # Download and extract file
 wget $FILE_URL
-tar -xvf $FILE_NAME
+tar -xvf $FILE_NAME.tar.xz
