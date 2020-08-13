@@ -3,16 +3,11 @@
 # Modifications made by: Việt Anh Bùi | https://github.com/vietanhbui2000 #
 ###########################################################################
 
-# Patch hanwckf's Padavan repository
-# Download file
-# wget https://github.com/vietanhbui2000/build-padavan-openwrt/raw/master/scripts/padavan/hanwckf-patches.zip
+# File info
+FILE_NAME="hanwckf-patches"
+# FILE_NAME="alxdm-patches"
+FILE_URL="https://github.com/vietanhbui2000/build-padavan-openwrt/raw/master/scripts/padavan/$FILE_NAME.zip"
 
-# Extract file
-# unzip -o hanwckf-patches.zip
-
-# Patch alxdm's Padavan repository
-# Download file
-wget https://github.com/vietanhbui2000/build-padavan-openwrt/raw/master/scripts/padavan/alxdm-patches.zip
-
-# Extract file
-unzip -o alxdm-patches.zip
+# Download and extract file
+wget $FILE_URL
+unzip -o $FILE_NAME.zip
