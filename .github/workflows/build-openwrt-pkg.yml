@@ -73,6 +73,7 @@ jobs:
         make package/luci-app-clear_luci_cache/compile V=s -j$(nproc)
         make package/luci-app-clear_ram/compile V=s -j$(nproc)
         make package/luci-theme-argon/compile V=s -j$(nproc)
+        make package/vietanhbui2000/index
         echo "::set-output name=status::success"
         echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
