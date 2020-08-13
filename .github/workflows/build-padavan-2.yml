@@ -22,7 +22,7 @@ on:
 env:
   REPO_URL: https://gitlab.com/dm38/padavan-ng
   REPO_BRANCH: master
-  DEVICE_NAME: MiWiFi-4A
+  DEVICE_NAME: miwifi-4a
   PATCH_FIRMWARE: true
   PATCH_SH_FILE: scripts/padavan/patch.sh
   CUSTOMIZE_FIRMWARE: false
