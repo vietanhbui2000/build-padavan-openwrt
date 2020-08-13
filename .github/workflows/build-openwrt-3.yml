@@ -13,7 +13,7 @@ on:
     branches:
       - master
     paths:
-      - 'triggers/openwrt-2.md'
+      - 'github/workflows/build-openwrt-3.yml'
 #   schedule:
 #     - cron: 0 0 * * 1
 #   watch:
