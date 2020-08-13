@@ -1,3 +1,4 @@
+# +
 #####################################################################
 # Original author: Việt Anh Bùi | https://github.com/vietanhbui2000 #
 #####################################################################
@@ -30,7 +31,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@master
+      uses: actions/checkout@main
 
     - name: Initialize environment
       env:
@@ -65,7 +66,7 @@ jobs:
         mv mipsel-linux-uclibc.tar.xz upload
 
     - name: Upload toolchain directory
-      uses: actions/upload-artifact@master
+      uses: actions/upload-artifact@main
       with:
         name: padavan_toolchain_${{ env.DATE }}
         path: opt/padavan-ng/toolchain/upload
