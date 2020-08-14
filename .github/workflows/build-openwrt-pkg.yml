@@ -50,7 +50,7 @@ jobs:
         chmod +x dl_sdk.sh
         ./dl_sdk.sh
 
-    - name: Load package sources
+    - name: Load package feeds
       run: |
         cd openwrt/sdk
         echo "src-git vietanhbui2000 https://github.com/vietanhbui2000/openwrt-packages.git" >> feeds.conf.default
@@ -73,7 +73,6 @@ jobs:
         make package/luci-app-clear_luci_cache/compile V=s -j$(nproc)
         make package/luci-app-clear_ram/compile V=s -j$(nproc)
         make package/luci-theme-argon/compile V=s -j$(nproc)
-        make package/vietanhbui2000/index
         echo "::set-output name=status::success"
         echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
