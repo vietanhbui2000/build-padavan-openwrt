@@ -2,7 +2,7 @@
 
 Build Padavan and/or OpenWrt firmware using GitHub Actions.
 
-# Build status
+## Build status
 ![Build Padavan](https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/workflows/Build%20Padavan/badge.svg)
 ![Build OpenWrt](https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/workflows/Build%20OpenWrt/badge.svg)
 ![Build Lede](https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/workflows/Build%20Lede/badge.svg)
