@@ -23,11 +23,11 @@ on:
 env:
   REPO_URL: https://git.openwrt.org/openwrt/openwrt.git
   REPO_BRANCH: openwrt-19.07
-  DEVICE_CONFIG_FILE: configs/openwrt/.config
+  DEVICE_CONFIG_FILE: configs/openwrt/default.config
   CUSTOMIZE_FIRMWARE: false
   CUSTOMIZE_SH_FILE: scripts/openwrt/customize.sh
-  UPLOAD_BIN_DIR: false
-  UPLOAD_FIRMWARE_DIR: true
+  UPLOAD_BIN_DIR: true
+  UPLOAD_FIRMWARE_DIR: false
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -58,6 +58,7 @@ jobs:
 
     - name: Update & install feeds
       run: |
+        cp configs/openwrt/feeds.conf.default openwrt/feeds.conf.default
         cd openwrt
         ./scripts/feeds update -a
         ./scripts/feeds install -a
