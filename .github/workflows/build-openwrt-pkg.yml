@@ -54,7 +54,6 @@ jobs:
       run: |
         cd openwrt/sdk
         echo "src-git vietanhbui2000 https://github.com/vietanhbui2000/openwrt-packages.git" >> feeds.conf.default
-        echo "src-git project-openwrt https://github.com/project-openwrt/openwrt-filebrowser.git" >> feeds.conf.default
 
     - name: Update & install feeds
       run: |
