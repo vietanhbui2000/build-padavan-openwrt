@@ -54,7 +54,6 @@ jobs:
       run: |
         cd openwrt/sdk
         echo "src-git vietanhbui2000 https://github.com/vietanhbui2000/openwrt-packages.git" >> feeds.conf.default
-        echo "src-git xiaorouji https://github.com/xiaorouji/openwrt-package.git" >> feeds.conf.default
 
     - name: Update & install feeds
       run: |
@@ -71,8 +70,7 @@ jobs:
       id: compile
       run: |
         cd openwrt/sdk
-        # make package/luci-app-file_browser/compile V=s -j$(nproc)
-        make package/luci-app-filebrowser/compile V=s -j$(nproc)
+        make package/luci-app-file_browser/compile V=s -j$(nproc)
         echo "::set-output name=status::success"
         echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
