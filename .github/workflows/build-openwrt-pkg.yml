@@ -71,7 +71,6 @@ jobs:
       run: |
         cd openwrt/sdk
         make package/luci-theme-argon/compile V=s -j$(nproc)
-        make package/luci-app-argon_theme_config/compile V=s -j$(nproc)
         echo "::set-output name=status::success"
         echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
