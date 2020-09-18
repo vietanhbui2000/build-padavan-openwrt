@@ -21,8 +21,8 @@ on:
 
 env:
   REPO_URL: https://github.com/hanwckf/rt-n56u
-  REPO_BRANCH: master
-  DEVICE_NAME: MiWiFi-4A
+  REPO_BRANCH: v2020-05-03
+  DEVICE_NAME: MiWiFi-Mini
   PATCH_FIRMWARE: false
   PATCH_SH_FILE: scripts/padavan/patch.sh
   CUSTOMIZE_FIRMWARE: false
@@ -51,7 +51,9 @@ jobs:
 
     - name: Clone source code
       run: |
-        git clone --depth 1 $REPO_URL -b $REPO_BRANCH /opt/rt-n56u
+        git clone $REPO_URL /opt/rt-n56u
+        cd /opt/rt-n56u
+        git checkout $REPO_BRANCH
 
     - name: Load device configuration
       run: |
