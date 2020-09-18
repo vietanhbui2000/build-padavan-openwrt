@@ -23,7 +23,7 @@ env:
   REPO_URL: https://github.com/hanwckf/rt-n56u
   REPO_BRANCH: master
   DEVICE_NAME: MiWiFi-4A
-  PATCH_FIRMWARE: true
+  PATCH_FIRMWARE: false
   PATCH_SH_FILE: scripts/padavan/patch.sh
   CUSTOMIZE_FIRMWARE: false
   CUSTOMIZE_SH_FILE: scripts/padavan/customize.sh
