@@ -22,9 +22,7 @@ on:
 env:
   REPO_URL: https://github.com/hanwckf/rt-n56u
   REPO_BRANCH: v2020-05-03
-  DEVICE_NAME: MiWiFi-4A
-  PATCH_FIRMWARE: false
-  PATCH_SH_FILE: scripts/padavan/patch.sh
+  DEVICE_NAME: MiWiFi-Mini
   CUSTOMIZE_FIRMWARE: false
   CUSTOMIZE_SH_FILE: scripts/padavan/customize.sh
   USE_PRECOMPILED_TOOLCHAIN: true
@@ -60,14 +58,6 @@ jobs:
         cp -R configs/padavan/$DEVICE_NAME /opt/rt-n56u/trunk/configs/boards
         cp configs/padavan/$DEVICE_NAME.config /opt/rt-n56u/trunk/.config
         cp configs/padavan/$DEVICE_NAME.config /opt/rt-n56u/trunk/configs/templates/$DEVICE_NAME.config
-
-    - name: Patch firmware
-      if: env.PATCH_FIRMWARE == 'true' && !cancelled()
-      run: |
-        cp $PATCH_SH_FILE /opt/rt-n56u/trunk/patch.sh
-        cd /opt/rt-n56u/trunk
-        chmod +x patch.sh
-        ./patch.sh
 
     - name: Customize firmware
       if: env.CUSTOMIZE_FIRMWARE == 'true' && !cancelled()
