@@ -22,9 +22,7 @@ on:
 env:
   REPO_URL: https://gitlab.com/dm38/padavan-ng
   REPO_BRANCH: master
-  DEVICE_NAME: MiWiFi-4A
-  PATCH_FIRMWARE: true
-  PATCH_SH_FILE: scripts/padavan/patch.sh
+  DEVICE_NAME: MiWiFi-Mini
   CUSTOMIZE_FIRMWARE: false
   CUSTOMIZE_SH_FILE: scripts/padavan/customize.sh
   USE_PRECOMPILED_TOOLCHAIN: true
@@ -58,14 +56,6 @@ jobs:
         cp -R configs/padavan/$DEVICE_NAME opt/padavan-ng/trunk/configs/boards/XIAOMI
         cp configs/padavan/$DEVICE_NAME.config opt/padavan-ng/trunk/.config
         cp configs/padavan/$DEVICE_NAME.config opt/padavan-ng/trunk/configs/templates/xiaomi/$DEVICE_NAME.config
-
-    - name: Patch firmware
-      if: env.PATCH_FIRMWARE == 'true' && !cancelled()
-      run: |
-        cp $PATCH_SH_FILE opt/padavan-ng/trunk/patch.sh
-        cd opt/padavan-ng/trunk
-        chmod +x patch.sh
-        ./patch.sh
 
     - name: Customize firmware
       if: env.CUSTOMIZE_FIRMWARE == 'true' && !cancelled()
