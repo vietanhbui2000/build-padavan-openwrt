@@ -14,7 +14,7 @@ on:
     branches:
       - master
     paths:
-      - 'triggers/lede.md'
+      - 'triggers/build-lede.md'
 #   schedule:
 #     - cron: 0 0 * * 1
 #   watch:
