@@ -14,7 +14,7 @@ on:
     branches:
       - master
     paths:
-      - 'triggers/openwrt.md'
+      - 'triggers/build-openwrt.md'
 #   schedule:
 #     - cron: 0 0 * * 1
 #   watch:
