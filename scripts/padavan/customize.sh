@@ -3,7 +3,7 @@
 # Modifications made by: Việt Anh Bùi | https://github.com/vietanhbui2000 #
 ###########################################################################
 
-# Include Padavan theme pack
+# Include Padavan Theme Pack
 
 # File info
 FILE_NAME="PadavanThemePack_v2.4.27"
