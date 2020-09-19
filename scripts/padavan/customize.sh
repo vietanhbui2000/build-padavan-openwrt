@@ -4,19 +4,21 @@
 ###########################################################################
 
 # Include Padavan theme pack
-# Download file(s)
-# wget https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/master/scripts/padavan/PadavanThemePack_v2.4.14.zip
-# wget https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/master/scripts/padavan/PadavanThemePack_v2.4.14_Lite.zip
 
-# Extract file(s)
-# mkdir PadavanThemePack
-# unzip -o PadavanThemePack_v2.4.14.zip -d PadavanThemePack
-# unzip -o PadavanThemePack_v2.4.14_Lite.zip -d PadavanThemePack
+# File info
+FILE_NAME="PadavanThemePack_v2.4.27"
+# FILE_NAME="PadavanThemePack_v2.4.27_Lite"
+FILE_URL="https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/master/scripts/padavan/$FILE_NAME.zip"
 
-# Copy file(s)
-# cp -a PadavanThemePack/. user/www/n56u_ribbon_fixed/
+# Download and extract file
+wget $FILE_URL
+mkdir PadavanThemePack
+unzip -o $FILE_NAME.zip -d PadavanThemePack
 
-# Delete file(s)
+# Copy file
+cp -a PadavanThemePack/. user/www/n56u_ribbon_fixed/
+
+# Remove file
 # rm -r user/www/n56u_ribbon_fixed/blue-theme
 # rm -r user/www/n56u_ribbon_fixed/blue2-theme
 # rm -r user/www/n56u_ribbon_fixed/grey-theme
