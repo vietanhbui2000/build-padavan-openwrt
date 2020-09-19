@@ -18,7 +18,7 @@ unzip -o $FILE_NAME.zip -d PadavanThemePack
 # Copy file
 cp -a PadavanThemePack/. user/www/n56u_ribbon_fixed/
 
-# Remove file
+# Remove theme from pack
 # rm -r user/www/n56u_ribbon_fixed/blue-theme
 # rm -r user/www/n56u_ribbon_fixed/blue2-theme
 # rm -r user/www/n56u_ribbon_fixed/grey-theme
