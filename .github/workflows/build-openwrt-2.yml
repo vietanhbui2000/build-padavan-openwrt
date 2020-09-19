@@ -12,7 +12,7 @@ on:
     branches:
       - master
     paths:
-      - 'triggers/openwrt-2.md'
+      - 'triggers/build-openwrt-2.md'
 #   schedule:
 #     - cron: 0 0 * * 1
 #   watch:
