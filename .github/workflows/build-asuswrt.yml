@@ -53,5 +53,5 @@ jobs:
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
       with:
-        name: firmware
+        name: asuswrt_firmware
         path: asuswrt-rt-ac54u/release/src-ra-mt7620/image
