@@ -48,8 +48,8 @@ jobs:
     - name: Create symlinks
       run: |
         cd asuswrt
-        sudo ln -s ~/asuswrt/brcm /opt/brcm
-        sudo ln -s ~/asuswrt/buildroot-gcc342 /opt/buildroot-gcc342
+        sudo ln -s asuswrt/brcm /opt/brcm
+        sudo ln -s asuswrt/buildroot-gcc342 /opt/buildroot-gcc342
 
     - name: Compile firmware
       run: |
