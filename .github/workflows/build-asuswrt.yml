@@ -35,7 +35,7 @@ jobs:
     - name: Clone source code
       run: |
         git clone $REPO_URL asuswrt
-        cd asuswrt-rt-ac54u
+        cd asuswrt
         git checkout $REPO_BRANCH
 
     - name: Prepare environment
