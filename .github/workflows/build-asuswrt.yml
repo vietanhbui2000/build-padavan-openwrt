@@ -1,0 +1,62 @@
+#####################################################################
+# Original author: Việt Anh Bùi | https://github.com/vietanhbui2000 #
+#####################################################################
+
+name: Build ASUSWRT
+
+on:
+  repository_dispatch:
+  release:
+    types: published
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/build-asuswrt.yml'
+#   schedule:
+#     - cron: 0 0 * * 1
+#   watch:
+#     - types: started
+
+env:
+  REPO_URL: https://github.com/vietanhbui2000/asuswrt-rt-ac54u
+  REPO_BRANCH: main
+  TZ: Asia/Ho_Chi_Minh
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Initialize environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install git
+
+    - name: Clone source code
+      run: |
+        git clone $REPO_URL asuswrt-rt-ac54u
+        cd asuswrt-rt-ac54u
+        git checkout $REPO_BRANCH
+
+    - name: Prepare environment
+      run: |
+        cd asuswrt-rt-ac54u
+        ./prepare
+
+    - name: Build firmware
+      run: |
+        cd asuswrt-rt-ac54u
+        ./build
+
+    - name: Upload firmware directory
+      uses: actions/upload-artifact@main
+      with:
+        name: firmware
+        path: asuswrt-rt-ac54u/release/src-ra-mt7620/images
