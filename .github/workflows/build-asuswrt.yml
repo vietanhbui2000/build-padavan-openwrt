@@ -48,11 +48,13 @@ jobs:
     - name: Prepare environment
       run: |
         cd asuswrt-rt-ac54u
+        chmod +x prepare
         ./prepare
 
     - name: Build firmware
       run: |
         cd asuswrt-rt-ac54u
+        chmod +x build
         ./build
 
     - name: Upload firmware directory
