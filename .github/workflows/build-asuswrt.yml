@@ -34,19 +34,19 @@ jobs:
 
     - name: Clone source code
       run: |
-        git clone $REPO_URL asuswrt-rt-ac54u
+        git clone $REPO_URL asuswrt
         cd asuswrt-rt-ac54u
         git checkout $REPO_BRANCH
 
     - name: Prepare environment
       run: |
-        cd asuswrt-rt-ac54u
+        cd asuswrt
         chmod +x prepare
         ./prepare
 
     - name: Build firmware
       run: |
-        cd asuswrt-rt-ac54u
+        cd asuswrt
         chmod +x build
         ./build
 
@@ -54,4 +54,4 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: asuswrt_firmware
-        path: asuswrt-rt-ac54u/release/src-ra-mt7620/image
+        path: asuswrt/release/src-ra-mt7620/image
