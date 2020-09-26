@@ -13,8 +13,8 @@
 #undef  BOARD_GPIO_LED_ALL
 #define BOARD_GPIO_LED_POWER	24	/* 24: blue, 26: yellow, 29: red */
 #undef  BOARD_GPIO_LED_ROUTER
-#undef  BOARD_GPIO_LED_LAN
 #undef  BOARD_GPIO_LED_WAN
+#undef  BOARD_GPIO_LED_LAN
 #define BOARD_GPIO_LED_WIFI	26
 #define BOARD_GPIO_LED_USB	29
 #define BOARD_GPIO_PWR_USB	65
