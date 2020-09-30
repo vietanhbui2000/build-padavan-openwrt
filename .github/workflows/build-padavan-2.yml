@@ -101,4 +101,4 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: ${{ env.DEVICE_NAME }}_padavan_firmware_${{ env.DATE }}
-        path: opt/padavan-ng/trunk/images/
+        path: opt/padavan-ng/trunk/images/*.trx
