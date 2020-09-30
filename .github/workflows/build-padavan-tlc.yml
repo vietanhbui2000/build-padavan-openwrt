@@ -36,11 +36,14 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo apt-get update
-        sudo apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd fakeroot \
+        sudo timedatectl set-timezone "$TZ"
+        sudo -E apt-get update
+        sudo -E apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd fakeroot \
         cpio git python-docutils gettext automake autopoint texinfo build-essential help2man \
         pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget \
         module-init-tools
+        sudo -E apt-get -y autoremove --purge
+        sudo -E apt-get clean
 
     - name: Clone source code
       run: |
