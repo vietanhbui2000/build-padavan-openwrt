@@ -11,7 +11,7 @@
 #define BOARD_GPIO_BTN_RESET	30
 #undef  BOARD_GPIO_BTN_WPS
 #undef  BOARD_GPIO_LED_ALL
-#define BOARD_GPIO_LED_POWER	24	/* 24: blue, 26: yellow, 29: red */
+#define BOARD_GPIO_LED_POWER	24	/* 24: Blue, 26: Yellow, 29: Red */
 #undef  BOARD_GPIO_LED_ROUTER
 #undef  BOARD_GPIO_LED_WAN
 #undef  BOARD_GPIO_LED_LAN
