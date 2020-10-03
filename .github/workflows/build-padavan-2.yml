@@ -1,7 +1,7 @@
-###########################################################################
-# Modifications made by: Việt Anh Bùi | https://github.com/vietanhbui2000 #
-# Original author: chongshengB | https://github.com/chongshengB           #
-###########################################################################
+###############################################################
+# Author(s): Việt Anh Bùi | https://github.com/vietanhbui2000 #
+#            hanwckf | https://github.com/hanwckf             #
+###############################################################
 
 name: Build Padavan
 
@@ -25,7 +25,7 @@ env:
   DEVICE_NAME: MiWiFi-Mini
   CUSTOMIZE_FIRMWARE: false
   CUSTOMIZE_SH_FILE: scripts/padavan/customize.sh
-  USE_PRECOMPILED_TOOLCHAIN: true
+  USE_PRECOMPILED_TOOLCHAIN: false
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -52,7 +52,9 @@ jobs:
 
     - name: Clone source code
       run: |
-        git clone --depth 1 $REPO_URL -b $REPO_BRANCH opt/padavan-ng
+        git clone $REPO_URL opt/padavan-ng
+        cd opt/padavan-ng
+        git checkout $REPO_BRANCH
 
     - name: Load device configuration
       run: |
