@@ -1,7 +1,7 @@
 #!/bin/bash
-###########################################################################
-# Modifications made by: Việt Anh Bùi | https://github.com/vietanhbui2000 #
-###########################################################################
+###############################################################
+# Author(s): Việt Anh Bùi | https://github.com/vietanhbui2000 #
+###############################################################
 
 # File info
 # FILE_NAME="openwrt-imagebuilder-19.07-SNAPSHOT-ramips-mt7620.Linux-x86_64"
