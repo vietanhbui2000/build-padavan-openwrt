@@ -68,10 +68,7 @@ jobs:
       id: compile
       run: |
         cd openwrt/sdk
-        make package/luci-app-mt_wifi/compile V=s -j$(nproc)
-        make package/mt7603e/compile V=s -j$(nproc)
-        make package/mt7612e/compile V=s -j$(nproc)
-        make package/mt7615d/compile V=s -j$(nproc)
+        make package/luci-theme-argon/compile V=s -j$(nproc)
         echo "::set-output name=status::success"
         echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
