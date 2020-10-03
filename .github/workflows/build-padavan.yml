@@ -71,11 +71,6 @@ jobs:
         chmod +x customize.sh
         ./customize.sh
 
-    - name: Prepare toolchain
-      run: |
-        cd /opt/rt-n56u/toolchain-mipsel
-        ./clean_toolchain
-
     - name: Download pre-compiled toolchain
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'true' && !cancelled()
       run: |
@@ -87,6 +82,7 @@ jobs:
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'false' && !cancelled()
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
+        ./clean_toolchain
         ./build_toolchain
 
     - name: Clean up files
