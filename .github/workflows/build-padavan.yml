@@ -81,7 +81,7 @@ jobs:
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
 
-    - name: Compile new toolchain
+    - name: Compile toolchain
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'false' && !cancelled()
       run: |
         cd /opt/rt-n56u/toolchain-mipsel

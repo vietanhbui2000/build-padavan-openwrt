@@ -65,10 +65,10 @@ jobs:
     - name: Clean up files
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
-        tar -cJvf toolchain-mipsel.tar.xz *
+        tar -cJvf toolchain-mipsel.tar.xz toolchain-3.4.x/mipsel-linux-uclibc/*
 
     - name: Upload toolchain directory
       uses: actions/upload-artifact@main
       with:
         name: padavan_toolchain_${{ env.DATE }}
-        path: /opt/rt-n56u/toolchain-mipsel.tar.xz
+        path: /opt/rt-n56u/toolchain-mipsel/toolchain-mipsel.tar.xz
