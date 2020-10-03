@@ -51,18 +51,14 @@ jobs:
         cd /opt/rt-n56u
         git checkout $REPO_BRANCH
 
-    - name: Prepare toolchain
-      run: |
-        cd /opt/rt-n56u/toolchain-mipsel
-        ./clean_toolchain
-
     - name: Compile toolchain
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
+        ./clean_toolchain
         ./build_toolchain
         echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
-    - name: Clean up files
+    - name: Prepare files
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
         tar -cJvf mipsel-linux-uclibc.tar.xz toolchain-3.4.x/mipsel-linux-uclibc/*
