@@ -70,11 +70,6 @@ jobs:
         chmod +x customize.sh
         ./customize.sh
 
-    - name: Prepare toolchain
-      run: |
-        cd opt/padavan-ng/toolchain
-        ./clean_sources.sh
-
     - name: Download pre-compiled toolchain
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'true' && !cancelled()
       run: |
@@ -86,6 +81,7 @@ jobs:
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'false' && !cancelled()
       run: |
         cd opt/padavan-ng/toolchain
+        ./clean_sources.sh
         ./build_toolchain.sh
 
     - name: Clean up files
