@@ -19,7 +19,7 @@ on:
 #     - types: started
 
 env:
-  REPO_URL: https://gitlab.com/dm38/padavan-ng
+  REPO_URL: https://github.com/hanwckf/rt-n56u
   REPO_BRANCH: master
   TZ: Asia/Ho_Chi_Minh
 
@@ -47,28 +47,28 @@ jobs:
 
     - name: Clone source code
       run: |
-        git clone --depth 1 $REPO_URL -b $REPO_BRANCH opt/padavan-ng
+        git clone $REPO_URL /opt/rt-n56u
+        cd /opt/rt-n56u
+        git checkout $REPO_BRANCH
 
     - name: Prepare toolchain
       run: |
-        cd opt/padavan-ng/toolchain
-        ./clean_sources.sh
+        cd /opt/rt-n56u/toolchain-mipsel
+        ./clean_toolchain
 
     - name: Compile toolchain
       run: |
-        cd opt/padavan-ng/toolchain
-        ./build_toolchain.sh
+        cd /opt/rt-n56u/toolchain-mipsel
+        ./build_toolchain
         echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
 
     - name: Clean up files
       run: |
-        cd opt/padavan-ng/toolchain
-        tar -cJvf mipsel-linux-uclibc.tar.xz out
-        mkdir -p upload
-        mv mipsel-linux-uclibc.tar.xz upload
+        cd /opt/rt-n56u/toolchain-mipsel
+        tar -cJvf toolchain-mipsel.tar.xz *
 
     - name: Upload toolchain directory
       uses: actions/upload-artifact@main
       with:
         name: padavan_toolchain_${{ env.DATE }}
-        path: opt/padavan-ng/toolchain/upload
+        path: /opt/rt-n56u/toolchain-mipsel.tar.xz
