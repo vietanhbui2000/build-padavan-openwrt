@@ -21,8 +21,8 @@ on:
 #     - types: started
 
 env:
-  REPO_URL: https://git.openwrt.org/openwrt/openwrt.git
-  REPO_BRANCH: openwrt-19.07
+  REPO_URL: https://github.com/changeway/openwrt
+  REPO_BRANCH: chaos_calmer_MiWifi_Mini
   DEVICE_CONFIG_FILE: configs/openwrt/xiaomi_miwifi-mini.config
   CUSTOMIZE_FIRMWARE: false
   CUSTOMIZE_SH_FILE: scripts/openwrt/customize.sh
