@@ -78,13 +78,6 @@ jobs:
         cd openwrt
         make defconfig
 
-    - name: Download packages
-      run: |
-        cd openwrt
-        make download -j8
-        find dl -size -1024c -exec ls -l {} \;
-        find dl -size -1024c -exec rm -f {} \;
-
     - name: Compile firmware
       id: compile
       run: |
