@@ -61,10 +61,10 @@ jobs:
     - name: Prepare files
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
-        tar -cJvf mipsel-linux-uclibc.tar.xz toolchain-3.4.x/mipsel-linux-uclibc/*
+        tar -cJvf toolchain-3.4.x.tar.xz toolchain-3.4.x/*
 
     - name: Upload toolchain
       uses: actions/upload-artifact@main
       with:
         name: padavan_toolchain_${{ env.DATE }}
-        path: /opt/rt-n56u/toolchain-mipsel/mipsel-linux-uclibc.tar.xz
+        path: /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x.tar.xz
