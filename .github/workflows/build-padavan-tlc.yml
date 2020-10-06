@@ -63,7 +63,7 @@ jobs:
         cd /opt/rt-n56u/toolchain-mipsel
         tar -cJvf mipsel-linux-uclibc.tar.xz toolchain-3.4.x/mipsel-linux-uclibc/*
 
-    - name: Upload toolchain directory
+    - name: Upload toolchain
       uses: actions/upload-artifact@main
       with:
         name: padavan_toolchain_${{ env.DATE }}
