@@ -93,7 +93,7 @@ jobs:
       run: |
         cd opt/padavan-ng/trunk
         fakeroot ./build_firmware.sh
-        echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
+        echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
     - name: Upload firmware
       uses: actions/upload-artifact@main

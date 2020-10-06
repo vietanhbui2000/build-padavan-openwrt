@@ -94,7 +94,7 @@ jobs:
       run: |
         cd /opt/rt-n56u/trunk
         fakeroot ./build_firmware_modify $DEVICE_NAME
-        echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
+        echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
     - name: Upload firmware
       uses: actions/upload-artifact@main

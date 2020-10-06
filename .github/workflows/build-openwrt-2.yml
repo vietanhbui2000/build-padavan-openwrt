@@ -62,7 +62,7 @@ jobs:
         chmod +x make.sh
         ./make.sh
         echo "::set-output name=status::success"
-        echo "::set-env name=DATE::$(date +"%Y%m%d%H%M")"
+        echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
     - name: Upload bin directory
       uses: actions/upload-artifact@main
@@ -77,7 +77,7 @@ jobs:
       run: |
         cd openwrt/imagebuilder/bin/targets/*/*
         rm -rf packages
-        echo "::set-env name=FIRMWARE::$PWD"
+        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "::set-output name=status::success"
 
     - name: Upload firmware directory
