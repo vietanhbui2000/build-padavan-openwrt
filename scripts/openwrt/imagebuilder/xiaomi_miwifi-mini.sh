@@ -5,4 +5,4 @@
 
 make image \
      PROFILE=miwifi-mini \
-     PACKAGES="block-mount dnsmasq-full wpad-openssl kmod-usb-storage kmod-usb-storage-extras kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat ntfs-3g htop nano wget luci luci-app-upnp luci-app-wol luci-app-ttyd luci-app-watchcat luci-app-nlbwmon luci-app-https-dns-proxy -dnsmasq -wpad-basic"
+     PACKAGES="block-mount dnsmasq-full wpad-openssl kmod-usb-storage kmod-usb-storage-extras kmod-fs-ext4 kmod-fs-msdos kmod-fs-ntfs kmod-fs-vfat ntfs-3g htop nano curl wget luci luci-app-upnp luci-app-wol luci-app-ttyd luci-app-watchcat luci-app-nlbwmon luci-app-https-dns-proxy -dnsmasq -wpad-basic"
