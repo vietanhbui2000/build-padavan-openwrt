@@ -12,7 +12,7 @@ on:
     types: published
   push:
     branches:
-      - master
+      - main
     paths:
       - 'triggers/build-openwrt.md'
 #   schedule:

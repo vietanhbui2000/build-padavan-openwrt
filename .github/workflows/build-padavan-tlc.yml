@@ -10,7 +10,7 @@ on:
     types: published
   push:
     branches:
-      - master
+      - main
     paths:
       - 'triggers/build-padavan-tlc.md'
 #   schedule:
