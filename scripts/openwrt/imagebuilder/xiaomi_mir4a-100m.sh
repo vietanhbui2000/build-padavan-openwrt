@@ -5,4 +5,4 @@
 
 make image \
      PROFILE=xiaomi_mir4a-100m \
-     PACKAGES="dnsmasq-full wpad-openssl htop nano curl wget luci luci-app-upnp luci-app-wol luci-app-ttyd luci-app-watchcat luci-app-nlbwmon luci-proto-relay -dnsmasq -wpad-basic"
+     PACKAGES="dnsmasq-full odhcpd wpad-openssl kmod-ipt-conntrack-extra kmod-ipt-raw kmod-nf-nathelper kmod-nf-nathelper-extra htop nano curl wget luci luci-app-upnp luci-app-wol luci-app-ttyd luci-app-watchcat luci-app-nlbwmon luci-proto-relay -dnsmasq -odhcpd-ipv6only -wpad-basic"
