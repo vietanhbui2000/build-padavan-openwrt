@@ -4,7 +4,7 @@
 #            P3TERX | https://github.com/P3TERX               #
 ###############################################################
 
-# Change default IP
+# Change default LAN address
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 
 # Enable WiFi by default
