@@ -78,7 +78,7 @@ jobs:
 
     - name: Upload package directory
       uses: actions/upload-artifact@main
-      if: steps.compile.outputs.status == 'success' && !cancelled()
+      if: steps.compile.outputs.status == 'success'
       with:
         name: openwrt_package_${{ env.DATE }}
         path: openwrt/sdk/bin/packages

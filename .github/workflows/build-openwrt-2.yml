@@ -73,7 +73,7 @@ jobs:
 
     - name: Clean up files
       id: cleanup
-      if: env.UPLOAD_FIRMWARE_DIR == 'true' && !cancelled()
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE_DIR == 'true'
       run: |
         cd openwrt/imagebuilder/bin/targets/*/*
         rm -rf packages
@@ -82,7 +82,7 @@ jobs:
 
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
-      if: steps.cleanup.outputs.status == 'success' && !cancelled()
+      if: steps.cleanup.outputs.status == 'success' && env.UPLOAD_FIRMWARE_DIR == 'true'
       with:
         name: ${{ env.DEVICE_PROFILE }}_openwrt_firmware_${{ env.DATE }}
         path: ${{ env.FIRMWARE }}

@@ -52,19 +52,25 @@ jobs:
         git checkout $REPO_BRANCH
 
     - name: Compile toolchain
+      id: compile
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
         ./clean_toolchain
         ./build_toolchain
+        echo "::set-output name=status::success"
         echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
     - name: Prepare files
+      id: prepare
+      if: steps.compile.outputs.status == 'success'
       run: |
         cd /opt/rt-n56u/toolchain-mipsel
         tar -cJvf toolchain-3.4.x.tar.xz toolchain-3.4.x/*
+        echo "::set-output name=status::success"
 
     - name: Upload toolchain
       uses: actions/upload-artifact@main
+      if: steps.prepare.outputs.status == 'success'
       with:
         name: padavan_toolchain_${{ env.DATE }}
         path: /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x.tar.xz

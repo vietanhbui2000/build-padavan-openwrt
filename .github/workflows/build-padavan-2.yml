@@ -90,13 +90,16 @@ jobs:
         ./clear_tree.sh
 
     - name: Compile firmware
+      id: compile
       run: |
         cd opt/padavan-ng/trunk
         fakeroot ./build_firmware.sh
+        echo "::set-output name=status::success"
         echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
     - name: Upload firmware
       uses: actions/upload-artifact@main
+      if: steps.compile.outputs.status == 'success'
       with:
         name: ${{ env.DEVICE_NAME }}_padavan_firmware_${{ env.DATE }}
         path: opt/padavan-ng/trunk/images/*.trx
