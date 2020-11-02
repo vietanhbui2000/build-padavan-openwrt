@@ -10,15 +10,15 @@
 FILE_NAME="PadavanThemePack_v2.4.27_Lite"
 FILE_URL="https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/main/scripts/padavan/$FILE_NAME.zip"
 
-# Download and extract file
+# Download and extract file(s)
 wget $FILE_URL
 mkdir PadavanThemePack
 unzip -o $FILE_NAME.zip -d PadavanThemePack
 
-# Copy file
+# Copy file(s)
 cp -a PadavanThemePack/. user/www/n56u_ribbon_fixed/
 
-# Remove theme from pack
+# Remove theme(s)
 # rm -r user/www/n56u_ribbon_fixed/blue-theme
 # rm -r user/www/n56u_ribbon_fixed/blue2-theme
 # rm -r user/www/n56u_ribbon_fixed/grey-theme
