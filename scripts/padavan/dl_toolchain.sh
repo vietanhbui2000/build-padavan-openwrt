@@ -7,6 +7,6 @@
 FILE_NAME="toolchain-3.4.x"
 FILE_URL="https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/main/scripts/padavan/$FILE_NAME.tar.xz"
 
-# Download and extract file
+# Download and extract file(s)
 wget $FILE_URL
 tar -xvf $FILE_NAME.tar.xz
