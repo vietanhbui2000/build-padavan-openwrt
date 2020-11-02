@@ -11,7 +11,7 @@ FILE_URL="https://downloads.openwrt.org/releases/18.06-SNAPSHOT/targets/ramips/m
 # FILE_NAME="openwrt-sdk-ramips-mt7620_gcc-8.4.0_musl.Linux-x86_64"
 # FILE_URL="https://downloads.openwrt.org/snapshots/targets/ramips/mt7620/$FILE_NAME.tar.xz"
 
-# Download and extract file
+# Download and extract file(s)
 wget $FILE_URL
 tar -xvf $FILE_NAME.tar.xz
 mv $FILE_NAME sdk
