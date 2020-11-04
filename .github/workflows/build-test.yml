@@ -1,0 +1,88 @@
+###############################################################
+# Author(s): Việt Anh Bùi | https://github.com/vietanhbui2000 #
+###############################################################
+
+name: Build Test
+
+on:
+  repository_dispatch:
+  release:
+    types: published
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/build-test.yml'
+#   schedule:
+#     - cron: 0 0 * * 1
+#   watch:
+#     - types: started
+
+env:
+  DEVICE_PROFILE: xiaomi_miwifi-mini_test
+  UPLOAD_BIN_DIR: false
+  UPLOAD_FIRMWARE_DIR: true
+  TZ: Asia/Ho_Chi_Minh
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Initialize environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo timedatectl set-timezone "$TZ"
+        sudo -E apt-get update
+        sudo -E apt-get -y install build-essential libncurses5-dev libncursesw5-dev zlib1g-dev gawk git gettext libssl-dev xsltproc wget unzip python
+        sudo -E apt-get -y autoremove --purge
+        sudo -E apt-get clean
+
+    - name: Download Image Builder
+      run: |
+        mkdir -p openwrt
+        cp scripts/openwrt/dl_imagebuilder.sh openwrt/dl_imagebuilder.sh
+        cd openwrt
+        chmod +x dl_imagebuilder.sh
+        ./dl_imagebuilder.sh
+
+    - name: Load device script
+      run: |
+        cp scripts/openwrt/imagebuilder/$DEVICE_PROFILE.sh openwrt/imagebuilder/make.sh
+
+    - name: Compile firmware
+      id: compile
+      run: |
+        cd openwrt/imagebuilder
+        chmod +x make.sh
+        ./make.sh
+        echo "::set-output name=status::success"
+        echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
+
+    - name: Upload bin directory
+      uses: actions/upload-artifact@main
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
+      with:
+        name: ${{ env.DEVICE_PROFILE }}_openwrt_bin_${{ env.DATE }}
+        path: openwrt/imagebuilder/bin
+
+    - name: Clean up files
+      id: cleanup
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE_DIR == 'true'
+      run: |
+        cd openwrt/imagebuilder/bin/targets/*/*
+        rm -rf packages
+        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+        echo "::set-output name=status::success"
+
+    - name: Upload firmware directory
+      uses: actions/upload-artifact@main
+      if: steps.cleanup.outputs.status == 'success' && env.UPLOAD_FIRMWARE_DIR == 'true'
+      with:
+        name: ${{ env.DEVICE_PROFILE }}_openwrt_firmware_${{ env.DATE }}
+        path: ${{ env.FIRMWARE }}
