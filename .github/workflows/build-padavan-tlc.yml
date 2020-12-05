@@ -20,7 +20,7 @@ on:
 
 env:
   REPO_URL: https://github.com/hanwckf/rt-n56u
-  REPO_BRANCH: master
+  REPO_BRANCH: c1d022c
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
