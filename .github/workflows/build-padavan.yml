@@ -61,7 +61,6 @@ jobs:
         cp -R configs/padavan/$DEVICE_NAME /opt/rt-n56u/trunk/configs/boards
         cp configs/padavan/$DEVICE_NAME.config /opt/rt-n56u/trunk/.config
         cp configs/padavan/$DEVICE_NAME.config /opt/rt-n56u/trunk/configs/templates/$DEVICE_NAME.config
-        cp configs/padavan/defaults.h /opt/rt-n56u/trunk/user/shared/defaults.h
 
     - name: Customize firmware
       if: env.CUSTOMIZE_FIRMWARE == 'true' && !cancelled()
