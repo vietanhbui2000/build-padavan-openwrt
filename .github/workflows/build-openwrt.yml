@@ -54,7 +54,6 @@ jobs:
         git clone $REPO_URL openwrt
         cd openwrt
         git checkout $REPO_BRANCH
-        cp configs/openwrt/feeds.conf.default openwrt/feeds.conf.default
 
     - name: Update & install feeds
       run: |
