@@ -1,0 +1,68 @@
+###############################################################
+# Author(s): Việt Anh Bùi | https://github.com/vietanhbui2000 #
+#            hanwckf | https://github.com/hanwckf             #
+###############################################################
+
+name: Build ASUSWRT
+
+on:
+  repository_dispatch:
+  release:
+    types: published
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/build-asuswrt.yml'
+#   schedule:
+#     - cron: 0 0 * * 1
+#   watch:
+#     - types: started
+
+env:
+  REPO_URL: https://github.com/vietanhbui2000/rt-ac54u-asuswrt
+  REPO_BRANCH: MiWiFi-Mini
+  TZ: Asia/Ho_Chi_Minh
+
+jobs:
+  build:
+    runs-on: ubuntu-16.04
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Initialize environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo timedatectl set-timezone "$TZ"
+        sudo -E apt-get update
+        sudo -E apt-get -y install git autoconf automake bash bison bzip2 diffutils file flex m4 g++ gawk groff-base libncurses-dev libtool libslang2 make patch perl pkg-config shtool subversion tar texinfo zlib1g zlib1g-dev git-core gettext libexpat1-dev libssl-dev cvs gperf unzip python libxml-parser-perl gcc-multilib gconf-editor libxml2-dev g++-4.7 g++-multilib gitk libncurses5 mtd-utils libncurses5-dev libstdc++6-4.7-dev libvorbis-dev g++-4.7-multilib autopoint autogen sed build-essential intltool libelf1:i386 libglib2.0-dev xutils-dev lib32z1-dev lib32stdc++6
+        sudo -E apt-get -y autoremove --purge
+        sudo -E apt-get clean
+
+    - name: Clone source code
+      run: |
+        git clone $REPO_URL asuswrt
+        cd asuswrt
+        git checkout $REPO_BRANCH
+
+    - name: Compile firmware
+      id: compile
+      run: |
+        cd asuswrt
+        sudo rm -rf /opt/brcm
+        sudo rm -rf /opt/buildroot-gcc342
+        sudo ln -s asuswrt/tools/brcm /opt/brcm
+        sudo ln -s asuswrt/tools/buildroot-gcc342 /opt/buildroot-gcc342
+        export PATH=$PATH:/opt/brcm/hndtools-mipsel-linux/bin:/opt/brcm/hndtools-mipsel-uclibc/bin:/opt/buildroot-gcc342/bin
+        cd asuswrt/release/src-ra-mt7620
+        make rt-ac54u
+
+    - name: Upload firmware
+      uses: actions/upload-artifact@main
+      with:
+        name: asuswrt
+        path: asuswrt/release/src-ra-mt7620/image
