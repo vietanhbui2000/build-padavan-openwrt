@@ -55,7 +55,6 @@ jobs:
         git clone $REPO_URL /opt/rt-n56u
         cd /opt/rt-n56u
         git checkout $REPO_BRANCH
-        git log -1 --oneline
 
     - name: Load device configuration
       run: |
