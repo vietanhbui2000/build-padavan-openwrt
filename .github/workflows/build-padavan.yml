@@ -22,7 +22,7 @@ on:
 env:
   REPO_URL: https://github.com/vietanhbui2000/rt-n56u
   REPO_BRANCH: main
-  DEVICE_NAME: MiWiFi-Mini
+  DEVICE_NAME: MiWiFi-4A
   CUSTOMIZE_FIRMWARE: false
   CUSTOMIZE_SH_FILE: scripts/padavan/customize.sh
   USE_PRECOMPILED_TOOLCHAIN: true
