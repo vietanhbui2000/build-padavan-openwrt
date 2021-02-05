@@ -19,8 +19,8 @@ on:
 #     - types: started
 
 env:
-  REPO_URL: https://github.com/hanwckf/rt-n56u
-  REPO_BRANCH: c1d022c
+  REPO_URL: https://github.com/vietanhbui2000/padavan
+  REPO_BRANCH: main
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -47,14 +47,14 @@ jobs:
 
     - name: Clone source code
       run: |
-        git clone $REPO_URL /opt/rt-n56u
-        cd /opt/rt-n56u
+        git clone $REPO_URL /opt/padavan
+        cd /opt/padavan
         git checkout $REPO_BRANCH
 
     - name: Compile toolchain
       id: compile
       run: |
-        cd /opt/rt-n56u/toolchain-mipsel
+        cd /opt/padavan/toolchain-mipsel
         ./clean_toolchain
         ./build_toolchain
         echo "::set-output name=status::success"
@@ -64,7 +64,7 @@ jobs:
       id: prepare
       if: steps.compile.outputs.status == 'success'
       run: |
-        cd /opt/rt-n56u/toolchain-mipsel
+        cd /opt/padavan/toolchain-mipsel
         tar -cJvf toolchain-3.4.x.tar.xz toolchain-3.4.x/*
         echo "::set-output name=status::success"
 
@@ -73,4 +73,4 @@ jobs:
       if: steps.prepare.outputs.status == 'success'
       with:
         name: padavan_toolchain_${{ env.DATE }}
-        path: /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x.tar.xz
+        path: /opt/padavan/toolchain-mipsel/toolchain-3.4.x.tar.xz
