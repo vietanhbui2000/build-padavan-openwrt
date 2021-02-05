@@ -20,9 +20,9 @@ on:
 #     - types: started
 
 env:
-  REPO_URL: https://github.com/vietanhbui2000/rt-n56u
+  REPO_URL: https://github.com/vietanhbui2000/padavan
   REPO_BRANCH: main
-  DEVICE_NAME: MiWiFi-4A
+  DEVICE_NAME: MiWiFi-Mini
   CUSTOMIZE_FIRMWARE: false
   CUSTOMIZE_SH_FILE: scripts/padavan/customize.sh
   USE_PRECOMPILED_TOOLCHAIN: true
@@ -52,47 +52,47 @@ jobs:
 
     - name: Clone source code
       run: |
-        git clone $REPO_URL /opt/rt-n56u
-        cd /opt/rt-n56u
+        git clone $REPO_URL /opt/padavan
+        cd /opt/padavan
         git checkout $REPO_BRANCH
 
     - name: Load device configuration
       run: |
-        cp -R configs/padavan/$DEVICE_NAME /opt/rt-n56u/trunk/configs/boards
-        cp configs/padavan/$DEVICE_NAME.config /opt/rt-n56u/trunk/.config
-        cp configs/padavan/$DEVICE_NAME.config /opt/rt-n56u/trunk/configs/templates/$DEVICE_NAME.config
+        cp -R configs/padavan/$DEVICE_NAME /opt/padavan/trunk/configs/boards
+        cp configs/padavan/$DEVICE_NAME.config /opt/padavan/trunk/.config
+        cp configs/padavan/$DEVICE_NAME.config /opt/padavan/trunk/configs/templates/$DEVICE_NAME.config
 
     - name: Customize firmware
       if: env.CUSTOMIZE_FIRMWARE == 'true' && !cancelled()
       run: |
-        cp $CUSTOMIZE_SH_FILE /opt/rt-n56u/trunk/customize.sh
-        cd /opt/rt-n56u/trunk
+        cp $CUSTOMIZE_SH_FILE /opt/padavan/trunk/customize.sh
+        cd /opt/padavan/trunk
         chmod +x customize.sh
         ./customize.sh
 
     - name: Download pre-compiled toolchain
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'true' && !cancelled()
       run: |
-        cp scripts/padavan/dl_toolchain.sh /opt/rt-n56u/toolchain-mipsel/dl_toolchain.sh
-        cd /opt/rt-n56u/toolchain-mipsel
+        cp scripts/padavan/dl_toolchain.sh /opt/padavan/toolchain-mipsel/dl_toolchain.sh
+        cd /opt/padavan/toolchain-mipsel
         sh dl_toolchain.sh
 
     - name: Compile toolchain
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'false' && !cancelled()
       run: |
-        cd /opt/rt-n56u/toolchain-mipsel
+        cd /opt/padavan/toolchain-mipsel
         ./clean_toolchain
         ./build_toolchain
 
     - name: Clean up files
       run: |
-        cd /opt/rt-n56u/trunk
+        cd /opt/padavan/trunk
         ./clear_tree
 
     - name: Compile firmware
       id: compile
       run: |
-        cd /opt/rt-n56u/trunk
+        cd /opt/padavan/trunk
         fakeroot ./build_firmware_modify $DEVICE_NAME
         echo "::set-output name=status::success"
         echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
@@ -102,4 +102,4 @@ jobs:
       if: steps.compile.outputs.status == 'success'
       with:
         name: ${{ env.DEVICE_NAME }}_padavan_firmware_${{ env.DATE }}
-        path: /opt/rt-n56u/trunk/images/*.trx
+        path: /opt/padavan/trunk/images/*.trx
