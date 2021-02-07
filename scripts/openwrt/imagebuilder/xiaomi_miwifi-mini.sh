@@ -5,4 +5,4 @@
 
 make image \
      PROFILE=miwifi-mini \
-     PACKAGES="block-mount"
+     PACKAGES="block-mount luci"
