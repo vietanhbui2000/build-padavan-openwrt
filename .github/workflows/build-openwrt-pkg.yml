@@ -69,7 +69,10 @@ jobs:
       run: |
         cd openwrt/sdk
         make package/luci-app-argon-config/compile V=s -j$(nproc)
+        make package/luci-app-clear-luci-cache/compile V=s -j$(nproc)
+        make package/luci-app-clear-ram/compile V=s -j$(nproc)
         make package/luci-app-vsftpd/compile V=s -j$(nproc)
+        make package/luci-theme-argon/compile V=s -j$(nproc)
         echo "::set-output name=status::success"
         echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
