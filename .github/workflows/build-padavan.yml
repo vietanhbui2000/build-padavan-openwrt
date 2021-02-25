@@ -21,7 +21,7 @@ on:
 
 env:
   REPO_URL: https://github.com/vietanhbui2000/padavan
-  REPO_BRANCH: master
+  REPO_BRANCH: main
   DEVICE_NAME: MiWiFi-Mini
   CUSTOMIZE_FIRMWARE: false
   CUSTOMIZE_SH_FILE: scripts/padavan/customize.sh
