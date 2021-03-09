@@ -19,7 +19,7 @@ on:
 #     - types: started
 
 env:
-  DEVICE_PROFILE: xiaomi_mir4a-100m
+  DEVICE_PROFILE: xiaomi_miwifi-mini
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
   TZ: Asia/Ho_Chi_Minh
@@ -39,7 +39,8 @@ jobs:
       run: |
         sudo timedatectl set-timezone "$TZ"
         sudo -E apt-get update
-        sudo -E apt-get -y install build-essential libncurses5-dev libncursesw5-dev zlib1g-dev gawk git gettext libssl-dev xsltproc wget unzip python
+        sudo -E apt-get -y install build-essential libncurses5-dev libncursesw5-dev \
+                                   zlib1g-dev gawk git gettext libssl-dev xsltproc wget unzip python
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get clean
 
