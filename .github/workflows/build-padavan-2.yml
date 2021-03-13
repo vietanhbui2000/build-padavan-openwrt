@@ -87,13 +87,13 @@ jobs:
     - name: Clean up files
       run: |
         cd opt/padavan-ng/trunk
-        ./clear_tree.sh
+        sh clear_tree.sh
 
     - name: Compile firmware
       id: compile
       run: |
         cd opt/padavan-ng/trunk
-        sh build_firmware.sh
+        fakeroot sh build_firmware.sh
         echo "::set-output name=status::success"
         echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
