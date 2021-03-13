@@ -103,8 +103,8 @@ jobs:
         name: ${{ env.DEVICE_NAME }}_lede_bin_${{ env.DATE }}
         path: lede/bin
 
-    - name: Clean up files
-      id: cleanup
+    - name: Prepare files
+      id: prepare
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE_DIR == 'true'
       run: |
         cd lede/bin/targets/*/*
@@ -114,7 +114,7 @@ jobs:
 
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
-      if: steps.cleanup.outputs.status == 'success' && env.UPLOAD_FIRMWARE_DIR == 'true'
+      if: steps.prepare.outputs.status == 'success' && env.UPLOAD_FIRMWARE_DIR == 'true'
       with:
         name: ${{ env.DEVICE_NAME }}_lede_firmware_${{ env.DATE }}
         path: ${{ env.FIRMWARE }}
