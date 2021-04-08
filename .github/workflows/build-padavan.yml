@@ -20,8 +20,8 @@ on:
 #     - types: started
 
 env:
-  REPO_URL: https://github.com/hanwckf/rt-n56u
-  REPO_BRANCH: master
+  REPO_URL: https://github.com/vietanhbui2000/padavan
+  REPO_BRANCH: main
   DEVICE_NAME: MiWiFi-Mini
   CUSTOMIZE_FIRMWARE: false
   CUSTOMIZE_SH_FILE: scripts/padavan/customize.sh
@@ -30,7 +30,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
