@@ -2,7 +2,7 @@
 # Author(s): Việt Anh Bùi | https://github.com/vietanhbui2000 #
 ###############################################################
 
-name: Build OpenWrt
+name: Build PandoraBox
 
 on:
   repository_dispatch:
@@ -12,14 +12,14 @@ on:
     branches:
       - main
     paths:
-      - 'triggers/build-openwrt-3.md'
+      - 'triggers/build-pandorabox.md'
 #   schedule:
 #     - cron: 0 0 * * 1
 #   watch:
 #     - types: started
 
 env:
-  DEVICE_PROFILE: xiaomi_miwifi-mini
+  DEVICE_PROFILE: xiaomi-mini
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
   TZ: Asia/Ho_Chi_Minh
@@ -46,19 +46,19 @@ jobs:
 
     - name: Download Image Builder
       run: |
-        mkdir -p openwrt
-        cp scripts/openwrt/dl_imagebuilder.sh openwrt/dl_imagebuilder.sh
-        cd openwrt
+        mkdir -p pandorabox
+        cp scripts/pandorabox/dl_imagebuilder.sh pandorabox/dl_imagebuilder.sh
+        cd pandorabox
         sh dl_imagebuilder.sh
 
     - name: Load device script
       run: |
-        cp scripts/openwrt/imagebuilder/$DEVICE_PROFILE.sh openwrt/imagebuilder/make.sh
+        cp scripts/pandorabox/imagebuilder/$DEVICE_PROFILE.sh pandorabox/imagebuilder/make.sh
 
     - name: Compile firmware
       id: compile
       run: |
-        cd openwrt/imagebuilder
+        cd pandorabox/imagebuilder
         sh make.sh
         echo "::set-output name=status::success"
         echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
@@ -67,14 +67,14 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: ${{ env.DEVICE_PROFILE }}_openwrt_bin_${{ env.DATE }}
-        path: openwrt/imagebuilder/bin
+        name: ${{ env.DEVICE_PROFILE }}_pandorabox_bin_${{ env.DATE }}
+        path: pandorabox/imagebuilder/bin
 
     - name: Prepare files
       id: prepare
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE_DIR == 'true'
       run: |
-        cd openwrt/imagebuilder/bin/targets/*/*
+        cd pandorabox/imagebuilder/bin/targets/*/*
         rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "::set-output name=status::success"
@@ -83,5 +83,5 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.prepare.outputs.status == 'success' && env.UPLOAD_FIRMWARE_DIR == 'true'
       with:
-        name: ${{ env.DEVICE_PROFILE }}_openwrt_firmware_${{ env.DATE }}
+        name: ${{ env.DEVICE_PROFILE }}_pandorabox_firmware_${{ env.DATE }}
         path: ${{ env.FIRMWARE }}
