@@ -5,4 +5,4 @@
 
 make image \
      PROFILE=xiaomi-mini \
-     PACKAGES="-luci-theme-darkmatter luci-theme-material luci-i18n-base-en luci-i18n-firewall-en luci-i18n-samba-en luci-i18n-upnp-en"
+     PACKAGES="-luci-theme-darkmatter luci-i18n-base-en luci-i18n-firewall-en luci-i18n-samba-en luci-i18n-upnp-en"
