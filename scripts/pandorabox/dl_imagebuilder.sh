@@ -5,7 +5,7 @@
 
 # File info
 FILE_NAME="PandoraBox-ImageBuilder-ralink-mt7620.Linux-x86_64-2018-12-31-git-4b6a3d5ca"
-FILE_URL="http://downloads.pangubox.com:6380/pandorabox/19.01/targets/ralink/mt7620/$FILE_NAME.tar.xz"
+FILE_URL="https://www.dropbox.com/s/sqx3igeklwsw4jl/$FILE_NAME.tar.xz?dl=1"
 
 # Download and extract file(s)
 wget $FILE_URL
