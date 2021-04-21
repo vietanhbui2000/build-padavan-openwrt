@@ -54,7 +54,6 @@ jobs:
 
     - name: Prepare tools
       run: |
-        cd asuswrt
         cp scripts/asuswrt/build.sh asuswrt/build.sh
 
     - name: Compile firmware
