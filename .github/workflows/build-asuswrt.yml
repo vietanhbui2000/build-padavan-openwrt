@@ -20,6 +20,9 @@ on:
 #     - types: started
 
 env:
+  REPO_URL: https://github.com/vietanhbui2000/rt-ac54u-asuswrt
+  REPO_BRANCH: MiWiFi-Mini
+  DEVICE_NAME: MiWiFi-Mini
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -38,7 +41,33 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo -E apt-get update
         sudo -E apt-get -y install libncurses5 libncurses5-dev m4 bison gawk flex libstdc++6-4.4-dev g++-4.4 g++ \
-        git gitk zlib1g-dev autoconf autopoint libtool shtool autogen mtd-utils intltool sharutils \
+        git zlib1g-dev autoconf autopoint libtool shtool autogen mtd-utils intltool sharutils \
         docbook-xsl-* libstdc++5 texinfo dos2unix xsltproc make pkg-config
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get clean
+
+    - name: Clone source code
+      run: |
+        git clone $REPO_URL asuswrt
+        cd asuswrt
+        git checkout $REPO_BRANCH
+
+    - name: Prepare tools
+      run: |
+        cd asuswrt
+        sudo ln -s tools/brcm /opt/brcm
+        sudo ln -s tools/buildroot-gcc342 /opt/buildroot-gcc342
+        export PATH=$PATH:/opt/brcm/hndtools-mipsel-linux/bin:/opt/brcm/hndtools-mipsel-uclibc/bin:/opt/buildroot-gcc342/bin
+
+    - name: Compile firmware
+      id: compile
+      run: |
+        cd asuswrt/release/src-ra-mt7620
+        make rt-ac54u
+
+    - name: Upload firmware
+      uses: actions/upload-artifact@main
+      if: steps.compile.outputs.status == 'success'
+      with:
+        name: ${{ env.DEVICE_NAME }}_asuswrt_firmware
+        path: asuswrt/release/src-ra-mt7620
