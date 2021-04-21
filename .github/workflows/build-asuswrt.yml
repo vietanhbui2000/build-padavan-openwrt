@@ -55,15 +55,13 @@ jobs:
     - name: Prepare tools
       run: |
         cd asuswrt
-        sudo ln -s tools/brcm /opt/brcm
-        sudo ln -s tools/buildroot-gcc342 /opt/buildroot-gcc342
-        export PATH=$PATH:/opt/brcm/hndtools-mipsel-linux/bin:/opt/brcm/hndtools-mipsel-uclibc/bin:/opt/buildroot-gcc342/bin
+        cp scripts/asuswrt/build.sh asuswrt/build.sh
 
     - name: Compile firmware
       id: compile
       run: |
-        cd asuswrt/release/src-ra-mt7620
-        make rt-ac54u
+        chmod +x build.sh
+        ./build.sh
 
     - name: Upload firmware
       uses: actions/upload-artifact@main
