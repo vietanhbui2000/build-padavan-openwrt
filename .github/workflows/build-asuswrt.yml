@@ -59,6 +59,7 @@ jobs:
     - name: Compile firmware
       id: compile
       run: |
+        cd asuswrt
         chmod +x build.sh
         ./build.sh
 
