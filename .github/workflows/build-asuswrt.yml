@@ -50,7 +50,7 @@ jobs:
         cd asuswrt
         git checkout $REPO_BRANCH
 
-    - name: Prepare tools
+    - name: Prepare toolchain
       run: |
         cd asuswrt
         cp -r tools/brcm /opt/
