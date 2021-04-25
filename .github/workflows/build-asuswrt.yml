@@ -63,7 +63,6 @@ jobs:
       run: |
         export PATH=$PATH:/opt/brcm/hndtools-mipsel-linux/bin:/opt/brcm/hndtools-mipsel-uclibc/bin:/opt/buildroot-gcc342/bin
         cd asuswrt/release/src-ra-mt7620
-        make distclean
         make rt-ac54u
 
     - name: Upload firmware
