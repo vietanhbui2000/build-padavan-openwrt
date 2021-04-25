@@ -20,7 +20,7 @@ on:
 #     - types: started
 
 env:
-  REPO_URL: https://github.com/vietanhbui2000/rt-ac54u-asuswrt
+  REPO_URL: https://github.com/vietanhbui2000/rt-ac1200hp-asuswrt
   REPO_BRANCH: MiWiFi-Mini
   DEVICE_NAME: MiWiFi-Mini
   TZ: Asia/Ho_Chi_Minh
