@@ -61,7 +61,7 @@ jobs:
       run: |
         export PATH=$PATH:/opt/brcm/hndtools-mipsel-linux/bin:/opt/brcm/hndtools-mipsel-uclibc/bin:/opt/buildroot-gcc342/bin
         cd asuswrt/release/src-ra-mt7620
-        make -i rt-ac54u
+        make -i rt-ac1200hp
         echo "::set-output name=status::success"
         echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
