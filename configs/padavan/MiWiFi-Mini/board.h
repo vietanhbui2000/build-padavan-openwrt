@@ -2,7 +2,7 @@
 
 #define BOARD_PID		"MiWiFi-Mini"
 #define BOARD_NAME		"MiWiFi-Mini"
-#define BOARD_DESC		"Xiaomi MiWiFi Mini"
+#define BOARD_DESC		"MiWiFi Mini"
 #define BOARD_VENDOR_NAME	"Xiaomi Communications Co., Ltd."
 #define BOARD_VENDOR_URL	"http://www.mi.com"
 #define BOARD_MODEL_URL		"http://www.mi.com/miwifimini"
