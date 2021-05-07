@@ -22,7 +22,7 @@ on:
 env:
   REPO_URL: https://gitlab.com/vietanhbui2000/padavan-ng
   REPO_BRANCH: main
-  DEVICE_NAME: MiWiFi-Mini
+  DEVICE_NAME: MiWiFi-4A
   CUSTOMIZE_FIRMWARE: false
   CUSTOMIZE_SH_FILE: scripts/padavan/customize.sh
   USE_PRECOMPILED_TOOLCHAIN: true
@@ -98,5 +98,5 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success'
       with:
-        name: ${{ env.DEVICE_NAME }}_padavan_firmware_${{ env.DATE }}
+        name: ${{ env.DEVICE_NAME }}_padavan-ng_firmware_${{ env.DATE }}
         path: opt/padavan-ng/trunk/images/*.trx
