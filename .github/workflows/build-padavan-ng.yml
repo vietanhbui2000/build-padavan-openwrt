@@ -13,7 +13,7 @@ on:
     branches:
       - main
     paths:
-      - 'triggers/build-padavan-2.md'
+      - 'triggers/build-padavan-ng.md'
 #   schedule:
 #     - cron: 0 0 * * 1
 #   watch:
@@ -70,7 +70,7 @@ jobs:
     - name: Download pre-compiled toolchain
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'true' && !cancelled()
       run: |
-        cp scripts/padavan/dl_toolchain.sh opt/padavan-ng/toolchain/dl_toolchain.sh
+        cp scripts/padavan-ng/dl_toolchain.sh opt/padavan-ng/toolchain/dl_toolchain.sh
         cd opt/padavan-ng/toolchain
         sh dl_toolchain.sh
 
