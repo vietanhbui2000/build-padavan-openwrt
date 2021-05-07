@@ -20,8 +20,8 @@ on:
 #     - types: started
 
 env:
-  REPO_URL: https://gitlab.com/dm38/padavan-ng
-  REPO_BRANCH: master
+  REPO_URL: https://gitlab.com/vietanhbui2000/padavan-ng
+  REPO_BRANCH: main
   DEVICE_NAME: MiWiFi-Mini
   CUSTOMIZE_FIRMWARE: false
   CUSTOMIZE_SH_FILE: scripts/padavan/customize.sh
@@ -43,10 +43,7 @@ jobs:
       run: |
         sudo timedatectl set-timezone "$TZ"
         sudo -E apt-get update
-        sudo -E apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
-        fakeroot kmod cpio git python3-docutils gettext automake autopoint \
-        texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
-        libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin
+        sudo -E apt-get -y install git build-essential gawk pkg-config gettext automake autoconf autopoint libtool bison flex zlib1g-dev libgmp3-dev libmpfr-dev libmpc-dev texinfo mc libncurses5-dev nano vim autopoint gperf python-docutils help2man libtool-bin libtool-doc
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get clean
 
@@ -58,9 +55,9 @@ jobs:
 
     - name: Load device configuration
       run: |
-        cp -R configs/padavan/$DEVICE_NAME opt/padavan-ng/trunk/configs/boards/XIAOMI
-        cp configs/padavan/$DEVICE_NAME.config opt/padavan-ng/trunk/.config
-        cp configs/padavan/$DEVICE_NAME.config opt/padavan-ng/trunk/configs/templates/xiaomi/$DEVICE_NAME.config
+        cp -R configs/padavan-ng/$DEVICE_NAME opt/padavan-ng/trunk/configs/boards/XIAOMI
+        cp configs/padavan-ng/$DEVICE_NAME.config opt/padavan-ng/trunk/.config
+        cp configs/padavan-ng/$DEVICE_NAME.config opt/padavan-ng/trunk/configs/templates/xiaomi/$DEVICE_NAME.config
 
     - name: Customize firmware
       if: env.CUSTOMIZE_FIRMWARE == 'true' && !cancelled()
