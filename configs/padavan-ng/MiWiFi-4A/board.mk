@@ -1,8 +1,8 @@
 ##################################################################
-# Board PID # Board Name       # PRODUCT # Note
+# Board PID   # Board Name   # PRODUCT   # Note
 ##################################################################
-# MI-4A     # Xiaomi Mi 4A     # MT7628  #
+# MiWiFi-4A   # MiWiFi-4A    # MT7628    #
 ##################################################################
 
-CFLAGS += -DBOARD_MI4A
+CFLAGS += -DBOARD_MiWiFi-4A
 BOARD_NUM_USB_PORTS=0
