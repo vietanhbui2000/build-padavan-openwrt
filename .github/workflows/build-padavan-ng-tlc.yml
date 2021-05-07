@@ -70,4 +70,4 @@ jobs:
       if: steps.prepare.outputs.status == 'success'
       with:
         name: padavan_toolchain_${{ env.DATE }}
-        path: cd opt/padavan-ng/toolchain/out.tar.xz
+        path: opt/padavan-ng/toolchain/out.tar.xz
