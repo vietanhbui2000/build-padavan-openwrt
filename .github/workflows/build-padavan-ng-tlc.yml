@@ -12,7 +12,7 @@ on:
     branches:
       - main
     paths:
-      - 'triggers/build-padavan-2-tlc.md'
+      - 'triggers/build-padavan-ng-tlc.md'
 #   schedule:
 #     - cron: 0 0 * * 1
 #   watch:
