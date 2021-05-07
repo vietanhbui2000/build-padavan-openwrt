@@ -20,7 +20,7 @@ on:
 
 env:
   REPO_URL: https://gitlab.com/vietanhbui2000/padavan-ng
-  REPO_BRANCH: main
+  REPO_BRANCH: master
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
