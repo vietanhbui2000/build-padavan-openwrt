@@ -25,7 +25,7 @@ env:
   DEVICE_NAME: MiWiFi-Mini
   CUSTOMIZE_FIRMWARE: false
   CUSTOMIZE_SH_FILE: scripts/padavan/customize.sh
-  USE_PRECOMPILED_TOOLCHAIN: false
+  USE_PRECOMPILED_TOOLCHAIN: true
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
