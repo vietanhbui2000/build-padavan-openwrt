@@ -5,18 +5,9 @@
 name: Build OpenWrt
 
 on:
-  repository_dispatch:
-  release:
-    types: published
   push:
-    branches:
-      - main
     paths:
       - 'triggers/build-openwrt-2.md'
-#   schedule:
-#     - cron: 0 0 * * 1
-#   watch:
-#     - types: started
 
 env:
   DEVICE_PROFILE: xiaomi_miwifi-mini
