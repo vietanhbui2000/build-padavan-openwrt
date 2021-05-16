@@ -6,18 +6,9 @@
 name: Build AsusWRT
 
 on:
-  repository_dispatch:
-  release:
-    types: published
   push:
-    branches:
-      - main
     paths:
       - 'triggers/build-asuswrt.md'
-#   schedule:
-#     - cron: 0 0 * * 1
-#   watch:
-#     - types: started
 
 env:
   REPO_URL: https://github.com/vietanhbui2000/rt-ac1200hp-asuswrt
