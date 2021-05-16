@@ -5,18 +5,9 @@
 name: Build OpenWrt Package
 
 on:
-  repository_dispatch:
-  release:
-    types: published
   push:
-    branches:
-      - main
     paths:
       - 'triggers/build-openwrt-pkg.md'
-#   schedule:
-#     - cron: 0 0 * * 1
-#   watch:
-#     - types: started
 
 env:
   TZ: Asia/Ho_Chi_Minh
