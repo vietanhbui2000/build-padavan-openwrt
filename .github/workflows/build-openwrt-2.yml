@@ -74,5 +74,5 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.prepare.outputs.status == 'success' && env.UPLOAD_FIRMWARE_DIR == 'true'
       with:
-        name: ${{ env.DEVICE_PROFILE }}_openwrt_firmware_${{ env.DATE }}
+        name: ${{ env.DEVICE_PROFILE }}_openwrt_${{ env.DATE }}
         path: ${{ env.FIRMWARE }}
