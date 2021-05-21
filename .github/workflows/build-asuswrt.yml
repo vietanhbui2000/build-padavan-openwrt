@@ -60,5 +60,5 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success'
       with:
-        name: ${{ env.DEVICE_NAME }}_asuswrt_firmware_${{ env.DATE }}
+        name: ${{ env.DEVICE_NAME }}_asuswrt_${{ env.DATE }}
         path: asuswrt/release/src-ra-mt7620/image/*.trx
