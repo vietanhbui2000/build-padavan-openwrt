@@ -92,5 +92,5 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success'
       with:
-        name: ${{ env.DEVICE_NAME }}_padavan_firmware_${{ env.DATE }}
+        name: ${{ env.DEVICE_NAME }}_padavan_${{ env.DATE }}
         path: /opt/padavan/trunk/images/*.trx
