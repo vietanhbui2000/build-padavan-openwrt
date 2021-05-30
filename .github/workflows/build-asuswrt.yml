@@ -12,8 +12,8 @@ on:
 
 env:
   REPO_URL: https://github.com/vietanhbui2000/rt-ac1200hp-asuswrt
-  REPO_BRANCH: test
-  DEVICE_NAME: MiWiFi-Mini
+  REPO_BRANCH: miwifi-mini
+  DEVICE_NAME: miwifi-mini
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
