@@ -14,7 +14,7 @@ on:
 env:
   REPO_URL: https://git.openwrt.org/openwrt/openwrt.git
   REPO_BRANCH: v21.02.0-rc2
-  DEVICE_CONFIG_FILE: configs/openwrt/xiaomi_mi-router-4a-100m.config
+  DEVICE_CONFIG_FILE: configs/openwrt/xiaomi_miwifi-mini.config
   CUSTOMIZE_FIRMWARE: false
   CUSTOMIZE_SH_FILE: scripts/openwrt/customize.sh
   UPLOAD_BIN_DIR: false
