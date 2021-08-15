@@ -10,7 +10,7 @@ on:
       - 'triggers/build-padavan-tlc.md'
 
 env:
-  REPO_URL: https://github.com/vietanhbui2000/padavan
+  REPO_URL: https://github.com/hanwckf/rt-n56u
   REPO_BRANCH: v2020-11-27
   TZ: Asia/Ho_Chi_Minh
 
