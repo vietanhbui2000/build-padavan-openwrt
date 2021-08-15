@@ -1,8 +1,8 @@
-/* Xiaomi MiWiFi Mini */
+/* Mi Router Mini */
 
-#define BOARD_PID		"MiWiFi-Mini"
-#define BOARD_NAME		"MiWiFi-Mini"
-#define BOARD_DESC		"Xiaomi MiWiFi Mini"
+#define BOARD_PID		"MiWiFi-R1CM"
+#define BOARD_NAME		"MiWiFi-R1CM"
+#define BOARD_DESC		"Mi Router Mini"
 #define BOARD_VENDOR_NAME	"Xiaomi Communications Co., Ltd."
 #define BOARD_VENDOR_URL	"http://www.mi.com"
 #define BOARD_MODEL_URL		"http://www.mi.com/miwifimini"

@@ -1,8 +1,8 @@
 ##################################################################
-# Board PID     # Board Name    # PRODUCT   # Note
+# Board PID     # Board Name     # PRODUCT   # Note
 ##################################################################
-# MiWiFi-Mini   # MiWiFi-Mini   # MT7620    #
+# MiWiFi-R4AC   # MiWiFi-R4AC    # MT7628    #
 ##################################################################
 
-CFLAGS += -DBOARD_MiWiFi-Mini
-BOARD_NUM_USB_PORTS=1
+CFLAGS += -DBOARD_MiWiFi-R4AC
+BOARD_NUM_USB_PORTS=0
