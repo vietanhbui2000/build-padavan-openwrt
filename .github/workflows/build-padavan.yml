@@ -12,7 +12,7 @@ on:
 
 env:
   REPO_URL: https://github.com/vietanhbui2000/padavan
-  REPO_BRANCH: main
+  REPO_BRANCH: v2020-11-27
   DEVICE_NAME: MiWiFi-R1CM
   CUSTOMIZE_FIRMWARE: false
   CUSTOMIZE_SH_FILE: scripts/padavan/customize.sh
