@@ -44,7 +44,7 @@ jobs:
 
     - name: Load device script
       run: |
-        cp scripts/openwrt/imagebuilder/$DEVICE_PROFILE.sh openwrt/imagebuilder/make.sh
+        cp configs/openwrt/imagebuilder/$DEVICE_PROFILE.sh openwrt/imagebuilder/make.sh
 
     - name: Compile firmware
       id: compile
