@@ -45,7 +45,7 @@ jobs:
 
     - name: Load device script
       run: |
-        cp scripts/pandorabox/imagebuilder/$DEVICE_PROFILE.sh pandorabox/imagebuilder/make.sh
+        cp configs/pandorabox/imagebuilder/$DEVICE_PROFILE.sh pandorabox/imagebuilder/make.sh
 
     - name: Compile firmware
       id: compile
