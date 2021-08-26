@@ -12,8 +12,8 @@ on:
 
 env:
   REPO_URL: https://github.com/vietanhbui2000/rt-ac1200hp-asuswrt
-  REPO_BRANCH: miwifi-mini
-  DEVICE_NAME: miwifi-mini
+  REPO_BRANCH: miwifi-r1cm
+  DEVICE_NAME: rt-ac1200hp
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -52,7 +52,7 @@ jobs:
       run: |
         export PATH=$PATH:/opt/brcm/hndtools-mipsel-linux/bin:/opt/brcm/hndtools-mipsel-uclibc/bin:/opt/buildroot-gcc342/bin
         cd asuswrt/release/src-ra-mt7620
-        make -i rt-ac1200hp
+        make -i $DEVICE_NAME
         echo "::set-output name=status::success"
         echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
