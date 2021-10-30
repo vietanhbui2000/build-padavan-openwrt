@@ -10,7 +10,7 @@ on:
       - 'triggers/build-padavan-ng-tlc.md'
 
 env:
-  REPO_URL: https://gitlab.com/vietanhbui2000/padavan-ng
+  REPO_URL: https://gitlab.com/dm38/padavan-ng
   REPO_BRANCH: master
   TZ: Asia/Ho_Chi_Minh
 
