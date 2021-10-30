@@ -11,10 +11,10 @@ on:
       - 'triggers/build-padavan-ng.md'
 
 env:
-  REPO_URL: https://gitlab.com/vietanhbui2000/padavan-ng
-  REPO_BRANCH: main
+  REPO_URL: https://gitlab.com/dm38/padavan-ng
+  REPO_BRANCH: master
   DEVICE_NAME: MiWiFi-Mini
-  CUSTOMIZE_FIRMWARE: false
+  CUSTOMIZE_FIRMWARE: true
   CUSTOMIZE_SH_FILE: scripts/padavan/customize.sh
   USE_PRECOMPILED_TOOLCHAIN: true
   TZ: Asia/Ho_Chi_Minh
