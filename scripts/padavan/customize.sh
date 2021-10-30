@@ -7,7 +7,7 @@
 
 # File info
 # FILE_NAME="PadavanThemePack_v2.4.27"
-FILE_NAME="PadavanThemePack_v2.4.27_Lite"
+FILE_NAME="PadavanThemePackLite_v2.4.27"
 FILE_URL="https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/main/scripts/padavan/$FILE_NAME.zip"
 
 # Download and extract file(s)
