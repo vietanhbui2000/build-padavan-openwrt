@@ -14,7 +14,7 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: 6f2494ee529eaa79ba40d73cda23ac241f104d43
-  DEVICE_CONFIG_FILE: configs/lede/xiaomi_miwifi-mini.config
+  DEVICE_CONFIG: configs/lede/xiaomi_miwifi-mini.config
   CUSTOMIZE_FIRMWARE: false
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
@@ -54,7 +54,7 @@ jobs:
 
     - name: Load device configuration
       run: |
-        cp $DEVICE_CONFIG_FILE lede/.config
+        cp $DEVICE_CONFIG lede/.config
 
     - name: Customize firmware
       if: env.CUSTOMIZE_FIRMWARE == 'true' && !cancelled()
