@@ -13,6 +13,8 @@ env:
   DEVICE_PROFILE: xiaomi_miwifi-mini
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
+  BUILD_SCRIPT: configs/openwrt/imagebuilder/xiaomi_miwifi-mini.sh
+  DL_IMAGEBUILDER_SH: scripts/openwrt/dl_imagebuilder.sh
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -38,13 +40,13 @@ jobs:
     - name: Download Image Builder
       run: |
         mkdir -p openwrt
-        cp scripts/openwrt/dl_imagebuilder.sh openwrt/dl_imagebuilder.sh
+        cp $DL_IMAGEBUILDER_SH openwrt/dl_imagebuilder.sh
         cd openwrt
         sh dl_imagebuilder.sh
 
-    - name: Load device script
+    - name: Load build script
       run: |
-        cp configs/openwrt/imagebuilder/$DEVICE_PROFILE.sh openwrt/imagebuilder/make.sh
+        cp $BUILD_SCRIPT openwrt/imagebuilder/make.sh
 
     - name: Compile firmware
       id: compile
