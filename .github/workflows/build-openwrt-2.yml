@@ -10,7 +10,7 @@ on:
       - 'triggers/build-openwrt-2.md'
 
 env:
-  DEVICE_PROFILE: xiaomi_miwifi-mini
+  DEVICE_NAME: xiaomi_miwifi-mini
   BUILD_SCRIPT: configs/openwrt/imagebuilder/xiaomi_miwifi-mini.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
@@ -60,7 +60,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: ${{ env.DEVICE_PROFILE }}_openwrt_bin_${{ env.DATE }}
+        name: ${{ env.DEVICE_NAME }}_openwrt_bin_${{ env.DATE }}
         path: openwrt/imagebuilder/bin
 
     - name: Prepare files
@@ -76,5 +76,5 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.prepare.outputs.status == 'success' && env.UPLOAD_FIRMWARE_DIR == 'true'
       with:
-        name: ${{ env.DEVICE_PROFILE }}_openwrt_${{ env.DATE }}
+        name: ${{ env.DEVICE_NAME }}_openwrt_${{ env.DATE }}
         path: ${{ env.FIRMWARE }}
