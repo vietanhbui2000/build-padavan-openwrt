@@ -14,7 +14,7 @@ on:
 env:
   REPO_URL: https://git.openwrt.org/openwrt/openwrt.git
   REPO_BRANCH: openwrt-21.02
-  DEVICE_CONFIG_FILE: configs/openwrt/xiaomi_miwifi-mini.config
+  DEVICE_CONFIG: configs/openwrt/xiaomi_miwifi-mini.config
   CUSTOMIZE_FIRMWARE: false
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
@@ -58,7 +58,7 @@ jobs:
 
     - name: Load device configuration
       run: |
-        cp $DEVICE_CONFIG_FILE openwrt/.config
+        cp $DEVICE_CONFIG openwrt/.config
 
     - name: Customize firmware
       if: env.CUSTOMIZE_FIRMWARE == 'true' && !cancelled()
