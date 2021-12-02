@@ -61,7 +61,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: ${{ env.DEVICE_PROFILE }}_pandorabox_bin_${{ env.DATE }}
+        name: ${{ env.DEVICE_NAME }}_pandorabox_bin_${{ env.DATE }}
         path: pandorabox/imagebuilder/bin
 
     - name: Prepare files
