@@ -11,9 +11,9 @@ on:
 
 env:
   DEVICE_PROFILE: xiaomi_miwifi-mini
+  BUILD_SCRIPT: configs/openwrt/imagebuilder/xiaomi_miwifi-mini.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
-  BUILD_SCRIPT: configs/openwrt/imagebuilder/xiaomi_miwifi-mini.sh
   DL_IMAGEBUILDER_SH: scripts/openwrt/dl_imagebuilder.sh
   TZ: Asia/Ho_Chi_Minh
 
