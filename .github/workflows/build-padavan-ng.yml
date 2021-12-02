@@ -15,8 +15,9 @@ env:
   REPO_BRANCH: master
   DEVICE_NAME: MiWiFi-R1CM
   CUSTOMIZE_FIRMWARE: false
-  CUSTOMIZE_SH_FILE: scripts/padavan/customize.sh
   USE_PRECOMPILED_TOOLCHAIN: true
+  CUSTOMIZE_SH: scripts/padavan/customize.sh
+  DL_TOOLCHAIN_SH: scripts/padavan/dl_toolchain_ng.sh
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -53,7 +54,7 @@ jobs:
     - name: Customize firmware
       if: env.CUSTOMIZE_FIRMWARE == 'true' && !cancelled()
       run: |
-        cp $CUSTOMIZE_SH_FILE opt/padavan-ng/trunk/customize.sh
+        cp $CUSTOMIZE_SH opt/padavan-ng/trunk/customize.sh
         cd opt/padavan-ng/trunk
         chmod +x customize.sh
         ./customize.sh
@@ -61,7 +62,7 @@ jobs:
     - name: Download pre-compiled toolchain
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'true' && !cancelled()
       run: |
-        cp scripts/padavan-ng/dl_toolchain.sh opt/padavan-ng/toolchain/dl_toolchain.sh
+        cp $DL_TOOLCHAIN_SH opt/padavan-ng/toolchain/dl_toolchain.sh
         cd opt/padavan-ng/toolchain
         sh dl_toolchain.sh
 
