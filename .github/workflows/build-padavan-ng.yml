@@ -11,8 +11,8 @@ on:
       - 'triggers/build-padavan-ng.md'
 
 env:
-  REPO_URL: https://github.com/zanezam/padavan-ng
-  REPO_BRANCH: custom
+  REPO_URL: https://gitlab.com/dm38/padavan-ng
+  REPO_BRANCH: master
   DEVICE_NAME: MiWiFi-R1CM
   CUSTOMIZE_FIRMWARE: false
   USE_PRECOMPILED_TOOLCHAIN: true
