@@ -11,7 +11,7 @@ on:
 
 env:
   REPO_URL: https://github.com/zanezam/padavan-ng
-  REPO_BRANCH: master
+  REPO_BRANCH: custom
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
