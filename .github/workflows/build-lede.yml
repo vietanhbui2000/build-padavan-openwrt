@@ -16,9 +16,9 @@ env:
   REPO_BRANCH: 6f2494ee529eaa79ba40d73cda23ac241f104d43
   DEVICE_CONFIG_FILE: configs/lede/xiaomi_miwifi-mini.config
   CUSTOMIZE_FIRMWARE: false
-  CUSTOMIZE_SH_FILE: scripts/openwrt/customize.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
+  CUSTOMIZE_SH: scripts/openwrt/customize.sh
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -59,7 +59,7 @@ jobs:
     - name: Customize firmware
       if: env.CUSTOMIZE_FIRMWARE == 'true' && !cancelled()
       run: |
-        cp $CUSTOMIZE_SH_FILE lede/customize.sh
+        cp $CUSTOMIZE_SH lede/customize.sh
         cd lede
         chmod +x customize.sh
         ./customize.sh
