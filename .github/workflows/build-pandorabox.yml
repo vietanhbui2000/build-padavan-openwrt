@@ -11,8 +11,10 @@ on:
 
 env:
   DEVICE_PROFILE: xiaomi-mini
+  BUILD_SCRIPT: configs/pandorabox/imagebuilder/xiaomi-mini.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
+  DL_IMAGEBUILDER_SH: scripts/pandorabox/dl_imagebuilder.sh
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -39,13 +41,13 @@ jobs:
     - name: Download Image Builder
       run: |
         mkdir -p pandorabox
-        cp scripts/pandorabox/dl_imagebuilder.sh pandorabox/dl_imagebuilder.sh
+        cp $DL_IMAGEBUILDER_SH pandorabox/dl_imagebuilder.sh
         cd pandorabox
         sh dl_imagebuilder.sh
 
-    - name: Load device script
+    - name: Load build script
       run: |
-        cp configs/pandorabox/imagebuilder/$DEVICE_PROFILE.sh pandorabox/imagebuilder/make.sh
+        cp $BUILD_SCRIPT pandorabox/imagebuilder/make.sh
 
     - name: Compile firmware
       id: compile
