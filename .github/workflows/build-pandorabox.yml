@@ -10,7 +10,7 @@ on:
       - 'triggers/build-pandorabox.md'
 
 env:
-  DEVICE_PROFILE: xiaomi-mini
+  DEVICE_NAME: xiaomi-mini
   BUILD_SCRIPT: configs/pandorabox/imagebuilder/xiaomi-mini.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
@@ -77,5 +77,5 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.prepare.outputs.status == 'success' && env.UPLOAD_FIRMWARE_DIR == 'true'
       with:
-        name: ${{ env.DEVICE_PROFILE }}_pandorabox_${{ env.DATE }}
+        name: ${{ env.DEVICE_NAME }}_pandorabox_${{ env.DATE }}
         path: ${{ env.FIRMWARE }}
