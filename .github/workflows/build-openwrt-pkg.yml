@@ -10,6 +10,7 @@ on:
       - 'triggers/build-openwrt-pkg.md'
 
 env:
+  DL_SDK_SH: scripts/openwrt/dl_sdk.sh
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -38,7 +39,7 @@ jobs:
     - name: Download SDK
       run: |
         mkdir -p openwrt
-        cp scripts/openwrt/dl_sdk.sh openwrt/dl_sdk.sh
+        cp $DL_SDK_SH openwrt/dl_sdk.sh
         cd openwrt
         sh dl_sdk.sh
 
