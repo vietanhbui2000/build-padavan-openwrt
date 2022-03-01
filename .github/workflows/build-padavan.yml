@@ -12,7 +12,7 @@ on:
 
 env:
   REPO_URL: https://github.com/vb1980/Padavan-KVR
-  REPO_BRANCH: main
+  REPO_BRANCH: e9f586ce16386c34f0ceadff404cac5162ef32c1
   DEVICE_NAME: MiWiFi-R1CM
   CUSTOMIZE_FIRMWARE: false
   USE_PRECOMPILED_TOOLCHAIN: true
