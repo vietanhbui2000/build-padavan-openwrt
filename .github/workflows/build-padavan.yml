@@ -11,8 +11,8 @@ on:
       - 'triggers/build-padavan.md'
 
 env:
-  REPO_URL: https://github.com/vb1980/Padavan-KVR
-  REPO_BRANCH: e9f586ce16386c34f0ceadff404cac5162ef32c1
+  REPO_URL: https://github.com/vietanhbui2000/padavan
+  REPO_BRANCH: main
   DEVICE_NAME: MiWiFi-R1CM
   CUSTOMIZE_FIRMWARE: false
   USE_PRECOMPILED_TOOLCHAIN: true
