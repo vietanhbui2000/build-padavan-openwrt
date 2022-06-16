@@ -5,9 +5,7 @@
 name: Build PandoraBox
 
 on:
-  push:
-    paths:
-      - 'triggers/build-pandorabox.md'
+  workflow_dispatch:
 
 env:
   DEVICE_NAME: xiaomi-mini
