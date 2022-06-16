@@ -5,9 +5,7 @@
 name: Build OpenWrt
 
 on:
-  push:
-    paths:
-      - 'triggers/build-openwrt-2.md'
+  workflow_dispatch:
 
 env:
   DEVICE_NAME: xiaomi_miwifi-mini
