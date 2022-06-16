@@ -5,9 +5,7 @@
 name: Build OpenWrt Package
 
 on:
-  push:
-    paths:
-      - 'triggers/build-openwrt-pkg.md'
+  workflow_dispatch:
 
 env:
   DL_SDK_SH: scripts/openwrt/dl_sdk.sh
