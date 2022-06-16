@@ -6,9 +6,7 @@
 name: Build AsusWRT
 
 on:
-  push:
-    paths:
-      - 'triggers/build-asuswrt.md'
+  workflow_dispatch:
 
 env:
   REPO_URL: https://github.com/vietanhbui2000/rt-ac1200hp-asuswrt
