@@ -5,9 +5,7 @@
 name: Build Padavan Toolchain
 
 on:
-  push:
-    paths:
-      - 'triggers/build-padavan-ng-tlc.md'
+  workflow_dispatch:
 
 env:
   REPO_URL: https://github.com/vietanhbui2000/padavan-ng
