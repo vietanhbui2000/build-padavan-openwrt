@@ -4,9 +4,9 @@ Build Padavan/OpenWrt firmware using GitHub Actions.
 
 ## Build status
 
-![Build Padavan](https://github.com/vietanhbui2000/build-padavan-openwrt/workflows/Build%20Padavan/badge.svg)
-![Build OpenWrt](https://github.com/vietanhbui2000/build-padavan-openwrt/workflows/Build%20OpenWrt/badge.svg)
-![Build Lede](https://github.com/vietanhbui2000/build-padavan-openwrt/workflows/Build%20Lede/badge.svg)
+[![Build Padavan](https://github.com/vietanhbui2000/build-padavan-openwrt/actions/workflows/build-padavan.yml/badge.svg)](https://github.com/vietanhbui2000/build-padavan-openwrt/actions/workflows/build-padavan.yml)
+[![Build OpenWrt](https://github.com/vietanhbui2000/build-padavan-openwrt/actions/workflows/build-openwrt.yml/badge.svg)](https://github.com/vietanhbui2000/build-padavan-openwrt/actions/workflows/build-openwrt.yml)
+[![Build Lede](https://github.com/vietanhbui2000/build-padavan-openwrt/actions/workflows/build-lede.yml/badge.svg)](https://github.com/vietanhbui2000/build-padavan-openwrt/actions/workflows/build-lede.yml)
 
 ## How to use
 
