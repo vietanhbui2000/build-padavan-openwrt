@@ -2,7 +2,7 @@
 # Author(s): Việt Anh Bùi | https://github.com/vietanhbui2000 #
 ###############################################################
 
-name: Build Padavan Toolchain
+name: Build Padavan-NG Toolchain
 
 on:
   workflow_dispatch:
