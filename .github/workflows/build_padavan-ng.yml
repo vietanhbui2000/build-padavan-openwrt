@@ -9,11 +9,11 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/vietanhbui2000/padavan-ng
-  REPO_BRANCH: update
+  REPO_URL: https://gitlab.com/mahtabctg/padavan-ng
+  REPO_BRANCH: master
   DEVICE_NAME: MiWiFi-R1CM
   CUSTOMIZE_FIRMWARE: false
-  USE_PRECOMPILED_TOOLCHAIN: true
+  USE_PRECOMPILED_TOOLCHAIN: false
   CUSTOMIZE_SH: scripts/padavan/customize.sh
   DL_TOOLCHAIN_SH: scripts/padavan/dl_toolchain_ng.sh
   TZ: Asia/Ho_Chi_Minh
