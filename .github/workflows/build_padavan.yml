@@ -9,11 +9,11 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/vietanhbui2000/padavan
-  REPO_BRANCH: update
+  REPO_URL: https://github.com/vb1980/Padavan-KVR
+  REPO_BRANCH: main
   DEVICE_NAME: MiWiFi-R1CM
   CUSTOMIZE_FIRMWARE: false
-  USE_PRECOMPILED_TOOLCHAIN: true
+  USE_PRECOMPILED_TOOLCHAIN: false
   CUSTOMIZE_SH: scripts/padavan/customize.sh
   DL_TOOLCHAIN_SH: scripts/padavan/dl_toolchain.sh
   TZ: Asia/Ho_Chi_Minh
@@ -36,7 +36,7 @@ jobs:
         sudo -E apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
         fakeroot kmod cpio git python3-docutils gettext automake autopoint \
         texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
-        libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin libz-dev
+        libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get clean
 
