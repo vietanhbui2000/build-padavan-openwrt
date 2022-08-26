@@ -33,7 +33,7 @@ jobs:
       run: |
         sudo timedatectl set-timezone "$TZ"
         sudo -E apt-get update
-        sudo -E apt-get -y install git build-essential gawk pkg-config gettext automake autoconf autopoint libtool bison flex zlib1g-dev libgmp3-dev libmpfr-dev libmpc-dev texinfo mc libncurses5-dev nano vim autopoint gperf python-docutils help2man libtool-bin libtool-doc
+        sudo -E apt-get -y install autoconf autoconf-archive automake autopoint bison build-essential cmake cpio curl doxygen fakeroot flex gawk gettext git gperf help2man htop kmod libblkid-dev libc-ares-dev libcurl4-openssl-dev libdevmapper-dev libev-dev libevent-dev libgmp3-dev libkeyutils-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libsqlite3-dev libssl-dev libtool libtool-bin libudev-dev libxml2-dev  locales mc nano pkg-config ppp-dev python3 python3-docutils texinfo unzip uuid uuid-dev vim wget xxd zlib1g-dev
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get clean
 
