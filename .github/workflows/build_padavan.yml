@@ -11,7 +11,7 @@ on:
 env:
   REPO_URL: https://github.com/vb1980/Padavan-KVR
   REPO_BRANCH: downgrade
-  DEVICE_NAME: MiWiFi-R1CM
+  DEVICE_NAME: MiWiFi-R4AC
   CUSTOMIZE_FIRMWARE: false
   USE_PRECOMPILED_TOOLCHAIN: false
   CUSTOMIZE_SH: scripts/padavan/customize.sh
