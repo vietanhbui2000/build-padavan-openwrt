@@ -13,9 +13,9 @@ env:
   REPO_BRANCH: master
   DEVICE_NAME: MiWiFi-R1CM
   CUSTOMIZE_FIRMWARE: false
-  USE_PRECOMPILED_TOOLCHAIN: false
+  USE_PRECOMPILED_TOOLCHAIN: true
   CUSTOMIZE_SH: scripts/padavan/customize.sh
-  DL_TOOLCHAIN_SH: scripts/padavan/dl_toolchain_ng.sh
+  DL_TOOLCHAIN_SH: scripts/padavan/dl_toolchain-ng.sh
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
