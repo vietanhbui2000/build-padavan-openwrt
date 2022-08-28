@@ -9,5 +9,5 @@ FILE_NAME="padavan-tlc"
 FILE_URL="https://github.com/vietanhbui2000/Build-Padavan-OpenWrt/raw/main/scripts/padavan/$FILE_NAME.tar.xz"
 
 # Download and extract file(s)
-curl $FILE_URL
+curl -OL $FILE_URL
 tar -xvf $FILE_NAME.tar.xz
