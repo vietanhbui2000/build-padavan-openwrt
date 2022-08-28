@@ -13,7 +13,7 @@ env:
   REPO_BRANCH: downgrade
   DEVICE_NAME: MiWiFi-R4AC
   CUSTOMIZE_FIRMWARE: false
-  USE_PRECOMPILED_TOOLCHAIN: false
+  USE_PRECOMPILED_TOOLCHAIN: true
   CUSTOMIZE_SH: scripts/padavan/customize.sh
   DL_TOOLCHAIN_SH: scripts/padavan/dl_toolchain.sh
   TZ: Asia/Ho_Chi_Minh
