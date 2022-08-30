@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/vietanhbui2000/padavan
+  REPO_URL: https://github.com/vietanhbui2000/padavan-kvr
   REPO_BRANCH: update
   DEVICE_NAME: MiWiFi-R1CM
   CUSTOMIZE_FIRMWARE: false
