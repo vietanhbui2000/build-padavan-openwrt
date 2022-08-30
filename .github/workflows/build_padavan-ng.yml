@@ -60,7 +60,7 @@ jobs:
     - name: Download pre-compiled toolchain
       if: env.USE_PRECOMPILED_TOOLCHAIN == 'true' && !cancelled()
       run: |
-        # cp $DL_TOOLCHAIN_SH opt/padavan-ng/toolchain/dl_toolchain.sh
+        cp $DL_TOOLCHAIN_SH opt/padavan-ng/toolchain/dl_toolchain.sh
         cd opt/padavan-ng/toolchain
         sh dl_toolchain.sh
 
