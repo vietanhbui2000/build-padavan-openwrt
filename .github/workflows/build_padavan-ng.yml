@@ -88,5 +88,5 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success'
       with:
-        name: ${{ env.DEVICE_NAME }}_padavan-ng_${{ env.DATE }}
+        name: ${{ env.DEVICE_NAME }}_padavan-ng_r${{ env.DATE }}
         path: opt/padavan-ng/trunk/images/*.trx
