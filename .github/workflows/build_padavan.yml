@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/vietanhbui2000/padavan-kvr
+  REPO_URL: https://github.com/vietanhbui2000/padavan
   REPO_BRANCH: update
   DEVICE_NAME: MiWiFi-R1CM
   CUSTOMIZE_FIRMWARE: false
@@ -91,5 +91,5 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success'
       with:
-        name: ${{ env.DEVICE_NAME }}_padavan_${{ env.DATE }}
+        name: ${{ env.DEVICE_NAME }}_padavan_r${{ env.DATE }}
         path: /opt/padavan/trunk/images/*.trx
