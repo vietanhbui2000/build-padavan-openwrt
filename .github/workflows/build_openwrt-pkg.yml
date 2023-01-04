@@ -80,5 +80,5 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success'
       with:
-        name: openwrt_package_${{ env.DATE }}
+        name: openwrt_package_r${{ env.DATE }}
         path: openwrt/sdk/bin/packages
