@@ -58,5 +58,5 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.prepare.outputs.status == 'success'
       with:
-        name: padavan-ng_toolchain_${{ env.DATE }}
+        name: padavan-ng_toolchain_r${{ env.DATE }}
         path: opt/padavan-ng/toolchain/out.tar.xz
