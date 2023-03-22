@@ -52,7 +52,7 @@ jobs:
       run: |
         cd opt/padavan-ng/toolchain
         tar -cJvf out.tar.xz out/*
-        echo "::set-output name=status::success"
+        echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Upload toolchain
       uses: actions/upload-artifact@main
