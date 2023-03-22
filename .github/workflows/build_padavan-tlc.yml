@@ -55,7 +55,7 @@ jobs:
       run: |
         cd /opt/padavan/toolchain-mipsel
         tar -cJvf toolchain-3.4.x.tar.xz toolchain-3.4.x/*
-        echo "::set-output name=status::success"
+        echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Upload toolchain
       uses: actions/upload-artifact@main
